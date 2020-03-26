@@ -10,12 +10,16 @@ class HoverApp extends StatelessWidget {
   final HoverRouter _appNavigationManager;
   final HoverPage _initialPage;
   final ThemeData _appTheme;
+  final _HoverAppGlobalElements _globalElements = _HoverAppGlobalElements();
 
   factory HoverApp({
     @required List<HoverPage> appPages,
     @required HoverPage initialPage,
     @required ThemeData appTheme,
     List<SingleChildWidget> providers,
+    AppBar globalAppBar,
+    Drawer globalDrawer,
+    SnackBar globalSnackBar,
   }) {
     HoverRouter appNavigationManager = HoverRouter(appPages: appPages, initialPage: initialPage);
     return HoverApp._(
@@ -23,6 +27,9 @@ class HoverApp extends StatelessWidget {
       appTheme,
       initialPage,
       topLevelProviders: providers,
+      globalAppBar: globalAppBar,
+      globalDrawer: globalDrawer,
+      globalSnackBar: globalSnackBar,
     );
   }
 
@@ -31,8 +38,17 @@ class HoverApp extends StatelessWidget {
     this._appTheme,
     this._initialPage, {
     List<SingleChildWidget> topLevelProviders,
+    AppBar globalAppBar,
+    Drawer globalDrawer,
+    SnackBar globalSnackBar,
   }) {
     _providers.add(HoverRouterProvider(_appNavigationManager));
+
+    _globalElements.globalAppBar = globalAppBar;
+    _globalElements.globalDrawer = globalDrawer;
+    _globalElements.globalSnackBar = globalSnackBar;
+    _providers.add(_HoverAppGlobalElementsProvider(_globalElements));
+
     if (topLevelProviders != null) {
       _providers.addAll(topLevelProviders);
     }
@@ -51,4 +67,17 @@ class HoverApp extends StatelessWidget {
       ),
     );
   }
+}
+
+// Global components that will be reused throughout the app.
+// User provider to pass the global elements to HoverPage widgets.
+class _HoverAppGlobalElements {
+  _HoverAppGlobalElements();
+  AppBar globalAppBar;
+  Drawer globalDrawer;
+  SnackBar globalSnackBar;
+}
+
+class _HoverAppGlobalElementsProvider extends Provider<_HoverAppGlobalElements> {
+  _HoverAppGlobalElementsProvider(_HoverAppGlobalElements globalElements) : super(create: (_) => globalElements);
 }
