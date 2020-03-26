@@ -82,7 +82,7 @@ abstract class HoverPage extends HoverRoute {
     return _getAppNavigationManager(context).goToInitialPage(context, scaffoldKey);
   }
 
-  Future navigateTo(BuildContext context, HoverRoute page) {
+  Future navigateTo(BuildContext context, HoverPage page) {
     closeDrawer();
     return _getAppNavigationManager(context).goTo(context, page);
   }
