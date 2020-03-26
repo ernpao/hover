@@ -23,25 +23,18 @@ abstract class HoverPage extends HoverRoute {
 
   @override
   Widget build(BuildContext context) {
+    final globalElements = Provider.of<HoverGlobalWidgets>(context, listen: false);
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundColor,
         key: scaffoldKey,
-        appBar: _appBarBuilder(context, scaffoldState),
+        appBar: buildAppBar(context, scaffoldState),
         body: buildContent(context, scaffoldState),
         drawer: buildDrawer(context, scaffoldState),
         floatingActionButton: buildFloatingActionButton(context, scaffoldState),
       ),
     );
-  }
-
-  AppBar _appBarBuilder(BuildContext context, ScaffoldState scaffoldState) {
-    if (buildAppBar == null) {
-      return AppBar(
-        title: Text(title),
-      );
-    }
-    return buildAppBar(context, scaffoldState);
   }
 
   void openDrawer() {
