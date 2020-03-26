@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'navigation/hover_navigation.dart';
+import '../core/hover_global_widgets.dart';
 
 abstract class HoverPage extends HoverRoute {
   final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
