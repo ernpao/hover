@@ -45,9 +45,9 @@ class HoverApp extends StatelessWidget {
   }) {
     _providers.add(HoverRouterProvider(_appNavigationManager));
 
-    _globalElements.globalAppBar = globalAppBar;
-    _globalElements.globalDrawer = globalDrawer;
-    _globalElements.globalSnackBar = globalSnackBar;
+    _globalElements.appBar = globalAppBar;
+    _globalElements.drawer = globalDrawer;
+    _globalElements.snackBar = globalSnackBar;
     _providers.add(HoverGlobalWidgetsProvider(_globalElements));
 
     if (topLevelProviders != null) {

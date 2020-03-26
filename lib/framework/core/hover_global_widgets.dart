@@ -5,9 +5,9 @@ import 'package:provider/provider.dart';
 // User provider to pass the global elements to HoverPage widgets.
 class HoverGlobalWidgets {
   HoverGlobalWidgets();
-  AppBar globalAppBar;
-  Drawer globalDrawer;
-  SnackBar globalSnackBar;
+  AppBar appBar;
+  Drawer drawer;
+  SnackBar snackBar;
 }
 
 class HoverGlobalWidgetsProvider extends Provider<HoverGlobalWidgets> {
