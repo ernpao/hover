@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'navigation/hover_navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
 import 'hover_page.dart';
+import 'hover_global_widgets.dart';
+import 'navigation/hover_navigation.dart';
 
 class HoverApp extends StatelessWidget {
   final List<SingleChildWidget> _providers = List();
   final HoverRouter _appNavigationManager;
   final HoverPage _initialPage;
   final ThemeData _appTheme;
-  final HoverAppGlobalElements _globalElements = HoverAppGlobalElements();
+  final HoverGlobalWidgets _globalElements = HoverGlobalWidgets();
 
   factory HoverApp({
     @required List<HoverPage> appPages,
@@ -47,7 +48,7 @@ class HoverApp extends StatelessWidget {
     _globalElements.globalAppBar = globalAppBar;
     _globalElements.globalDrawer = globalDrawer;
     _globalElements.globalSnackBar = globalSnackBar;
-    _providers.add(_HoverAppGlobalElementsProvider(_globalElements));
+    _providers.add(HoverGlobalWidgetsProvider(_globalElements));
 
     if (topLevelProviders != null) {
       _providers.addAll(topLevelProviders);
@@ -67,17 +68,4 @@ class HoverApp extends StatelessWidget {
       ),
     );
   }
-}
-
-// Global components that will be reused throughout the app.
-// User provider to pass the global elements to HoverPage widgets.
-class HoverAppGlobalElements {
-  HoverAppGlobalElements();
-  AppBar globalAppBar;
-  Drawer globalDrawer;
-  SnackBar globalSnackBar;
-}
-
-class _HoverAppGlobalElementsProvider extends Provider<HoverAppGlobalElements> {
-  _HoverAppGlobalElementsProvider(HoverAppGlobalElements globalElements) : super(create: (_) => globalElements);
 }
