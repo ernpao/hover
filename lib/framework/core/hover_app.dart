@@ -10,7 +10,7 @@ class HoverApp extends StatelessWidget {
   final HoverRouter _appNavigationManager;
   final HoverPage _initialPage;
   final ThemeData _appTheme;
-  final _HoverAppGlobalElements _globalElements = _HoverAppGlobalElements();
+  final HoverAppGlobalElements _globalElements = HoverAppGlobalElements();
 
   factory HoverApp({
     @required List<HoverPage> appPages,
@@ -71,13 +71,13 @@ class HoverApp extends StatelessWidget {
 
 // Global components that will be reused throughout the app.
 // User provider to pass the global elements to HoverPage widgets.
-class _HoverAppGlobalElements {
-  _HoverAppGlobalElements();
+class HoverAppGlobalElements {
+  HoverAppGlobalElements();
   AppBar globalAppBar;
   Drawer globalDrawer;
   SnackBar globalSnackBar;
 }
 
-class _HoverAppGlobalElementsProvider extends Provider<_HoverAppGlobalElements> {
-  _HoverAppGlobalElementsProvider(_HoverAppGlobalElements globalElements) : super(create: (_) => globalElements);
+class _HoverAppGlobalElementsProvider extends Provider<HoverAppGlobalElements> {
+  _HoverAppGlobalElementsProvider(HoverAppGlobalElements globalElements) : super(create: (_) => globalElements);
 }
