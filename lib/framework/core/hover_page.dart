@@ -77,7 +77,7 @@ abstract class HoverPage extends HoverRoute {
     return Provider.of<HoverRouter>(context, listen: false);
   }
 
-  /* Static methods for navigation */
+  // Static methods for navigation
   Future navigateToInitialPage(
     BuildContext context,
     GlobalKey<ScaffoldState> scaffoldKey,
