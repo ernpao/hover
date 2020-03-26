@@ -1,3 +1,3 @@
-## [0.0.1] - TODO: Add release date.
+## [0.0.1] - 3/25/2020.
 
-* TODO: Describe initial release.
+* Created the hover package and published to pub.dev
