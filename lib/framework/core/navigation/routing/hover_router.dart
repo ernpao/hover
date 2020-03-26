@@ -4,14 +4,11 @@ import 'package:provider/provider.dart';
 
 import 'hover_route.dart';
 
-abstract class HoverRouting {
+abstract class HoverRoutingManager {
   Future goToInitialPage(BuildContext context, GlobalKey<ScaffoldState> scaffoldKey);
   Future goToPage(BuildContext context, String pageRouteName, GlobalKey<ScaffoldState> scaffoldKey, {Object data});
   Future goTo(BuildContext context, HoverRoute page);
   void pop(BuildContext context, {Object returnData});
-}
-
-abstract class HoverRoutingManager implements HoverRouting {
   void buildRoutes();
 }
 
