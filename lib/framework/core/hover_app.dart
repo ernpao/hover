@@ -21,6 +21,7 @@ class HoverApp extends StatelessWidget {
     AppBar globalAppBar,
     Drawer globalDrawer,
     SnackBar globalSnackBar,
+    Widget globalFloatingActionButton,
   }) {
     HoverRouter appNavigationManager = HoverRouter(appPages: appPages, initialPage: initialPage);
     return HoverApp._(
@@ -31,6 +32,7 @@ class HoverApp extends StatelessWidget {
       globalAppBar: globalAppBar,
       globalDrawer: globalDrawer,
       globalSnackBar: globalSnackBar,
+      globalFloatingActionButton: globalFloatingActionButton,
     );
   }
 
@@ -42,12 +44,14 @@ class HoverApp extends StatelessWidget {
     AppBar globalAppBar,
     Drawer globalDrawer,
     SnackBar globalSnackBar,
+    Widget globalFloatingActionButton,
   }) {
     _providers.add(HoverRouterProvider(_appNavigationManager));
 
     _globalElements.appBar = globalAppBar;
     _globalElements.drawer = globalDrawer;
     _globalElements.snackBar = globalSnackBar;
+    _globalElements.floatingActionButton = globalFloatingActionButton;
     _providers.add(HoverGlobalWidgetsProvider(_globalElements));
 
     if (topLevelProviders != null) {

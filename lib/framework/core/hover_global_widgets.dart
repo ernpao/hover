@@ -8,6 +8,7 @@ class HoverGlobalWidgets {
   AppBar appBar;
   Drawer drawer;
   SnackBar snackBar;
+  Widget floatingActionButton;
 }
 
 class HoverGlobalWidgetsProvider extends Provider<HoverGlobalWidgets> {
