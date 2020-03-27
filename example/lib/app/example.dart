@@ -7,7 +7,6 @@ import 'landing_page.dart';
 /// This is the sample application. To create an application using the Hover framework, you
 /// must extend the HoverApp class and pass arguments to the super() method.
 ///
-///
 class Example extends StatelessWidget {
   final LandingPage initPage = LandingPage();
 
