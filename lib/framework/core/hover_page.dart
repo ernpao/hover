@@ -101,14 +101,14 @@ abstract class HoverPage extends HoverRoute {
     return Provider.of<HoverRoutingManager>(context, listen: false);
   }
 
-  Future navigateToInitialPage(BuildContext context) {
+  void navigateToInitialPage(BuildContext context) {
     closeDrawer();
-    return _getAppNavigationManager(context).goToInitialPage(context, scaffoldKey);
+    _getAppNavigationManager(context).goToInitialPage(context);
   }
 
-  Future navigateTo(BuildContext context, HoverPage page) {
+  void navigateTo<T>(BuildContext context, {Object data}) {
     closeDrawer();
-    return _getAppNavigationManager(context).goTo(context, page);
+    _getAppNavigationManager(context).goToPage<T>(context, data: data);
   }
 
   void popNavigation(BuildContext context, {Object returnData}) {

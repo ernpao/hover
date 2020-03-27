@@ -9,13 +9,11 @@ import 'navigation/hover_navigation.dart';
 class HoverApp extends StatelessWidget {
   final List<SingleChildWidget> _providers = List();
   final HoverRouter _appNavigationManager;
-  final HoverPage _initialPage;
   final ThemeData _appTheme;
   final HoverGlobalWidgets _globalElements = HoverGlobalWidgets();
 
   factory HoverApp({
     @required List<HoverPage> appPages,
-    @required HoverPage initialPage,
     @required ThemeData appTheme,
     List<SingleChildWidget> providers,
     AppBar globalAppBar,
@@ -23,11 +21,12 @@ class HoverApp extends StatelessWidget {
     SnackBar globalSnackBar,
     Widget globalFloatingActionButton,
   }) {
-    HoverRouter appNavigationManager = HoverRouter(appPages: appPages, initialPage: initialPage);
+    HoverRouter appNavigationManager = HoverRouter(
+      appPages: appPages,
+    );
     return HoverApp._(
       appNavigationManager,
       appTheme,
-      initialPage,
       topLevelProviders: providers,
       globalAppBar: globalAppBar,
       globalDrawer: globalDrawer,
@@ -38,8 +37,7 @@ class HoverApp extends StatelessWidget {
 
   HoverApp._(
     this._appNavigationManager,
-    this._appTheme,
-    this._initialPage, {
+    this._appTheme, {
     List<SingleChildWidget> topLevelProviders,
     AppBar globalAppBar,
     Drawer globalDrawer,
@@ -64,7 +62,7 @@ class HoverApp extends StatelessWidget {
     return MultiProvider(
       providers: _providers,
       child: MaterialApp(
-        initialRoute: _initialPage.routeName,
+        initialRoute: _appNavigationManager.appPages[0].routeName,
         routes: _appNavigationManager.buildRoutes(),
         debugShowCheckedModeBanner: false,
         theme: _appTheme,
