@@ -97,8 +97,8 @@ abstract class HoverPage extends HoverRoute {
     scaffoldState.showSnackBar(_snackBar);
   }
 
-  HoverRouter _getAppNavigationManager(BuildContext context) {
-    return Provider.of<HoverRouter>(context, listen: false);
+  HoverRoutingManager _getAppNavigationManager(BuildContext context) {
+    return Provider.of<HoverRoutingManager>(context, listen: false);
   }
 
   Future navigateToInitialPage(BuildContext context) {
