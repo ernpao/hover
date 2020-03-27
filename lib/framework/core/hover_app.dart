@@ -64,7 +64,6 @@ class HoverApp extends StatelessWidget {
     return MultiProvider(
       providers: _providers,
       child: MaterialApp(
-        title: _initialPage.title,
         initialRoute: _initialPage.routeName,
         routes: _appNavigationManager.buildRoutes(),
         debugShowCheckedModeBanner: false,
