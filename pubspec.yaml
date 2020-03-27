@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   provider: ^4.0.4
+  flushbar: ^1.10.0
 
 dev_dependencies:
   flutter_test:
