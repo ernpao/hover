@@ -10,7 +10,7 @@ class CallToActionButton extends CustomRaisedButton {
     double letterSpacing,
     FontWeight fontWeight: FontWeight.bold,
     double borderRadius: 8.0,
-    double textPadding,
+    double textPadding: 0.0,
     @required VoidCallback onPressed,
   })  : assert(text != null),
         super(
