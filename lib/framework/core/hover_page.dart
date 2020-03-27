@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'navigation/hover_navigation.dart';
-import '../core/hover_global_widgets.dart';
+import 'hover_global_widgets.dart';
 
 abstract class HoverPage extends HoverRoute {
   final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -16,7 +16,7 @@ abstract class HoverPage extends HoverRoute {
   });
 
   /// Build the content of the page by overriding this method.
-  Widget buildContent(BuildContext context);
+  Widget build(BuildContext context);
 
   AppBar buildAppBar(BuildContext context) {
     if (title != null) {
@@ -40,23 +40,8 @@ abstract class HoverPage extends HoverRoute {
   }
 
   @override
-  Widget build(BuildContext context) {
-    final globalWidgets = Provider.of<HoverGlobalWidgets>(context, listen: false);
-
-    final appBar = buildAppBar(context);
-    final drawer = buildDrawer(context);
-    final fab = buildFloatingActionButton(context);
-
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: backgroundColor,
-        key: scaffoldKey,
-        body: buildContent(context),
-        appBar: (appBar != null) ? appBar : globalWidgets.appBar,
-        drawer: (drawer != null) ? drawer : globalWidgets.drawer,
-        floatingActionButton: (fab != null) ? fab : globalWidgets.floatingActionButton,
-      ),
-    );
+  State<HoverPage> createState() {
+    return _HoverPageState();
   }
 
   void openDrawer() {
@@ -94,25 +79,56 @@ abstract class HoverPage extends HoverRoute {
 
     //If both the builSnackBar() and globalWidgets.snackBar are null, use a basic snackbar.
     final _snackBar = (snackBar != null) ? snackBar : SnackBar(content: Text(message), duration: duration);
-    scaffoldState.showSnackBar(_snackBar);
+    // Scaffold.of(context).showSnackBar(_snackBar);
+    // scaffoldState.showSnackBar(_snackBar);
+
+    if (scaffoldState != null) {
+      scaffoldState.showSnackBar(_snackBar);
+    }
   }
 
   HoverRoutingManager _getAppNavigationManager(BuildContext context) {
     return Provider.of<HoverRoutingManager>(context, listen: false);
   }
 
-  void navigateToInitialPage(BuildContext context) {
+  void goToInitialPage(BuildContext context, {String sbMessageOnNavigate}) {
     closeDrawer();
     _getAppNavigationManager(context).goToInitialPage(context);
   }
 
-  void navigateTo<T>(BuildContext context, {Object data}) {
+  void goToPage<T>(BuildContext context, {String sbMessageOnNavigate}) {
     closeDrawer();
-    _getAppNavigationManager(context).goToPage<T>(context, data: data);
+    _getAppNavigationManager(context).goToPage<T>(context);
   }
 
-  void popNavigation(BuildContext context, {Object returnData}) {
+  Future<void> pop(BuildContext context, {String sbMessageOnNavigate}) async {
     closeDrawer();
-    _getAppNavigationManager(context).pop(context, returnData: returnData);
+    _getAppNavigationManager(context).pop(context);
+  }
+}
+
+class _HoverPageState extends State<HoverPage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final globalWidgets = Provider.of<HoverGlobalWidgets>(context, listen: true);
+    final appBar = widget.buildAppBar(context);
+    final drawer = widget.buildDrawer(context);
+    final fab = widget.buildFloatingActionButton(context);
+
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: widget.backgroundColor,
+        key: widget.scaffoldKey,
+        body: widget.build(context),
+        appBar: (appBar != null) ? appBar : globalWidgets.appBar,
+        drawer: (drawer != null) ? drawer : globalWidgets.drawer,
+        floatingActionButton: (fab != null) ? fab : globalWidgets.floatingActionButton,
+      ),
+    );
   }
 }
