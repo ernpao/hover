@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hover/framework/core/hover_app.dart';
 
+import 'profile_page.dart';
 import 'landing_page.dart';
 
 ///
@@ -9,13 +10,16 @@ import 'landing_page.dart';
 ///
 class Example extends StatelessWidget {
   final LandingPage initPage = LandingPage();
+  final ProfilePage profilePage = ProfilePage();
 
   @override
   Widget build(BuildContext context) {
     return HoverApp(
-      appPages: [initPage],
+      appPages: [
+        initPage,
+        profilePage,
+      ],
       appTheme: ThemeData.light(),
-      initialPage: initPage,
       providers: [],
     );
   }
