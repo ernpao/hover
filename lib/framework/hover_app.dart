@@ -4,7 +4,7 @@ import 'package:provider/single_child_widget.dart';
 
 import 'hover_framework.dart';
 
-class HoverApp extends StatelessWidget {
+class Hover extends StatelessWidget {
   static final List<SingleChildWidget> _providers = List();
   static ThemeData _theme;
   static final HoverGlobalWidgets _globalElements = HoverGlobalWidgets();
@@ -12,8 +12,8 @@ class HoverApp extends StatelessWidget {
   static HoverRouter _router;
   static HoverRouter get router => _router;
 
-  static HoverApp _instance;
-  static HoverApp get instance => _instance;
+  static Hover _instance;
+  static Hover get instance => _instance;
 
   static HoverPageBase get currentPage => _router.currentRoute as HoverPageBase;
 
@@ -25,7 +25,7 @@ class HoverApp extends StatelessWidget {
 
   static void toggleDrawer() => currentPage.toggleDrawer();
 
-  static HoverApp create({
+  static Hover create({
     @required List<HoverRoute> routes,
     @required ThemeData theme,
     List<SingleChildWidget> providers,
@@ -35,7 +35,7 @@ class HoverApp extends StatelessWidget {
     Widget globalFloatingActionButton,
   }) {
     if (_instance == null) {
-      _instance = HoverApp._(
+      _instance = Hover._(
         routes: routes,
         theme: theme,
         providers: providers,
@@ -49,7 +49,7 @@ class HoverApp extends StatelessWidget {
     return _instance;
   }
 
-  HoverApp._({
+  Hover._({
     @required List<HoverRoute> routes,
     @required ThemeData theme,
     List<SingleChildWidget> providers,

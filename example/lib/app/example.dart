@@ -29,7 +29,7 @@ class Example extends StatelessWidget {
     title: Text("Hover Sample App"),
     leading: FlatButton(
         onPressed: () {
-          HoverApp.toggleDrawer();
+          Hover.toggleDrawer();
         },
         child: Icon(
           Icons.menu,
@@ -39,7 +39,7 @@ class Example extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HoverApp.create(
+    return Hover.create(
       routes: [
         profilePage,
         landingPage,

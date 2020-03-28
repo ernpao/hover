@@ -12,7 +12,7 @@ class LandingPage extends HoverSwapper {
                   CallToActionButton(
                     text: "Go to Profile",
                     onPressed: () {
-                      HoverApp.router.goToRoute("/profile", HoverApp.currentPage.currentState.context);
+                      Hover.router.goToRoute("/profile", Hover.currentPage.currentState.context);
                     },
                   ),
                 ],
