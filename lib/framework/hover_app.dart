@@ -23,13 +23,7 @@ class HoverApp extends StatelessWidget {
 
   static void openDrawer() => currentPage.openDrawer();
 
-  static void toggleDrawer() {
-    if (!isDrawerOpen) {
-      openDrawer();
-    } else {
-      closeDrawer();
-    }
-  }
+  static void toggleDrawer() => currentPage.toggleDrawer();
 
   static HoverApp create({
     @required List<HoverRoute> routes,
