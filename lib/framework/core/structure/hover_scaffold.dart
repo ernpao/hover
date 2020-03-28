@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 abstract class HoverScaffold extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
   ScaffoldState get currentState => scaffoldKey.currentState;
+  BuildContext get currentContext => scaffoldKey.currentState.context;
 
   /// Utility method to get the device's screen width
   double getScreenWidth(BuildContext context) {
