@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hover/hover.dart';
-import 'package:hover/widgets/hover_widgets.dart';
-
-import 'landing_page.dart';
 
 class ProfilePage extends HoverPage {
   @override
@@ -17,7 +14,7 @@ class ProfilePage extends HoverPage {
           CallToActionButton(
             text: "Return to landing page",
             onPressed: () {
-              goToPage<LandingPage>(context);
+              goToRoute("/landing", context);
             },
           ),
         ],
