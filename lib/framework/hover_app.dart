@@ -10,7 +10,10 @@ class HoverApp extends StatelessWidget {
   static ThemeData _theme;
   static final HoverGlobalWidgets _globalElements = HoverGlobalWidgets();
 
-  HoverApp({
+  static HoverApp _instance;
+  static HoverApp get instance => _instance;
+
+  static HoverApp create({
     @required List<HoverRoute> routes,
     @required ThemeData theme,
     List<SingleChildWidget> providers,
@@ -19,15 +22,39 @@ class HoverApp extends StatelessWidget {
     SnackBar globalSnackBar,
     Widget globalFloatingActionButton,
   }) {
+    if (_instance == null) {
+      _instance = HoverApp._(
+        routes: routes,
+        theme: theme,
+        providers: providers,
+        appBar: globalAppBar,
+        drawer: globalDrawer,
+        snackBar: globalSnackBar,
+        floatingActionButton: globalFloatingActionButton,
+      );
+    }
+
+    return _instance;
+  }
+
+  HoverApp._({
+    @required List<HoverRoute> routes,
+    @required ThemeData theme,
+    List<SingleChildWidget> providers,
+    AppBar appBar,
+    Drawer drawer,
+    SnackBar snackBar,
+    Widget floatingActionButton,
+  }) {
     _theme = theme;
-    _router = HoverRouter(appPages: routes);
+    _router = HoverRouter(routes: routes);
 
     _providers.add(HoverRouterProvider(_router));
 
-    _globalElements.appBar = globalAppBar;
-    _globalElements.drawer = globalDrawer;
-    _globalElements.snackBar = globalSnackBar;
-    _globalElements.floatingActionButton = globalFloatingActionButton;
+    _globalElements.appBar = appBar;
+    _globalElements.drawer = drawer;
+    _globalElements.snackBar = snackBar;
+    _globalElements.floatingActionButton = floatingActionButton;
     _providers.add(HoverGlobalWidgetsProvider(_globalElements));
 
     if (providers != null) {
@@ -40,7 +67,7 @@ class HoverApp extends StatelessWidget {
     return MultiProvider(
       providers: _providers,
       child: MaterialApp(
-        initialRoute: _router.appPages[0].routeName,
+        initialRoute: _router.routes[0].routeName,
         routes: _router.buildRoutes(),
         debugShowCheckedModeBanner: false,
         theme: _theme,
