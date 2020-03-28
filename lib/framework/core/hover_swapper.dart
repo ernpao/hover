@@ -5,31 +5,50 @@ import 'hover_core.dart';
 
 abstract class HoverSwapper extends HoverPageBase {
   final List<HoverSwapperPage> pages;
+  final String title;
   final Color backgroundColor;
 
   HoverSwapper({
     @required this.pages,
+    this.title,
     this.backgroundColor,
-  }) : assert(pages.length > 0);
+  }) : super(title: title, backgroundColor: backgroundColor) {
+    assert(pages.length > 0);
+  }
+
+  @override
+  Widget buildPageContent(BuildContext context) {
+    return HoverContentSwapper(
+      pages: pages,
+      scaffoldKey: scaffoldKey,
+      appBar: buildAppBar(context),
+      drawer: buildDrawer(context),
+      fab: buildFloatingActionButton(context),
+      backgroundColor: backgroundColor,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return HoverContentSwapper(
-      pages: pages,
-      scaffoldKey: this.scaffoldKey,
-    );
+    return buildPageContent(context);
   }
 }
 
 class HoverContentSwapper extends StatefulWidget {
   final List<HoverSwapperPage> pages;
-  final Color backgroundColor;
+  final Widget appBar;
+  final Widget drawer;
+  final Widget fab;
   final GlobalKey<ScaffoldState> scaffoldKey;
+  final Color backgroundColor;
 
   HoverContentSwapper({
     @required this.pages,
     @required this.scaffoldKey,
     this.backgroundColor,
+    this.appBar,
+    this.drawer,
+    this.fab,
   }) : assert(pages.length > 0);
 
   @override
@@ -50,13 +69,19 @@ class _HoverContentSwapperState extends State<HoverContentSwapper> {
   @override
   Widget build(BuildContext context) {
     final globalWidgets = Provider.of<HoverGlobalWidgets>(context, listen: false);
+
+    final appBar = widget.appBar;
+    final drawer = widget.drawer;
+    final fab = widget.fab;
     return SafeArea(
       child: Scaffold(
+        backgroundColor: widget.backgroundColor,
         key: widget.scaffoldKey,
         body: _currentContent,
-        backgroundColor: widget.backgroundColor,
+        appBar: (appBar != null) ? appBar : globalWidgets.appBar,
+        drawer: (drawer != null) ? drawer : globalWidgets.drawer,
+        floatingActionButton: (fab != null) ? fab : globalWidgets.floatingActionButton,
         bottomNavigationBar: _buildBottomNavigation(),
-        appBar: globalWidgets.appBar,
       ),
     );
   }
