@@ -6,7 +6,10 @@ import 'landing_page.dart';
 
 class ProfilePage extends HoverPage {
   @override
-  Widget build(BuildContext context) {
+  String get routeName => "/profile";
+
+  @override
+  Widget buildPageContent(BuildContext context) {
     return Container(
       child: Column(
         children: <Widget>[
@@ -14,14 +17,11 @@ class ProfilePage extends HoverPage {
           CallToActionButton(
             text: "Return to landing page",
             onPressed: () {
-              goToPage<LandingPage>(context, sbMessageOnNavigate: "Returning to the previous screen!");
+              goToPage<LandingPage>(context);
             },
           ),
         ],
       ),
     );
   }
-
-  @override
-  String get routeName => "/profile";
 }
