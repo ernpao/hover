@@ -25,8 +25,11 @@ abstract class HoverSwapper extends HoverPageBase {
       drawer: buildDrawer(context),
       fab: buildFloatingActionButton(context),
       backgroundColor: backgroundColor,
+      navigationBuilder: buildBottomNavigation,
     );
   }
+
+  Widget buildBottomNavigation(BuildContext context, int currentIndex, List<Widget> controls);
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +44,12 @@ class HoverContentSwapper extends StatefulWidget {
   final Widget fab;
   final GlobalKey<ScaffoldState> scaffoldKey;
   final Color backgroundColor;
+  final Widget Function(BuildContext context, int currentIndex, List<Widget> controls) navigationBuilder;
 
   HoverContentSwapper({
     @required this.pages,
     @required this.scaffoldKey,
+    @required this.navigationBuilder,
     this.backgroundColor,
     this.appBar,
     this.drawer,
@@ -59,11 +64,12 @@ class HoverContentSwapper extends StatefulWidget {
 
 class _HoverContentSwapperState extends State<HoverContentSwapper> {
   Widget _currentContent;
+  int _currentIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    _currentContent = widget.pages[0].content;
+    _currentContent = widget.pages[_currentIndex].content;
   }
 
   @override
@@ -90,23 +96,18 @@ class _HoverContentSwapperState extends State<HoverContentSwapper> {
     final List<Widget> controls = List();
 
     widget.pages.forEach((page) {
-      controls.add(FlatButton(
+      controls.add(GestureDetector(
         child: page.toggle,
-        onPressed: () {
+        onTap: () {
           setState(() {
             _currentContent = page.content;
+            _currentIndex = widget.pages.indexOf(page);
           });
         },
       ));
     });
 
-    return Container(
-      color: Colors.blue,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: controls,
-      ),
-    );
+    return widget.navigationBuilder(context, _currentIndex, controls);
   }
 }
 
