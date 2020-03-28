@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'hover_core.dart';
 
-abstract class HoverPageBase extends HoverScaffold implements HoverRoute {
+abstract class HoverPageBase extends HoverScaffold implements HoverRoute, HoverNavigation {
   static const Duration _defaultSnackBarDuration = Duration(seconds: 2);
   final String title;
   final Color backgroundColor;
@@ -13,41 +13,8 @@ abstract class HoverPageBase extends HoverScaffold implements HoverRoute {
     this.backgroundColor,
   });
 
-  Widget buildAppBar(BuildContext context) {
-    if (title != null) {
-      return AppBar(
-        title: Text(title),
-      );
-    }
-    return null;
-  }
-
   HoverGlobalWidgets getGlobalWidgets(BuildContext context) {
     return Provider.of<HoverGlobalWidgets>(context, listen: false);
-  }
-
-  void openDrawer() {
-    if (state.hasDrawer) {
-      key.currentState.openDrawer();
-    }
-  }
-
-  void closeDrawer() {
-    if (state.hasDrawer && state.isDrawerOpen) {
-      Navigator.pop(state.context);
-    }
-  }
-
-  Widget buildDrawer(BuildContext context) {
-    return null;
-  }
-
-  Widget buildSnackBar(BuildContext context) {
-    return null;
-  }
-
-  Widget buildFloatingActionButton(BuildContext context) {
-    return null;
   }
 
   void showSnackBar(BuildContext context, String message, {Duration duration: _defaultSnackBarDuration}) {
@@ -62,8 +29,8 @@ abstract class HoverPageBase extends HoverScaffold implements HoverRoute {
     // Scaffold.of(context).showSnackBar(_snackBar);
     // scaffoldState.showSnackBar(_snackBar);
 
-    if (state != null) {
-      state.showSnackBar(_snackBar);
+    if (currentState != null) {
+      currentState.showSnackBar(_snackBar);
     }
   }
 
@@ -71,18 +38,27 @@ abstract class HoverPageBase extends HoverScaffold implements HoverRoute {
     return Provider.of<HoverRoutingManager>(context, listen: false);
   }
 
-  void goToInitialPage(BuildContext context, {String sbMessageOnNavigate}) {
+  @override
+  Future goToInitialPage(BuildContext context) {
     closeDrawer();
-    _getAppNavigationManager(context).goToInitialPage(context);
+    return _getAppNavigationManager(context).goToInitialPage(context);
   }
 
-  void goToPage<T>(BuildContext context, {String sbMessageOnNavigate}) {
+  @override
+  Future goToPage<T>(BuildContext context) {
     closeDrawer();
-    _getAppNavigationManager(context).goToPage<T>(context);
+    return _getAppNavigationManager(context).goToPage<T>(context);
   }
 
-  Future<void> pop(BuildContext context, {String sbMessageOnNavigate}) async {
+  @override
+  Future goToRoute(String route, BuildContext context) {
     closeDrawer();
-    _getAppNavigationManager(context).pop(context);
+    return _getAppNavigationManager(context).goToRoute(route, context);
+  }
+
+  @override
+  Future pop(BuildContext context) {
+    closeDrawer();
+    return _getAppNavigationManager(context).pop(context);
   }
 }
