@@ -9,7 +9,7 @@ import 'landing_page.dart';
 /// must extend the HoverApp class and pass arguments to the super() method.
 ///
 class Example extends StatelessWidget {
-  final LandingPage initPage = LandingPage();
+  final LandingPage landingPage = LandingPage();
   final ProfilePage profilePage = ProfilePage();
 
   // A global drawer
@@ -28,7 +28,9 @@ class Example extends StatelessWidget {
   final AppBar appBar = AppBar(
     title: Text("Hover Sample App"),
     leading: FlatButton(
-        onPressed: () {},
+        onPressed: () {
+          HoverApp.toggleDrawer();
+        },
         child: Icon(
           Icons.menu,
           color: Colors.white,
@@ -39,8 +41,8 @@ class Example extends StatelessWidget {
   Widget build(BuildContext context) {
     return HoverApp.create(
       routes: [
-        initPage,
         profilePage,
+        landingPage,
       ],
       theme: ThemeData.light(),
       providers: [],
