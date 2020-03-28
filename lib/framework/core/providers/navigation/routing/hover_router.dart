@@ -1,5 +1,4 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 import 'hover_route.dart';
@@ -22,21 +21,13 @@ class HoverRouter implements HoverRoutingManager {
     currentPage = initialPage;
   }
 
-  void _closeDrawer(BuildContext context, GlobalKey<ScaffoldState> scaffoldKey) {
-    if (scaffoldKey.currentState != null &&
-        scaffoldKey.currentState.hasDrawer &&
-        scaffoldKey.currentState.isDrawerOpen) {
-      Navigator.pop(context);
-    }
-  }
-
   @override
-  Future goToInitialPage(BuildContext context, {String snackBarMessageOnNavigate}) async {
+  Future goToInitialPage(BuildContext context) async {
     return _navigate(context, initialPage);
   }
 
   @override
-  Future goToPage<T>(BuildContext context, {String snackBarMessageOnNavigate}) async {
+  Future goToPage<T>(BuildContext context) async {
     appPages.forEach((page) {
       if (page.runtimeType == T) {
         return _navigate(context, page);
@@ -47,7 +38,6 @@ class HoverRouter implements HoverRoutingManager {
   }
 
   Future _navigate(BuildContext context, HoverRoute targetPage) async {
-    _closeDrawer(context, targetPage.scaffoldKey);
     return Navigator.popAndPushNamed(context, targetPage.routeName);
   }
 
