@@ -17,6 +17,8 @@ abstract class HoverScaffold extends StatelessWidget {
     return height;
   }
 
+  get isDrawerOpen => scaffoldKey.currentState.isDrawerOpen;
+
   void openDrawer() {
     if (currentState.hasDrawer) {
       currentState.openDrawer();
