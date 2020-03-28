@@ -37,7 +37,7 @@ class Example extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HoverApp(
+    return HoverApp.create(
       routes: [
         initPage,
         profilePage,
@@ -47,9 +47,5 @@ class Example extends StatelessWidget {
       globalAppBar: appBar,
       globalDrawer: drawer,
     );
-
-    // return MaterialApp(
-    //   home: initPage,
-    // );
   }
 }
