@@ -6,12 +6,30 @@ import 'hover_framework.dart';
 
 class HoverApp extends StatelessWidget {
   static final List<SingleChildWidget> _providers = List();
-  static HoverRouter _router;
   static ThemeData _theme;
   static final HoverGlobalWidgets _globalElements = HoverGlobalWidgets();
 
+  static HoverRouter _router;
+  static HoverRouter get router => _router;
+
   static HoverApp _instance;
   static HoverApp get instance => _instance;
+
+  static HoverPageBase get currentPage => _router.currentRoute as HoverPageBase;
+
+  static get isDrawerOpen => currentPage.scaffoldKey.currentState.isDrawerOpen;
+
+  static void closeDrawer() => currentPage.closeDrawer();
+
+  static void openDrawer() => currentPage.openDrawer();
+
+  static void toggleDrawer() {
+    if (!isDrawerOpen) {
+      openDrawer();
+    } else {
+      closeDrawer();
+    }
+  }
 
   static HoverApp create({
     @required List<HoverRoute> routes,
