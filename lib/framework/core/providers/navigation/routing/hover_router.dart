@@ -3,10 +3,14 @@ import 'package:provider/provider.dart';
 
 import 'hover_route.dart';
 
-abstract class HoverRoutingManager {
+abstract class HoverNavigation {
   Future goToInitialPage(BuildContext context);
   Future goToPage<T>(BuildContext context);
+  Future goToRoute(String route, BuildContext context);
   Future<void> pop(BuildContext context);
+}
+
+abstract class HoverRoutingManager implements HoverNavigation {
   void buildRoutes();
 }
 
@@ -38,17 +42,29 @@ class HoverRouter implements HoverRoutingManager {
     return null;
   }
 
+  @override
+  Future goToRoute(String route, BuildContext context) async {
+    routes.forEach((page) {
+      if (page.routeName == route) {
+        _navigate(context, page);
+      }
+    });
+  }
+
   Future _navigate(BuildContext context, HoverRoute targetPage) async {
     _currentRoute = targetPage;
+    print(_currentRoute.routeName);
     return Navigator.popAndPushNamed(context, targetPage.routeName);
   }
 
+  @override
   Future<void> pop(BuildContext context) async {
     if (Navigator.canPop(context)) {
       Navigator.pop(context);
     }
   }
 
+  @override
   Map<String, Widget Function(BuildContext)> buildRoutes() {
     final Map<String, Widget Function(BuildContext)> _routes = Map();
 
