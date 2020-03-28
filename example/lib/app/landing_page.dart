@@ -36,4 +36,16 @@ class LandingPage extends HoverSwapper {
 
   @override
   String get routeName => "/landing";
+
+  @override
+  Widget buildBottomNavigation(BuildContext context, int currentIndex, List<Widget> controls) {
+    print(currentIndex);
+    return Container(
+      color: Colors.blue,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: controls,
+      ),
+    );
+  }
 }
