@@ -31,6 +31,14 @@ abstract class HoverScaffold extends StatelessWidget {
     }
   }
 
+  void toggleDrawer() {
+    if (!isDrawerOpen) {
+      openDrawer();
+    } else {
+      closeDrawer();
+    }
+  }
+
   Widget buildAppBar(BuildContext context) {
     return null;
   }
