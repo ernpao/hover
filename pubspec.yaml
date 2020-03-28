@@ -1,6 +1,6 @@
 name: hover
 description: An app framework and widget library for Flutter.
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/ernpao/hover
 
 environment:
