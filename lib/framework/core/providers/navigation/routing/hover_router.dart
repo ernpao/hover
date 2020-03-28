@@ -11,24 +11,25 @@ abstract class HoverRoutingManager {
 }
 
 class HoverRouter implements HoverRoutingManager {
-  final List<HoverRoute> appPages;
-  HoverRoute currentPage;
-  HoverRoute get initialPage => appPages[0];
+  final List<HoverRoute> routes;
+  HoverRoute _currentRoute;
+  HoverRoute get initialRoute => routes[0];
+  HoverRoute get currentRoute => _currentRoute;
 
   HoverRouter({
-    @required this.appPages,
+    @required this.routes,
   }) {
-    currentPage = initialPage;
+    _currentRoute = initialRoute;
   }
 
   @override
   Future goToInitialPage(BuildContext context) async {
-    return _navigate(context, initialPage);
+    return _navigate(context, initialRoute);
   }
 
   @override
   Future goToPage<T>(BuildContext context) async {
-    appPages.forEach((page) {
+    routes.forEach((page) {
       if (page.runtimeType == T) {
         return _navigate(context, page);
       }
@@ -38,6 +39,7 @@ class HoverRouter implements HoverRoutingManager {
   }
 
   Future _navigate(BuildContext context, HoverRoute targetPage) async {
+    _currentRoute = targetPage;
     return Navigator.popAndPushNamed(context, targetPage.routeName);
   }
 
@@ -50,7 +52,7 @@ class HoverRouter implements HoverRoutingManager {
   Map<String, Widget Function(BuildContext)> buildRoutes() {
     final Map<String, Widget Function(BuildContext)> _routes = Map();
 
-    for (HoverRoute page in appPages) {
+    for (HoverRoute page in routes) {
       _routes[page.routeName] = (_) {
         return page;
       };
