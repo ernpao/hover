@@ -16,6 +16,7 @@ abstract class HoverSwapper extends HoverPageBase {
   Widget build(BuildContext context) {
     return HoverContentSwapper(
       pages: pages,
+      scaffoldKey: this.scaffoldKey,
     );
   }
 }
@@ -23,9 +24,11 @@ abstract class HoverSwapper extends HoverPageBase {
 class HoverContentSwapper extends StatefulWidget {
   final List<HoverSwapperPage> pages;
   final Color backgroundColor;
+  final GlobalKey<ScaffoldState> scaffoldKey;
 
   HoverContentSwapper({
     @required this.pages,
+    @required this.scaffoldKey,
     this.backgroundColor,
   }) : assert(pages.length > 0);
 
@@ -49,6 +52,7 @@ class _HoverContentSwapperState extends State<HoverContentSwapper> {
     final globalWidgets = Provider.of<HoverGlobalWidgets>(context, listen: false);
     return SafeArea(
       child: Scaffold(
+        key: widget.scaffoldKey,
         body: _currentContent,
         backgroundColor: widget.backgroundColor,
         bottomNavigationBar: _buildBottomNavigation(),
