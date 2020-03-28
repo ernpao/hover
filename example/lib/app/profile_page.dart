@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hover/framework/core/hover_page.dart';
+import 'package:hover/hover.dart';
 import 'package:hover/widgets/hover_widgets.dart';
+
+import 'landing_page.dart';
 
 class ProfilePage extends HoverPage {
   @override
-  Widget buildContent(BuildContext context) {
+  Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: <Widget>[
@@ -12,8 +14,7 @@ class ProfilePage extends HoverPage {
           CallToActionButton(
             text: "Return to landing page",
             onPressed: () {
-              popNavigation(context);
-              showSnackBar(context, "Returning to the previous screen");
+              goToPage<LandingPage>(context, sbMessageOnNavigate: "Returning to the previous screen!");
             },
           ),
         ],
@@ -22,5 +23,5 @@ class ProfilePage extends HoverPage {
   }
 
   @override
-  String get routeName => "profile_page";
+  String get routeName => "/profile";
 }

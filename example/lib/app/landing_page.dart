@@ -1,25 +1,29 @@
-import 'package:example/app/profile_page.dart';
 import 'package:flutter/material.dart';
-import 'package:hover/framework/core/hover_page.dart';
-import 'package:hover/widgets/hover_widgets.dart';
+import 'package:hover/framework/hover_framework.dart';
 
-class LandingPage extends HoverPage {
-  @override
-  Widget buildContent(BuildContext context) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          CallToActionButton(
-            text: "Go to profile page",
-            onPressed: () {
-              navigateTo<ProfilePage>(context);
-            },
+class LandingPage extends HoverSwapper {
+  LandingPage()
+      : super(pages: [
+          HoverSwapperPage(
+            content: Container(
+              child: Text("home"),
+            ),
+            toggle: Icon(Icons.home),
           ),
-        ],
-      ),
-    );
-  }
+          HoverSwapperPage(
+            content: Container(
+              child: Text("headset"),
+            ),
+            toggle: Icon(Icons.headset),
+          ),
+          HoverSwapperPage(
+            content: Container(
+              child: Text("add"),
+            ),
+            toggle: Icon(Icons.library_add),
+          ),
+        ]);
 
   @override
-  String get routeName => "landing_page";
+  String get routeName => "/landing";
 }
