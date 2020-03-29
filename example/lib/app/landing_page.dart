@@ -5,30 +5,31 @@ class LandingPage extends HoverSwapper {
   LandingPage()
       : super(pages: [
           HoverSwapperPage(
-            content: Container(
-              child: Column(
-                children: <Widget>[
-                  Text("home"),
-                  CallToActionButton(
-                    text: "Go to Profile",
-                    onPressed: () {
-                      Hover.router.goToRoute("/profile", Hover.currentPage.currentState.context);
-                    },
-                  ),
-                ],
-              ),
+            content: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Text("home"),
+                CallToActionButton(
+                  text: "Go to Profile",
+                  onPressed: () {
+                    Hover.router.goToRoute("/profile", Hover.currentPage.currentState.context);
+                  },
+                ),
+              ],
             ),
             toggle: Icon(Icons.home),
           ),
           HoverSwapperPage(
-            content: Container(
-              child: Text("headset"),
+            content: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [Text("headset")],
             ),
             toggle: Icon(Icons.headset),
           ),
           HoverSwapperPage(
-            content: Container(
-              child: Text("add"),
+            content: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [Text("add")],
             ),
             toggle: Icon(Icons.library_add),
           ),
