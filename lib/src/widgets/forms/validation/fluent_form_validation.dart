@@ -1,8 +1,8 @@
-import 'package:hover/widgets/forms/validation/rules/email_validation_rule.dart';
-import 'package:hover/widgets/forms/validation/rules/input_length_rule.dart';
-import 'package:hover/widgets/forms/validation/rules/password_confirmation_rule.dart';
-import 'package:hover/widgets/forms/validation/rules/required_field_rule.dart';
-import 'package:hover/widgets/forms/validation/rules/validation_rule.dart';
+import 'rules/email_validation_rule.dart';
+import 'rules/input_length_rule.dart';
+import 'rules/password_confirmation_rule.dart';
+import 'rules/required_field_rule.dart';
+import 'rules/validation_rule.dart';
 
 abstract class FluentFormValidationBase {
   get getValidator;

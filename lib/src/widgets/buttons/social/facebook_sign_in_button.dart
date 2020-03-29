@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hover/widgets/buttons/social/social_sign_in_button.dart';
+import 'social_sign_in_button.dart';
 
 class FacebookSignInButton extends SocialSignInButton {
   FacebookSignInButton({

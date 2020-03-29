@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:hover/widgets/forms/base/custom_form.dart';
-import 'package:hover/widgets/forms/fields/email_field.dart';
+import 'base/custom_form.dart';
+import 'fields/email_field.dart';
 
 class PasswordRestForm extends CustomForm {
   PasswordRestForm({

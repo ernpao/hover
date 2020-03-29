@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:hover/widgets/buttons/base/custom_button_text.dart';
-import 'package:hover/widgets/buttons/base/custom_raised_button.dart';
-import 'package:hover/widgets/forms/base/custom_form_field.dart';
+import '../../buttons/base/custom_button_text.dart';
+import '../../buttons/base/custom_raised_button.dart';
+import 'custom_form_field.dart';
 
 abstract class CustomForm extends StatefulWidget {
   CustomForm({

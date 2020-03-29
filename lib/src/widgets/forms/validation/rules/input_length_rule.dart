@@ -1,4 +1,4 @@
-import 'package:hover/widgets/forms/validation/rules/validation_rule.dart';
+import 'validation_rule.dart';
 
 class InputLengthRule implements ValidationRule {
   final int _maxLength;

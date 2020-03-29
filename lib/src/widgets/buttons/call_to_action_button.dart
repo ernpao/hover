@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:hover/widgets/buttons/base/custom_button_text.dart';
-import 'package:hover/widgets/buttons/base/custom_raised_button.dart';
+import 'base/custom_button_text.dart';
+import 'base/custom_raised_button.dart';
 
 class CallToActionButton extends CustomRaisedButton {
   CallToActionButton({
