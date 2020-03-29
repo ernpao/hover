@@ -83,7 +83,13 @@ class _HoverContentSwapperState extends State<HoverContentSwapper> {
       child: Scaffold(
         backgroundColor: widget.backgroundColor,
         key: widget.scaffoldKey,
-        body: _currentContent,
+        body: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 100),
+          child: Container(
+            key: ValueKey<int>(_currentIndex),
+            child: _currentContent,
+          ),
+        ),
         appBar: (appBar != null) ? appBar : globalWidgets.appBar,
         drawer: (drawer != null) ? drawer : globalWidgets.drawer,
         floatingActionButton: (fab != null) ? fab : globalWidgets.floatingActionButton,
