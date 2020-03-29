@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hover/framework/hover_framework.dart';
+import 'package:hover/hover.dart';
 
 import 'profile_page.dart';
 import 'landing_page.dart';
