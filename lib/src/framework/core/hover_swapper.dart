@@ -63,13 +63,13 @@ class HoverContentSwapper extends StatefulWidget {
 }
 
 class _HoverContentSwapperState extends State<HoverContentSwapper> {
-  Widget _currentContent;
+  Widget Function(BuildContext) _currentContentBuilder;
   int _currentIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    _currentContent = widget.pages[_currentIndex].content;
+    _currentContentBuilder = widget.pages[_currentIndex].build;
   }
 
   @override
@@ -87,7 +87,7 @@ class _HoverContentSwapperState extends State<HoverContentSwapper> {
           duration: const Duration(milliseconds: 100),
           child: Container(
             key: ValueKey<int>(_currentIndex),
-            child: _currentContent,
+            child: _currentContentBuilder(context),
           ),
         ),
         appBar: (appBar != null) ? appBar : globalWidgets.appBar,
@@ -106,7 +106,7 @@ class _HoverContentSwapperState extends State<HoverContentSwapper> {
         child: page.toggle,
         onTap: () {
           setState(() {
-            _currentContent = page.content;
+            _currentContentBuilder = page.build;
             _currentIndex = widget.pages.indexOf(page);
           });
         },
@@ -118,11 +118,11 @@ class _HoverContentSwapperState extends State<HoverContentSwapper> {
 }
 
 class HoverSwapperPage {
-  final Widget content;
+  final Widget Function(BuildContext) build;
   final Widget toggle;
 
   HoverSwapperPage({
-    @required this.content,
+    @required this.build,
     @required this.toggle,
   });
 }
