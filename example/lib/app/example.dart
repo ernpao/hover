@@ -41,8 +41,8 @@ class Example extends StatelessWidget {
   Widget build(BuildContext context) {
     return Hover.create(
       routes: [
-        profilePage,
         landingPage,
+        profilePage,
       ],
       theme: ThemeData.light(),
       providers: [],
