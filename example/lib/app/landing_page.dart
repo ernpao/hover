@@ -5,7 +5,7 @@ class LandingPage extends HoverSwapper {
   LandingPage()
       : super(pages: [
           HoverSwapperPage(
-            content: Column(
+            build: (_) => Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Text("home"),
@@ -20,14 +20,14 @@ class LandingPage extends HoverSwapper {
             toggle: Icon(Icons.home),
           ),
           HoverSwapperPage(
-            content: Column(
+            build: (_) => Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [Text("headset")],
             ),
             toggle: Icon(Icons.headset),
           ),
           HoverSwapperPage(
-            content: Column(
+            build: (_) => Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [Text("add")],
             ),
@@ -40,7 +40,6 @@ class LandingPage extends HoverSwapper {
 
   @override
   Widget buildBottomNavigation(BuildContext context, int currentIndex, List<Widget> controls) {
-    print(currentIndex);
     return Container(
       color: Colors.blue,
       child: Row(
