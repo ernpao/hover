@@ -53,7 +53,6 @@ class HoverRouter implements HoverRoutingManager {
 
   Future _navigate(BuildContext context, HoverRoute targetPage) async {
     _currentRoute = targetPage;
-    print(_currentRoute.routeName);
     return Navigator.popAndPushNamed(context, targetPage.routeName);
   }
 
