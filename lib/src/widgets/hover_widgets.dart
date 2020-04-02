@@ -12,3 +12,7 @@ export 'buttons/social/google_sign_in_button.dart';
 export 'custom/full_page_spinner.dart';
 export 'custom/rectangular_image.dart';
 export 'custom/square_image.dart';
+export 'custom/image_slider.dart';
+
+//Typography
+export 'typography/typography.dart';
