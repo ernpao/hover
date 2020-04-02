@@ -11,7 +11,9 @@ abstract class HoverNavigation {
 }
 
 abstract class HoverRoutingManager implements HoverNavigation {
-  void buildRoutes();
+  Map<String, Widget Function(BuildContext)> buildRoutes();
+  HoverRoute get initialRoute;
+  List<HoverRoute> get routes;
 }
 
 class HoverRouter implements HoverRoutingManager {
