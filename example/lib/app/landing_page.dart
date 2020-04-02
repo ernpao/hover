@@ -6,9 +6,12 @@ class LandingPage extends HoverSwapper {
       : super(pages: [
           HoverSwapperPage(
             build: (_) => Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text("home"),
+                HoverTitle("Favorites"),
+                _sampleSlider,
+                HoverTitle("Recommended For You"),
+                _sampleSlider,
                 CallToActionButton(
                   text: "Go to Profile",
                   onPressed: () {
@@ -20,10 +23,7 @@ class LandingPage extends HoverSwapper {
             toggle: Icon(Icons.home),
           ),
           HoverSwapperPage(
-            build: (_) => Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [Text("headset")],
-            ),
+            build: (_) => Container(),
             toggle: Icon(Icons.headset),
           ),
           HoverSwapperPage(
@@ -49,3 +49,35 @@ class LandingPage extends HoverSwapper {
     );
   }
 }
+
+final ImageSlider _sampleSlider = ImageSlider(
+  slideWidth: null,
+  slideHeight: 180,
+  slides: [
+    ImageSlide(
+      image: Image.network(
+        "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        fit: BoxFit.cover,
+      ),
+    ),
+    ImageSlide(
+      title: Text("test"),
+      image: Image.network(
+        "https://images.pexels.com/photos/277253/pexels-photo-277253.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        fit: BoxFit.cover,
+      ),
+    ),
+    ImageSlide(
+      image: Image.network(
+        "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        fit: BoxFit.cover,
+      ),
+    ),
+    ImageSlide(
+      image: Image.network(
+        "https://images.pexels.com/photos/5938/food-salad-healthy-lunch.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        fit: BoxFit.cover,
+      ),
+    )
+  ],
+);
