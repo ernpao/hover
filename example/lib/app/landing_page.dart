@@ -18,6 +18,16 @@ class LandingPage extends HoverSwapper {
                     Hover.router.goToRoute("/profile", Hover.currentPage.currentState.context);
                   },
                 ),
+                CallToActionButton(
+                  text: "Toggle Theme",
+                  onPressed: () {
+                    if (Hover.currentThemeName == "light") {
+                      Hover.setThemeByName("dark");
+                    } else {
+                      Hover.setThemeByName("light");
+                    }
+                  },
+                ),
               ],
             ),
             toggle: Icon(Icons.home),

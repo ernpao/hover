@@ -44,7 +44,10 @@ class Example extends StatelessWidget {
         landingPage,
         profilePage,
       ],
-      theme: ThemeData.light(),
+      themes: {
+        "light": ThemeData.light(),
+        "dark": ThemeData.dark(),
+      },
       providers: [],
       globalAppBar: appBar,
       globalDrawer: drawer,
