@@ -6,8 +6,9 @@ import 'hover_framework.dart';
 
 class Hover extends StatelessWidget {
   static final List<SingleChildWidget> _providers = List();
-  static ThemeData _theme;
   static final HoverGlobalWidgets _globalElements = HoverGlobalWidgets();
+
+  static HoverThemeData _themeData;
 
   static HoverRouter _router;
   static HoverRouter get router => _router;
@@ -25,9 +26,16 @@ class Hover extends StatelessWidget {
 
   static void toggleDrawer() => currentPage.toggleDrawer();
 
+  static void setThemeByName(String themeName) {
+    _themeData.setThemeByName(themeName);
+  }
+
+  static String get currentThemeName => _themeData.currentThemeName;
+  static ThemeData get currentTheme => _themeData.currentTheme;
+
   static Hover create({
     @required List<HoverRoute> routes,
-    @required ThemeData theme,
+    @required Map<String, ThemeData> themes,
     List<SingleChildWidget> providers,
     AppBar globalAppBar,
     Drawer globalDrawer,
@@ -37,7 +45,7 @@ class Hover extends StatelessWidget {
     if (_instance == null) {
       _instance = Hover._(
         routes: routes,
-        theme: theme,
+        themes: themes,
         providers: providers,
         appBar: globalAppBar,
         drawer: globalDrawer,
@@ -51,17 +59,18 @@ class Hover extends StatelessWidget {
 
   Hover._({
     @required List<HoverRoute> routes,
-    @required ThemeData theme,
+    @required Map<String, ThemeData> themes,
     List<SingleChildWidget> providers,
     AppBar appBar,
     Drawer drawer,
     SnackBar snackBar,
     Widget floatingActionButton,
   }) {
-    _theme = theme;
     _router = HoverRouter(routes: routes);
-
     _providers.add(HoverRouterProvider(_router));
+
+    _themeData = HoverThemeData(themes: themes);
+    _providers.add(HoverThemeProvider(_themeData));
 
     _globalElements.appBar = appBar;
     _globalElements.drawer = drawer;
@@ -78,12 +87,19 @@ class Hover extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: _providers,
-      child: MaterialApp(
-        initialRoute: _router.routes[0].routeName,
-        routes: _router.buildRoutes(),
-        debugShowCheckedModeBanner: false,
-        theme: _theme,
-      ),
+      child: _HoverAppBody(),
+    );
+  }
+}
+
+class _HoverAppBody extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      initialRoute: Provider.of<HoverRoutingManager>(context).initialRoute.routeName,
+      routes: Provider.of<HoverRoutingManager>(context).buildRoutes(),
+      debugShowCheckedModeBanner: false,
+      theme: Provider.of<HoverThemeData>(context).currentTheme,
     );
   }
 }
