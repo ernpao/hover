@@ -10,8 +10,9 @@ class Hover extends StatelessWidget {
 
   static HoverThemeData _themeData;
 
-  static HoverRouter _router;
-  static HoverRouter get router => _router;
+  static HoverRoutingManager _router;
+  static HoverRoutingManager get router => _router;
+  static bool navigationCanPop(BuildContext context) => router?.canPop(context) == true;
 
   static Hover _instance;
   static Hover get instance => _instance;
@@ -33,6 +34,11 @@ class Hover extends StatelessWidget {
   static String get currentThemeName => _themeData.currentThemeName;
   static ThemeData get currentTheme => _themeData.currentTheme;
 
+  ///
+  /// Use this to create an using with Hover. This method
+  /// returns a stateless widget with a build method that creates a MaterialApp
+  /// widget nested inside a MultiProvider.
+  ///
   static Hover create({
     @required List<HoverRoute> routes,
     @required Map<String, ThemeData> themes,
