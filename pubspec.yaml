@@ -1,6 +1,6 @@
 name: hover
-description: An app framework and widget library for Flutter.
-version: 0.0.3+1
+description: An app framework and widget library that aims to simplify navigation, theme switching, responsive design, and more to speed up prototype development.
+version: 0.1.0
 homepage: https://github.com/ernpao/hover
 
 environment:
@@ -10,7 +10,6 @@ dependencies:
   flutter:
     sdk: flutter
   provider: ^4.0.4
-  flushbar: ^1.10.0
 
 dev_dependencies:
   flutter_test:

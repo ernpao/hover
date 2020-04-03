@@ -9,3 +9,6 @@
 
 ## [0.0.3+1] - 3/29/2020.
 * Updated HoverSwapper to use AnimatedSwitcher.
+
+## [0.1.0] - 4/3/2020.
+* Implemented theme switching and updated the example.
