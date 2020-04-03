@@ -13,13 +13,19 @@ abstract class HoverNavigation {
 abstract class HoverRoutingManager implements HoverNavigation {
   Map<String, Widget Function(BuildContext)> buildRoutes();
   HoverRoute get initialRoute;
+  HoverRoute get currentRoute;
   List<HoverRoute> get routes;
+  bool canPop(BuildContext context);
 }
 
 class HoverRouter implements HoverRoutingManager {
   final List<HoverRoute> routes;
   HoverRoute _currentRoute;
+
+  @override
   HoverRoute get initialRoute => routes[0];
+
+  @override
   HoverRoute get currentRoute => _currentRoute;
 
   HoverRouter({
@@ -29,15 +35,20 @@ class HoverRouter implements HoverRoutingManager {
   }
 
   @override
+  bool canPop(BuildContext context) {
+    return Navigator.canPop(context);
+  }
+
+  @override
   Future goToInitialPage(BuildContext context) async {
-    return _navigate(context, initialRoute);
+    return _navigate(context, initialRoute.routeName);
   }
 
   @override
   Future goToPage<T>(BuildContext context) async {
     routes.forEach((page) {
       if (page.runtimeType == T) {
-        return _navigate(context, page);
+        return _navigate(context, page.routeName);
       }
       return null;
     });
@@ -46,16 +57,21 @@ class HoverRouter implements HoverRoutingManager {
 
   @override
   Future goToRoute(String route, BuildContext context) async {
-    routes.forEach((page) {
-      if (page.routeName == route) {
-        _navigate(context, page);
-      }
-    });
+    _navigate(context, route);
   }
 
-  Future _navigate(BuildContext context, HoverRoute targetPage) async {
-    _currentRoute = targetPage;
-    return Navigator.popAndPushNamed(context, targetPage.routeName);
+  Future _navigate(BuildContext context, String routeName, {bool usePush: false}) async {
+    routes.forEach((page) {
+      if (page.routeName == routeName) {
+        _currentRoute = page;
+        if (usePush) {
+          return Navigator.pushNamed(context, page.routeName);
+        } else {
+          return Navigator.popAndPushNamed(context, page.routeName);
+        }
+      }
+      return null;
+    });
   }
 
   @override
