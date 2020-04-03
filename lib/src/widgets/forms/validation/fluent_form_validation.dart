@@ -9,7 +9,8 @@ abstract class FluentFormValidationBase {
   String validate(String valueToValidate);
   FluentFormValidationBase validateAsEmail();
   FluentFormValidationBase validateAsPassword(int passwordMinLength);
-  FluentFormValidationBase validateAsPasswordConfirmation(String passwordConfirmation);
+  FluentFormValidationBase validateAsPasswordConfirmation(
+      String passwordConfirmation);
   FluentFormValidationBase validateAsRequired();
 }
 
@@ -48,7 +49,8 @@ class FluentFormValidation implements FluentFormValidationBase {
   }
 
   @override
-  FluentFormValidationBase validateAsPasswordConfirmation(String passwordConfirmation) {
+  FluentFormValidationBase validateAsPasswordConfirmation(
+      String passwordConfirmation) {
     _validationRules.add(PasswordConfirmationRule(passwordConfirmation));
     return this;
   }

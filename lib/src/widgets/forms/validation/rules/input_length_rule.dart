@@ -4,7 +4,8 @@ class InputLengthRule implements ValidationRule {
   final int _maxLength;
   final int _minLength;
 
-  InputLengthRule(this._minLength, this._maxLength) : assert(_minLength < _maxLength);
+  InputLengthRule(this._minLength, this._maxLength)
+      : assert(_minLength < _maxLength);
 
   @override
   String validate(String valueToValidate) {

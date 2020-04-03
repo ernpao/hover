@@ -3,7 +3,8 @@ import 'package:provider/provider.dart';
 
 import 'hover_core.dart';
 
-abstract class HoverPageBase extends HoverScaffold implements HoverRoute, HoverNavigation {
+abstract class HoverPageBase extends HoverScaffold
+    implements HoverRoute, HoverNavigation {
   static const Duration _defaultSnackBarDuration = Duration(seconds: 2);
   final String title;
   final Color backgroundColor;
@@ -35,20 +36,25 @@ abstract class HoverPageBase extends HoverScaffold implements HoverRoute, HoverN
         body: buildPageContent(context),
         appBar: (appBar != null) ? appBar : globalWidgets.appBar,
         drawer: (drawer != null) ? drawer : globalWidgets.drawer,
-        floatingActionButton: (fab != null) ? fab : globalWidgets.floatingActionButton,
+        floatingActionButton:
+            (fab != null) ? fab : globalWidgets.floatingActionButton,
       ),
     );
   }
 
-  void showSnackBar(BuildContext context, String message, {Duration duration: _defaultSnackBarDuration}) {
+  void showSnackBar(BuildContext context, String message,
+      {Duration duration: _defaultSnackBarDuration}) {
     //If the buildSnackBar method was overidden and doesn't return null,
     //use the snackbar created from that method. Else, use globalWidgets.snackBar.
-    final globalWidgets = Provider.of<HoverGlobalWidgets>(context, listen: false);
+    final globalWidgets =
+        Provider.of<HoverGlobalWidgets>(context, listen: false);
     var snackBar = buildSnackBar(context);
     snackBar = (snackBar != null) ? snackBar : globalWidgets.snackBar;
 
     //If both the builSnackBar() and globalWidgets.snackBar are null, use a basic snackbar.
-    final _snackBar = (snackBar != null) ? snackBar : SnackBar(content: Text(message), duration: duration);
+    final _snackBar = (snackBar != null)
+        ? snackBar
+        : SnackBar(content: Text(message), duration: duration);
     // Scaffold.of(context).showSnackBar(_snackBar);
     // scaffoldState.showSnackBar(_snackBar);
 

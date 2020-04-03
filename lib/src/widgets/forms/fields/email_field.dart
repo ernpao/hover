@@ -13,6 +13,9 @@ class EmailField extends CustomFormField {
           labelText: fieldLabel,
           initialValue: initialValue,
           keyboardType: TextInputType.emailAddress,
-          validator: FluentFormValidation().validateAsEmail().validateAsRequired().getValidator,
+          validator: FluentFormValidation()
+              .validateAsEmail()
+              .validateAsRequired()
+              .getValidator,
         );
 }

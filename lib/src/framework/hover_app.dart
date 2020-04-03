@@ -12,7 +12,8 @@ class Hover extends StatelessWidget {
 
   static HoverRoutingManager _router;
   static HoverRoutingManager get router => _router;
-  static bool navigationCanPop(BuildContext context) => router?.canPop(context) == true;
+  static bool navigationCanPop(BuildContext context) =>
+      router?.canPop(context) == true;
 
   static Hover _instance;
   static Hover get instance => _instance;
@@ -102,7 +103,8 @@ class _HoverAppBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: Provider.of<HoverRoutingManager>(context).initialRoute.routeName,
+      initialRoute:
+          Provider.of<HoverRoutingManager>(context).initialRoute.routeName,
       routes: Provider.of<HoverRoutingManager>(context).buildRoutes(),
       debugShowCheckedModeBanner: false,
       theme: Provider.of<HoverThemeData>(context).currentTheme,

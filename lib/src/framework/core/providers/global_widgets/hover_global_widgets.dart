@@ -12,5 +12,6 @@ class HoverGlobalWidgets {
 }
 
 class HoverGlobalWidgetsProvider extends Provider<HoverGlobalWidgets> {
-  HoverGlobalWidgetsProvider(HoverGlobalWidgets globalElements) : super(create: (_) => globalElements);
+  HoverGlobalWidgetsProvider(HoverGlobalWidgets globalElements)
+      : super(create: (_) => globalElements);
 }

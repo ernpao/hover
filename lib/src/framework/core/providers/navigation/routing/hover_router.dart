@@ -60,7 +60,8 @@ class HoverRouter implements HoverRoutingManager {
     _navigate(context, route);
   }
 
-  Future _navigate(BuildContext context, String routeName, {bool usePush: false}) async {
+  Future _navigate(BuildContext context, String routeName,
+      {bool usePush: false}) async {
     routes.forEach((page) {
       if (page.routeName == routeName) {
         _currentRoute = page;
@@ -95,5 +96,6 @@ class HoverRouter implements HoverRoutingManager {
 }
 
 class HoverRouterProvider extends Provider<HoverRoutingManager> {
-  HoverRouterProvider(HoverRoutingManager appNavigationManager) : super(create: (_) => appNavigationManager);
+  HoverRouterProvider(HoverRoutingManager appNavigationManager)
+      : super(create: (_) => appNavigationManager);
 }

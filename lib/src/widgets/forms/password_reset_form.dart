@@ -8,7 +8,8 @@ class PasswordRestForm extends CustomForm {
     String formName,
   }) : super(
           title: "Password Reset",
-          subtitle: "Enter the email address for your account and we'll send you a password reset link.",
+          subtitle:
+              "Enter the email address for your account and we'll send you a password reset link.",
           formName: formName,
           submitText: "Reset my password",
           fields: [

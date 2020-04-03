@@ -27,7 +27,10 @@ class PasswordField extends _PasswordField {
           name: fieldName,
           labelText: fieldLabel,
           initialValue: initialValue,
-          validator: FluentFormValidation().validateAsPassword(8).validateAsRequired().getValidator,
+          validator: FluentFormValidation()
+              .validateAsPassword(8)
+              .validateAsRequired()
+              .getValidator,
         );
 }
 
