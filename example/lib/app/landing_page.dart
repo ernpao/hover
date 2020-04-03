@@ -5,7 +5,7 @@ class LandingPage extends HoverSwapper {
   LandingPage()
       : super(pages: [
           HoverSwapperPage(
-            build: (_) => Column(
+            build: (context) => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 HoverTitle("Favorites"),
@@ -15,7 +15,7 @@ class LandingPage extends HoverSwapper {
                 CallToActionButton(
                   text: "Go to Profile",
                   onPressed: () {
-                    Hover.router.goToRoute("/profile", Hover.currentPage.currentState.context);
+                    Hover.router.goToRoute("/profile", context);
                   },
                 ),
                 CallToActionButton(
