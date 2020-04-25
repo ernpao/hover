@@ -49,8 +49,8 @@ class Hover extends StatelessWidget {
   }
 
   ///
-  /// Use this to create an using with Hover. This method
-  /// returns a stateless widget with a build method that creates a MaterialApp
+  /// Use this to create an with Hover. This method
+  /// returns a stateless widget that contains a MaterialApp
   /// widget nested inside a MultiProvider.
   ///
   static Hover create({
