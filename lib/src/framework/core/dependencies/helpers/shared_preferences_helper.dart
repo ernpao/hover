@@ -8,7 +8,7 @@ class SharedPreferencesHelper {
     sharedPreferences.setString(key, value);
   }
 
-  Future<String> loadSetting(String key) async {
+  static Future<String> loadSetting(String key) async {
     final sharedPreferences = await getInstance();
     return sharedPreferences.getString(key);
   }
