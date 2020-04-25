@@ -1,34 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HoverThemeData extends ChangeNotifier {
   final Map<String, ThemeData> themes;
-  String _currentThemeName;
-
-  ThemeData get currentTheme => _getCurrentTheme();
-  String get currentThemeName => _currentThemeName;
+  ThemeData _currentTheme;
+  ThemeData get currentTheme => _currentTheme;
+  ThemeData get initialTheme => themes.values.elementAt(0);
 
   HoverThemeData({
-    this.themes,
+    @required this.themes,
   }) {
-    _currentThemeName = themes.keys.elementAt(0);
+    _currentTheme = themes[themes.keys.elementAt(0)];
   }
 
   void setThemeByName(String themeName) {
-    _currentThemeName = themeName;
-    notifyListeners();
+    SharedPreferences.getInstance().then((instance) {
+      instance.setString('theme', themeName);
+      if (themes[themeName] != null) {
+        _currentTheme = themes[themeName];
+        notifyListeners();
+      } else {
+        print('Theme "$themeName" not found.');
+      }
+    });
   }
 
-  ThemeData _getCurrentTheme() {
-    return themes[_currentThemeName];
+  Future<String> getCurrentThemeName() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('theme');
   }
 
-  void addTheme(String themeName, ThemeData theme) {
-    themes.addAll({themeName: theme});
-  }
-
-  void updateTheme(String themeName, ThemeData theme) {
-    themes[themeName] = theme;
+  void loadSavedTheme() {
+    getCurrentThemeName().then((name) {
+      setThemeByName(name);
+    });
   }
 }
 

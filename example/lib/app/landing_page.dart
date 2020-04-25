@@ -38,11 +38,13 @@ final HoverSwapperPage page1 = HoverSwapperPage(
       CallToActionButton(
         text: "Toggle Theme",
         onPressed: () {
-          if (Hover.currentThemeName == "light") {
-            Hover.setThemeByName("dark");
-          } else {
-            Hover.setThemeByName("light");
-          }
+          Hover.getCurrentThemeName().then((themeName) {
+            if (themeName == 'light') {
+              Hover.setThemeByName("dark");
+            } else {
+              Hover.setThemeByName("light");
+            }
+          });
         },
       ),
     ],
