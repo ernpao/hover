@@ -60,15 +60,18 @@ class HoverRouter implements HoverRoutingManager {
     _navigate(context, route);
   }
 
-  Future _navigate(BuildContext context, String routeName,
-      {bool usePush: false}) async {
+  Future _navigate(BuildContext context, String routeName, {bool usePush: false}) async {
     routes.forEach((page) {
       if (page.routeName == routeName) {
-        _currentRoute = page;
-        if (usePush) {
-          return Navigator.pushNamed(context, page.routeName);
+        if (routeName != _currentRoute?.routeName) {
+          _currentRoute = page;
+          if (usePush) {
+            return Navigator.pushNamed(context, page.routeName);
+          } else {
+            return Navigator.popAndPushNamed(context, page.routeName);
+          }
         } else {
-          return Navigator.popAndPushNamed(context, page.routeName);
+          print('Attempted to navigate to $routeName but current route is already ${_currentRoute.routeName}');
         }
       }
       return null;
@@ -96,6 +99,5 @@ class HoverRouter implements HoverRoutingManager {
 }
 
 class HoverRouterProvider extends Provider<HoverRoutingManager> {
-  HoverRouterProvider(HoverRoutingManager appNavigationManager)
-      : super(create: (_) => appNavigationManager);
+  HoverRouterProvider(HoverRoutingManager appNavigationManager) : super(create: (_) => appNavigationManager);
 }
