@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'hover_page_base.dart';
-import 'providers/global_widgets/hover_global_widgets.dart';
+import 'dependencies/global_widgets/hover_global_widgets.dart';
 
 abstract class HoverSwapper extends HoverPageBase {
   final String title;

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'structure/hover_scaffold.dart';
-import 'providers/navigation/routing/hover_route.dart';
-import 'providers/navigation/routing/hover_router.dart';
-import 'providers/global_widgets/hover_global_widgets.dart';
+import 'dependencies/navigation/routing/hover_route.dart';
+import 'dependencies/navigation/routing/hover_router.dart';
+import 'dependencies/global_widgets/hover_global_widgets.dart';
 
 abstract class HoverPageBase extends HoverScaffold implements HoverRoute, HoverNavigation {
   static const Duration _defaultSnackBarDuration = Duration(seconds: 2);
