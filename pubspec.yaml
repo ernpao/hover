@@ -1,6 +1,6 @@
 name: hover
 description: An app framework and widget library that aims to simplify navigation, theme switching, responsive design, and more to speed up prototype development.
-version: 0.1.0
+version: 0.1.1
 homepage: https://github.com/ernpao/hover
 
 environment:
