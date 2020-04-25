@@ -2,25 +2,25 @@ import 'package:flutter/material.dart';
 
 class RoundImage extends StatelessWidget {
   final String imageUrl;
-  final double size;
+  final double radius;
   final BoxFit fit;
   RoundImage({
     @required this.imageUrl,
-    @required this.size,
+    @required this.radius,
     this.fit: BoxFit.cover,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: size,
-      width: size,
+      height: radius,
+      width: radius,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(size / 2),
+        borderRadius: BorderRadius.circular(radius / 2),
         child: Image.network(
           imageUrl,
-          height: size,
-          width: size,
+          height: radius,
+          width: radius,
           fit: fit,
         ),
       ),
