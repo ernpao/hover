@@ -22,32 +22,34 @@ class LandingPage extends HoverSwapper {
 }
 
 final HoverSwapperPage page1 = HoverSwapperPage(
-  builder: (context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[
-      HoverTitle("Favorites"),
-      _sampleSlider,
-      HoverTitle("Recommended For You"),
-      _sampleSlider,
-      CallToActionButton(
-        text: "Go to Profile",
-        onPressed: () {
-          Hover.router.goToRoute("/profile", context);
-        },
-      ),
-      CallToActionButton(
-        text: "Toggle Theme",
-        onPressed: () {
-          Hover.getCurrentThemeName().then((themeName) {
-            if (themeName == 'light') {
-              Hover.setThemeByName("dark");
-            } else {
-              Hover.setThemeByName("light");
-            }
-          });
-        },
-      ),
-    ],
+  builder: (context) => SingleChildScrollView(
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        HoverTitle("Favorites"),
+        _sampleSlider,
+        HoverTitle("Recommended For You"),
+        _sampleSlider,
+        CallToActionButton(
+          text: "Go to Profile",
+          onPressed: () {
+            Hover.router.goToRoute("/profile", context);
+          },
+        ),
+        CallToActionButton(
+          text: "Toggle Theme",
+          onPressed: () {
+            Hover.getCurrentThemeName().then((themeName) {
+              if (themeName == 'light') {
+                Hover.setThemeByName("dark");
+              } else {
+                Hover.setThemeByName("light");
+              }
+            });
+          },
+        ),
+      ],
+    ),
   ),
   toggleBuilder: (_, isSelected) {
     return Icon(
@@ -57,8 +59,62 @@ final HoverSwapperPage page1 = HoverSwapperPage(
   },
 );
 
+class Page2Content extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return Page2ContentState();
+  }
+}
+
+class Page2ContentState extends State<Page2Content> {
+  final TextEditingController _inputController = new TextEditingController();
+  String _text;
+
+  @override
+  void initState() {
+    super.initState();
+    _text = 'Loaded text will be displayed here';
+    Hover.loadSetting('hover-test-text').then((value) {
+      setState(() {
+        _text = value;
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        HoverText('Testing Saved Preferences'),
+        TextField(
+          controller: _inputController,
+          decoration: InputDecoration(labelText: 'Type some text'),
+        ),
+        CallToActionButton(
+          text: 'Save Text',
+          onPressed: () {
+            Hover.saveSetting('hover-test-text', _inputController.value.text);
+          },
+        ),
+        Text(_text),
+        CallToActionButton(
+          text: 'Load Text',
+          onPressed: () {
+            Hover.loadSetting('hover-test-text').then((value) {
+              setState(() {
+                _text = value;
+              });
+            });
+          },
+        )
+      ],
+    );
+  }
+}
+
 final HoverSwapperPage page2 = HoverSwapperPage(
-  builder: (_) => Container(),
+  builder: (_) => Container(child: Page2Content()),
   toggleBuilder: (_, isSelected) {
     return Icon(
       Icons.headset,
