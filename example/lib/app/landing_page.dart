@@ -2,56 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:hover/hover.dart';
 
 class LandingPage extends HoverSwapper {
-  LandingPage()
-      : super(pages: [
-          HoverSwapperPage(
-            build: (context) => Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                HoverTitle("Favorites"),
-                _sampleSlider,
-                HoverTitle("Recommended For You"),
-                _sampleSlider,
-                CallToActionButton(
-                  text: "Go to Profile",
-                  onPressed: () {
-                    Hover.router.goToRoute("/profile", context);
-                  },
-                ),
-                CallToActionButton(
-                  text: "Toggle Theme",
-                  onPressed: () {
-                    if (Hover.currentThemeName == "light") {
-                      Hover.setThemeByName("dark");
-                    } else {
-                      Hover.setThemeByName("light");
-                    }
-                  },
-                ),
-              ],
-            ),
-            toggle: Icon(Icons.home),
-          ),
-          HoverSwapperPage(
-            build: (_) => Container(),
-            toggle: Icon(Icons.headset),
-          ),
-          HoverSwapperPage(
-            build: (_) => Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [Text("add")],
-            ),
-            toggle: Icon(Icons.library_add),
-          ),
-        ]);
-
   @override
   String get routeName => "/landing";
 
   @override
-  Widget buildBottomNavigation(
-      BuildContext context, int currentIndex, List<Widget> controls) {
+  Widget buildBottomNavigation(BuildContext context, int selectedPageIndex, List<Widget> controls) {
     return Container(
+      padding: EdgeInsets.symmetric(vertical: 12),
       color: Colors.blue,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -59,7 +16,67 @@ class LandingPage extends HoverSwapper {
       ),
     );
   }
+
+  @override
+  List<HoverSwapperPage> buildPages(BuildContext context) => [page1, page2, page3];
 }
+
+final HoverSwapperPage page1 = HoverSwapperPage(
+  builder: (context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      HoverTitle("Favorites"),
+      _sampleSlider,
+      HoverTitle("Recommended For You"),
+      _sampleSlider,
+      CallToActionButton(
+        text: "Go to Profile",
+        onPressed: () {
+          Hover.router.goToRoute("/profile", context);
+        },
+      ),
+      CallToActionButton(
+        text: "Toggle Theme",
+        onPressed: () {
+          if (Hover.currentThemeName == "light") {
+            Hover.setThemeByName("dark");
+          } else {
+            Hover.setThemeByName("light");
+          }
+        },
+      ),
+    ],
+  ),
+  toggleBuilder: (_, isSelected) {
+    return Icon(
+      Icons.home,
+      color: isSelected ? Colors.white : Colors.white60,
+    );
+  },
+);
+
+final HoverSwapperPage page2 = HoverSwapperPage(
+  builder: (_) => Container(),
+  toggleBuilder: (_, isSelected) {
+    return Icon(
+      Icons.headset,
+      color: isSelected ? Colors.white : Colors.white60,
+    );
+  },
+);
+
+final HoverSwapperPage page3 = HoverSwapperPage(
+  builder: (_) => Column(
+    crossAxisAlignment: CrossAxisAlignment.stretch,
+    children: [Text("add")],
+  ),
+  toggleBuilder: (_, isSelected) {
+    return Icon(
+      Icons.library_add,
+      color: isSelected ? Colors.white : Colors.white60,
+    );
+  },
+);
 
 final ImageSlider _sampleSlider = ImageSlider(
   slideWidth: null,

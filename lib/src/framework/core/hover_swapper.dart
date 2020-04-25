@@ -5,22 +5,20 @@ import 'hover_page_base.dart';
 import 'providers/global_widgets/hover_global_widgets.dart';
 
 abstract class HoverSwapper extends HoverPageBase {
-  final List<HoverSwapperPage> pages;
   final String title;
   final Color backgroundColor;
 
   HoverSwapper({
-    @required this.pages,
     this.title,
     this.backgroundColor,
-  }) : super(title: title, backgroundColor: backgroundColor) {
-    assert(pages.length > 0);
-  }
+  }) : super(title: title, backgroundColor: backgroundColor);
+
+  List<HoverSwapperPage> buildPages(BuildContext context);
 
   @override
   Widget buildPageContent(BuildContext context) {
     return HoverContentSwapper(
-      pages: pages,
+      pages: buildPages(context),
       scaffoldKey: scaffoldKey,
       appBar: buildAppBar(context),
       drawer: buildDrawer(context),
@@ -45,7 +43,7 @@ class HoverContentSwapper extends StatefulWidget {
   final Widget fab;
   final GlobalKey<ScaffoldState> scaffoldKey;
   final Color backgroundColor;
-  final Widget Function(BuildContext context, int currentIndex, List<Widget> controls) navigationBuilder;
+  final Widget Function(BuildContext context, int selectedPageIndex, List<Widget> controls) navigationBuilder;
 
   HoverContentSwapper({
     @required this.pages,
@@ -59,18 +57,24 @@ class HoverContentSwapper extends StatefulWidget {
 
   @override
   _HoverContentSwapperState createState() {
-    return _HoverContentSwapperState();
+    return _HoverContentSwapperState(pages: pages);
   }
 }
 
 class _HoverContentSwapperState extends State<HoverContentSwapper> {
-  Widget Function(BuildContext) _currentContentBuilder;
-  int _currentIndex = 0;
+  HoverSwapperPage _currentPage;
+  int _currentIndex;
+  final List<HoverSwapperPage> pages;
+
+  _HoverContentSwapperState({
+    @required this.pages,
+  });
 
   @override
   void initState() {
     super.initState();
-    _currentContentBuilder = widget.pages[_currentIndex].build;
+    _currentIndex = 0;
+    _currentPage = pages[_currentIndex];
   }
 
   @override
@@ -88,27 +92,29 @@ class _HoverContentSwapperState extends State<HoverContentSwapper> {
           duration: const Duration(milliseconds: 100),
           child: Container(
             key: ValueKey<int>(_currentIndex),
-            child: _currentContentBuilder(context),
+            child: _currentPage,
           ),
         ),
         appBar: (appBar != null) ? appBar : globalWidgets.appBar,
         drawer: (drawer != null) ? drawer : globalWidgets.drawer,
         floatingActionButton: (fab != null) ? fab : globalWidgets.floatingActionButton,
-        bottomNavigationBar: _buildBottomNavigation(),
+        bottomNavigationBar: _buildBottomNavigation(context),
       ),
     );
   }
 
-  Widget _buildBottomNavigation() {
+  Widget _buildBottomNavigation(BuildContext context) {
     final List<Widget> controls = List();
 
     widget.pages.forEach((page) {
+      int pageIndex = widget.pages.indexOf(page);
+
       controls.add(GestureDetector(
-        child: page.toggle,
+        child: page.toggleBuilder(context, (pageIndex == _currentIndex)),
         onTap: () {
           setState(() {
-            _currentContentBuilder = page.build;
-            _currentIndex = widget.pages.indexOf(page);
+            _currentPage = page;
+            _currentIndex = pageIndex;
           });
         },
       ));
@@ -118,12 +124,17 @@ class _HoverContentSwapperState extends State<HoverContentSwapper> {
   }
 }
 
-class HoverSwapperPage {
-  final Widget Function(BuildContext) build;
-  final Widget toggle;
+class HoverSwapperPage extends StatelessWidget {
+  final Widget Function(BuildContext context) builder;
+  final Widget Function(BuildContext context, bool isSelected) toggleBuilder;
 
   HoverSwapperPage({
-    @required this.build,
-    @required this.toggle,
+    @required this.builder,
+    @required this.toggleBuilder,
   });
+
+  @override
+  Widget build(BuildContext context) {
+    return builder(context);
+  }
 }
