@@ -58,7 +58,7 @@ class HoverExample extends StatelessWidget {
                   return ListTile(
                     onTap: () {
                       Hover.closeDrawer();
-                      Hover.router.goToPage<ProfilePage>(context);
+                      Hover.router.goToPage<LandingPage>(context);
                     },
                     title: Text(items[i]),
                   );
