@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
-import 'hover_framework.dart';
+import 'core/hover_page_base.dart';
+import 'core/providers/theme/hover_theme.dart';
+import 'core/providers/navigation/routing/hover_route.dart';
+import 'core/providers/navigation/routing/hover_router.dart';
+import 'core/providers/global_widgets/hover_global_widgets.dart';
 
 class Hover extends StatelessWidget {
   static final List<SingleChildWidget> _providers = List();
@@ -12,8 +16,7 @@ class Hover extends StatelessWidget {
 
   static HoverRoutingManager _router;
   static HoverRoutingManager get router => _router;
-  static bool navigationCanPop(BuildContext context) =>
-      router?.canPop(context) == true;
+  static bool navigationCanPop(BuildContext context) => router?.canPop(context) == true;
 
   static Hover _instance;
   static Hover get instance => _instance;
@@ -103,8 +106,7 @@ class _HoverAppBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute:
-          Provider.of<HoverRoutingManager>(context).initialRoute.routeName,
+      initialRoute: Provider.of<HoverRoutingManager>(context).initialRoute.routeName,
       routes: Provider.of<HoverRoutingManager>(context).buildRoutes(),
       debugShowCheckedModeBanner: false,
       theme: Provider.of<HoverThemeData>(context).currentTheme,

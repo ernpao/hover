@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'hover_core.dart';
+import 'hover_page_base.dart';
+import 'providers/global_widgets/hover_global_widgets.dart';
 
 abstract class HoverSwapper extends HoverPageBase {
   final List<HoverSwapperPage> pages;
@@ -29,8 +30,7 @@ abstract class HoverSwapper extends HoverPageBase {
     );
   }
 
-  Widget buildBottomNavigation(
-      BuildContext context, int currentIndex, List<Widget> controls);
+  Widget buildBottomNavigation(BuildContext context, int currentIndex, List<Widget> controls);
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +45,7 @@ class HoverContentSwapper extends StatefulWidget {
   final Widget fab;
   final GlobalKey<ScaffoldState> scaffoldKey;
   final Color backgroundColor;
-  final Widget Function(
-          BuildContext context, int currentIndex, List<Widget> controls)
-      navigationBuilder;
+  final Widget Function(BuildContext context, int currentIndex, List<Widget> controls) navigationBuilder;
 
   HoverContentSwapper({
     @required this.pages,
@@ -77,8 +75,7 @@ class _HoverContentSwapperState extends State<HoverContentSwapper> {
 
   @override
   Widget build(BuildContext context) {
-    final globalWidgets =
-        Provider.of<HoverGlobalWidgets>(context, listen: false);
+    final globalWidgets = Provider.of<HoverGlobalWidgets>(context, listen: false);
 
     final appBar = widget.appBar;
     final drawer = widget.drawer;
@@ -96,8 +93,7 @@ class _HoverContentSwapperState extends State<HoverContentSwapper> {
         ),
         appBar: (appBar != null) ? appBar : globalWidgets.appBar,
         drawer: (drawer != null) ? drawer : globalWidgets.drawer,
-        floatingActionButton:
-            (fab != null) ? fab : globalWidgets.floatingActionButton,
+        floatingActionButton: (fab != null) ? fab : globalWidgets.floatingActionButton,
         bottomNavigationBar: _buildBottomNavigation(),
       ),
     );

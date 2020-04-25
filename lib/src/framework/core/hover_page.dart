@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'hover_core.dart';
+import 'hover_page_base.dart';
 
 abstract class HoverPage extends HoverPageBase {
   HoverPage({
