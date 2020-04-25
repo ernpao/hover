@@ -40,6 +40,14 @@ class Hover extends StatelessWidget {
     return _themeData.getCurrentThemeName();
   }
 
+  static void saveSetting(String key, String value) {
+    SharedPreferencesHelper.saveSetting(key, value);
+  }
+
+  static Future<String> loadSetting(String key) {
+    return SharedPreferencesHelper.loadSetting(key);
+  }
+
   ///
   /// Use this to create an using with Hover. This method
   /// returns a stateless widget with a build method that creates a MaterialApp
