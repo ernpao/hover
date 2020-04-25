@@ -14,21 +14,20 @@ class HoverThemeData extends ChangeNotifier {
     _currentTheme = themes[themes.keys.elementAt(0)];
   }
 
-  void setThemeByName(String themeName) {
-    SharedPreferences.getInstance().then((instance) {
-      instance.setString('theme', themeName);
-      if (themes[themeName] != null) {
-        _currentTheme = themes[themeName];
-        notifyListeners();
-      } else {
-        print('Theme "$themeName" not found.');
-      }
-    });
+  void setThemeByName(String themeName) async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString('theme', themeName);
+    if (themes[themeName] != null) {
+      _currentTheme = themes[themeName];
+      notifyListeners();
+    } else {
+      print('Theme "$themeName" not found.');
+    }
   }
 
   Future<String> getCurrentThemeName() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString('theme');
+    final sharedPreferences = await SharedPreferences.getInstance();
+    return sharedPreferences.getString('theme');
   }
 
   void loadSavedTheme() {
