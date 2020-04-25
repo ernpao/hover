@@ -4,10 +4,12 @@ class RectangularImage extends StatelessWidget {
   final String imageUrl;
   final double width;
   final double height;
+  final BoxFit fit;
   RectangularImage({
     @required this.imageUrl,
     @required this.width,
     @required this.height,
+    this.fit: BoxFit.cover,
   });
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class RectangularImage extends StatelessWidget {
       imageUrl,
       height: height,
       width: width,
-      fit: BoxFit.cover,
+      fit: fit,
       alignment: Alignment.center,
     );
   }

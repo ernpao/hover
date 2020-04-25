@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 class SquareImage extends StatelessWidget {
   final String imageUrl;
   final double size;
+  final BoxFit fit;
   SquareImage({
     @required this.imageUrl,
     @required this.size,
+    this.fit: BoxFit.cover,
   });
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,7 @@ class SquareImage extends StatelessWidget {
       imageUrl,
       height: size,
       width: size,
-      fit: BoxFit.cover,
+      fit: fit,
       alignment: Alignment.center,
     );
   }

@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 class RoundImage extends StatelessWidget {
   final String imageUrl;
   final double size;
+  final BoxFit fit;
   RoundImage({
     @required this.imageUrl,
     @required this.size,
+    this.fit: BoxFit.cover,
   });
 
   @override
@@ -19,7 +21,7 @@ class RoundImage extends StatelessWidget {
           imageUrl,
           height: size,
           width: size,
-          fit: BoxFit.cover,
+          fit: fit,
         ),
       ),
     );
