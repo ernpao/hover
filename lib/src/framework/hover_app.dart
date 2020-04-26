@@ -38,18 +38,20 @@ class Hover extends StatelessWidget {
     return _themeData.getCurrentThemeName();
   }
 
+  /// Save key-value pair to shared preferences.
   static void saveSetting(String key, String value) {
     SharedPreferencesHelper.saveSetting(key, value);
   }
 
+  /// Load a value from shared preferences referenced by a key.
   static Future<String> loadSetting(String key) {
     return SharedPreferencesHelper.loadSetting(key);
   }
 
   ///
-  /// Use this to create an with Hover. This method
-  /// returns a stateless widget that contains a MaterialApp
-  /// widget nested inside a MultiProvider.
+  /// Create an app with Hover. This method
+  /// returns a stateless widget that contains a
+  /// MaterialApp nested inside a MultiProvider.
   ///
   static Hover create({
     @required List<HoverRoute> routes,
