@@ -14,7 +14,7 @@ class ProfilePage extends HoverPage {
           CallToActionButton(
             text: "Return to landing page",
             onPressed: () {
-              goToRoute("/landing", context);
+              navigateTo("/landing", context);
             },
           ),
         ],

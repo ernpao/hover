@@ -4,9 +4,8 @@ import 'package:provider/provider.dart';
 import 'hover_route.dart';
 
 abstract class HoverNavigation {
-  Future goToInitialPage(BuildContext context);
-  Future goToPage<T>(BuildContext context);
-  Future goToRoute(String route, BuildContext context);
+  Future navigateToInitialPage(BuildContext context);
+  Future navigateTo(String route, BuildContext context, {bool push: false});
   Future<void> pop(BuildContext context);
 }
 
@@ -40,24 +39,13 @@ class HoverRouter implements HoverRoutingManager {
   }
 
   @override
-  Future goToInitialPage(BuildContext context) async {
+  Future navigateToInitialPage(BuildContext context) async {
     return _navigate(context, initialRoute.routeName);
   }
 
   @override
-  Future goToPage<T>(BuildContext context) async {
-    routes.forEach((page) {
-      if (page.runtimeType == T) {
-        return _navigate(context, page.routeName);
-      }
-      return null;
-    });
-    return null;
-  }
-
-  @override
-  Future goToRoute(String route, BuildContext context) async {
-    _navigate(context, route);
+  Future navigateTo(String route, BuildContext context, {bool push: false}) async {
+    _navigate(context, route, usePush: push);
   }
 
   Future _navigate(BuildContext context, String routeName, {bool usePush: false}) async {

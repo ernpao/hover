@@ -52,8 +52,6 @@ abstract class HoverPageBase extends HoverScaffold implements HoverRoute, HoverN
 
     //If both the builSnackBar() and globalWidgets.snackBar are null, use a basic snackbar.
     final _snackBar = (snackBar != null) ? snackBar : SnackBar(content: Text(message), duration: duration);
-    // Scaffold.of(context).showSnackBar(_snackBar);
-    // scaffoldState.showSnackBar(_snackBar);
 
     if (currentState != null) {
       currentState.showSnackBar(_snackBar);
@@ -65,21 +63,15 @@ abstract class HoverPageBase extends HoverScaffold implements HoverRoute, HoverN
   }
 
   @override
-  Future goToInitialPage(BuildContext context) {
+  Future navigateToInitialPage(BuildContext context) {
     closeDrawer();
-    return _getAppNavigationManager(context).goToInitialPage(context);
+    return _getAppNavigationManager(context).navigateToInitialPage(context);
   }
 
   @override
-  Future goToPage<T>(BuildContext context) {
+  Future navigateTo(String route, BuildContext context, {bool push: false}) {
     closeDrawer();
-    return _getAppNavigationManager(context).goToPage<T>(context);
-  }
-
-  @override
-  Future goToRoute(String route, BuildContext context) {
-    closeDrawer();
-    return _getAppNavigationManager(context).goToRoute(route, context);
+    return _getAppNavigationManager(context).navigateTo(route, context, push: push);
   }
 
   @override

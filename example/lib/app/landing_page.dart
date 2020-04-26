@@ -33,7 +33,7 @@ final HoverSwapperPage page1 = HoverSwapperPage(
         CallToActionButton(
           text: "Go to Profile",
           onPressed: () {
-            Hover.router.goToRoute("/profile", context);
+            Hover.router.navigateTo("/profile", context);
           },
         ),
         CallToActionButton(

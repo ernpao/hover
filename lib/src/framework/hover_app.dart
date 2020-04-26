@@ -18,10 +18,8 @@ class Hover extends StatelessWidget {
 
   static HoverRoutingManager _router;
   static HoverRoutingManager get router => _router;
-  static bool navigationCanPop(BuildContext context) => router?.canPop(context) == true;
 
   static Hover _instance;
-  static Hover get instance => _instance;
 
   static HoverPageBase get currentPage => _router.currentRoute as HoverPageBase;
 

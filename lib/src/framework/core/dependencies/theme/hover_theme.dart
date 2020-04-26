@@ -30,9 +30,14 @@ class HoverThemeData extends ChangeNotifier {
     return sharedPreferences.getString('theme');
   }
 
+  /// Load the saved theme. If no saved theme is found Hover will use the first theme available and save the setting.
   void loadSavedTheme() {
     getCurrentThemeName().then((name) {
-      setThemeByName(name);
+      if (name == null) {
+        setThemeByName(themes.keys.elementAt(0));
+      } else {
+        setThemeByName(name);
+      }
     });
   }
 }
