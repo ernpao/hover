@@ -16,29 +16,29 @@ abstract class HoverPageBase extends HoverScaffold implements HoverRoute, HoverN
     this.backgroundColor,
   });
 
-  HoverGlobalWidgets getGlobalWidgets(BuildContext context) {
-    return Provider.of<HoverGlobalWidgets>(context, listen: false);
-  }
+  Widget render(BuildContext context);
 
-  Widget buildPageContent(BuildContext context);
-
-  /// Build the content of the page by overriding this method.
   @override
   Widget build(BuildContext context) {
-    final globalWidgets = getGlobalWidgets(context);
-
-    final appBar = buildAppBar(context);
-    final drawer = buildDrawer(context);
-    final fab = buildFloatingActionButton(context);
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundColor,
-        key: scaffoldKey,
-        body: buildPageContent(context),
-        appBar: (appBar != null) ? appBar : globalWidgets.appBar,
-        drawer: (drawer != null) ? drawer : globalWidgets.drawer,
-        floatingActionButton: (fab != null) ? fab : globalWidgets.floatingActionButton,
+        body: Builder(
+          builder: (subcontext) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                buildAppBar(subcontext),
+                Expanded(
+                  child: render(subcontext),
+                ),
+              ],
+            );
+          },
+        ),
+        drawer: buildDrawer(context),
+        floatingActionButton: buildFloatingActionButton(context),
       ),
     );
   }
@@ -46,16 +46,13 @@ abstract class HoverPageBase extends HoverScaffold implements HoverRoute, HoverN
   void showSnackBar(BuildContext context, String message, {Duration duration: _defaultSnackBarDuration}) {
     //If the buildSnackBar method was overidden and doesn't return null,
     //use the snackbar created from that method. Else, use globalWidgets.snackBar.
-    final globalWidgets = Provider.of<HoverGlobalWidgets>(context, listen: false);
+    final globalWidgets = getGlobalWidgets(context);
     var snackBar = buildSnackBar(context);
-    snackBar = (snackBar != null) ? snackBar : globalWidgets.snackBar;
+    snackBar = (snackBar != null) ? snackBar : globalWidgets.snackBarBuilder(context);
 
     //If both the builSnackBar() and globalWidgets.snackBar are null, use a basic snackbar.
     final _snackBar = (snackBar != null) ? snackBar : SnackBar(content: Text(message), duration: duration);
-
-    if (currentState != null) {
-      currentState.showSnackBar(_snackBar);
-    }
+    Scaffold.of(context).showSnackBar(_snackBar);
   }
 
   HoverRoutingManager _getAppNavigationManager(BuildContext context) {
@@ -64,19 +61,51 @@ abstract class HoverPageBase extends HoverScaffold implements HoverRoute, HoverN
 
   @override
   Future navigateToInitialPage(BuildContext context) {
-    closeDrawer();
+    closeDrawer(context);
     return _getAppNavigationManager(context).navigateToInitialPage(context);
   }
 
   @override
   Future navigateTo(String route, BuildContext context, {bool push: false}) {
-    closeDrawer();
+    closeDrawer(context);
     return _getAppNavigationManager(context).navigateTo(route, context, push: push);
   }
 
   @override
   Future pop(BuildContext context) {
-    closeDrawer();
+    closeDrawer(context);
     return _getAppNavigationManager(context).pop(context);
+  }
+
+  HoverGlobalWidgets getGlobalWidgets(BuildContext context) {
+    return Provider.of<HoverGlobalWidgets>(context, listen: false);
+  }
+
+  Widget buildAppBar(BuildContext context) {
+    if (getGlobalWidgets(context).appBarBuilder != null) {
+      return getGlobalWidgets(context).appBarBuilder(context);
+    } else {
+      return SizedBox.shrink();
+    }
+  }
+
+  Widget buildDrawer(BuildContext context) {
+    if (getGlobalWidgets(context).drawerBuilder != null) {
+      return getGlobalWidgets(context).drawerBuilder(context);
+    } else {
+      return SizedBox.shrink();
+    }
+  }
+
+  Widget buildSnackBar(BuildContext context) {
+    return getGlobalWidgets(context).snackBarBuilder(context);
+  }
+
+  Widget buildFloatingActionButton(BuildContext context) {
+    if (getGlobalWidgets(context).floatingActionButtonBuilder != null) {
+      return getGlobalWidgets(context).floatingActionButtonBuilder(context);
+    } else {
+      return SizedBox.shrink();
+    }
   }
 }

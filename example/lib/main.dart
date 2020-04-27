@@ -22,8 +22,8 @@ class HoverExample extends StatelessWidget {
         "dark": ThemeData.dark(),
       },
       providers: [],
-      globalAppBar: buildAppBar(context),
-      globalDrawer: buildDrawer(context),
+      globalAppBarBuilder: buildAppBar,
+      globalDrawerBuilder: buildDrawer,
     );
   }
 
@@ -57,7 +57,7 @@ class HoverExample extends StatelessWidget {
                 itemBuilder: (context, i) {
                   return ListTile(
                     onTap: () {
-                      Hover.closeDrawer();
+                      // Hover.closeDrawer();
                       Hover.router.navigateTo('/landing', context);
                     },
                     title: Text(items[i]),
@@ -79,7 +79,7 @@ class HoverExample extends StatelessWidget {
       title: Text("Hover Sample App"),
       leading: FlatButton(
         onPressed: () {
-          Hover.toggleDrawer();
+          Hover.toggleDrawer(context);
         },
         child: Icon(Icons.menu, color: Colors.white),
       ),

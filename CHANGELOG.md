@@ -9,3 +9,7 @@
 ## [0.1.2] - 4/27/2020.
 * Updated the routing functions.
 * Fixed null theme issue encountered when loading the app theme on startup.
+
+## [0.1.3] - 4/28/2020.
+* Updated the routing and drawer toggle functions.
+* Removed the use of Global keys for scaffolds.

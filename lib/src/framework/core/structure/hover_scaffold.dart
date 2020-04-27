@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
 abstract class HoverScaffold extends StatelessWidget {
-  final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
-  ScaffoldState get currentState => scaffoldKey.currentState;
-
   /// Utility method to get the device's screen width
   double getScreenWidth(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -16,41 +13,31 @@ abstract class HoverScaffold extends StatelessWidget {
     return height;
   }
 
-  get isDrawerOpen => scaffoldKey.currentState.isDrawerOpen;
+  bool isDrawerOpen(BuildContext context) {
+    return Scaffold.of(context).isDrawerOpen;
+  }
 
-  void openDrawer() {
-    if (currentState.hasDrawer) {
-      currentState.openDrawer();
+  bool hasDrawer(BuildContext context) {
+    return Scaffold.of(context).hasDrawer;
+  }
+
+  void openDrawer(BuildContext context) {
+    if (hasDrawer(context)) {
+      Scaffold.of(context).openDrawer();
     }
   }
 
-  void closeDrawer() {
-    if (currentState.hasDrawer && currentState.isDrawerOpen) {
-      Navigator.pop(currentState.context);
+  void closeDrawer(BuildContext context) {
+    if (hasDrawer(context) && isDrawerOpen(context)) {
+      Navigator.pop(context);
     }
   }
 
-  void toggleDrawer() {
-    if (!isDrawerOpen) {
-      openDrawer();
+  void toggleDrawer(BuildContext context) {
+    if (!isDrawerOpen(context)) {
+      openDrawer(context);
     } else {
-      closeDrawer();
+      closeDrawer(context);
     }
-  }
-
-  Widget buildAppBar(BuildContext context) {
-    return null;
-  }
-
-  Widget buildDrawer(BuildContext context) {
-    return null;
-  }
-
-  Widget buildSnackBar(BuildContext context) {
-    return null;
-  }
-
-  Widget buildFloatingActionButton(BuildContext context) {
-    return null;
   }
 }

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import 'hover_page_base.dart';
-import 'dependencies/global_widgets/hover_global_widgets.dart';
 
 abstract class HoverSwapper extends HoverPageBase {
   final String title;
@@ -16,43 +14,40 @@ abstract class HoverSwapper extends HoverPageBase {
   List<HoverSwapperPage> buildPages(BuildContext context);
 
   @override
-  Widget buildPageContent(BuildContext context) {
-    return HoverContentSwapper(
+  Widget render(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _HoverContentSwapper(
       pages: buildPages(context),
-      scaffoldKey: scaffoldKey,
-      appBar: buildAppBar(context),
-      drawer: buildDrawer(context),
-      fab: buildFloatingActionButton(context),
+      appBarBuilder: buildAppBar,
+      drawerBuilder: buildDrawer,
+      floatingActionButtonBuilder: buildFloatingActionButton,
       backgroundColor: backgroundColor,
       navigationBuilder: buildBottomNavigation,
     );
   }
 
   Widget buildBottomNavigation(BuildContext context, int currentIndex, List<Widget> controls);
-
-  @override
-  Widget build(BuildContext context) {
-    return buildPageContent(context);
-  }
 }
 
-class HoverContentSwapper extends StatefulWidget {
-  final List<HoverSwapperPage> pages;
-  final Widget appBar;
-  final Widget drawer;
-  final Widget fab;
-  final GlobalKey<ScaffoldState> scaffoldKey;
+class _HoverContentSwapper extends StatefulWidget {
   final Color backgroundColor;
+  final List<HoverSwapperPage> pages;
+  final Widget Function(BuildContext) appBarBuilder;
+  final Widget Function(BuildContext) drawerBuilder;
+  final Widget Function(BuildContext) floatingActionButtonBuilder;
   final Widget Function(BuildContext context, int selectedPageIndex, List<Widget> controls) navigationBuilder;
 
-  HoverContentSwapper({
+  _HoverContentSwapper({
     @required this.pages,
-    @required this.scaffoldKey,
     @required this.navigationBuilder,
     this.backgroundColor,
-    this.appBar,
-    this.drawer,
-    this.fab,
+    this.appBarBuilder,
+    this.drawerBuilder,
+    this.floatingActionButtonBuilder,
   }) : assert(pages.length > 0);
 
   @override
@@ -61,7 +56,7 @@ class HoverContentSwapper extends StatefulWidget {
   }
 }
 
-class _HoverContentSwapperState extends State<HoverContentSwapper> {
+class _HoverContentSwapperState extends State<_HoverContentSwapper> {
   HoverSwapperPage _currentPage;
   int _currentIndex;
   final List<HoverSwapperPage> pages;
@@ -79,25 +74,29 @@ class _HoverContentSwapperState extends State<HoverContentSwapper> {
 
   @override
   Widget build(BuildContext context) {
-    final globalWidgets = Provider.of<HoverGlobalWidgets>(context, listen: false);
-
-    final appBar = widget.appBar;
-    final drawer = widget.drawer;
-    final fab = widget.fab;
     return SafeArea(
       child: Scaffold(
         backgroundColor: widget.backgroundColor,
-        key: widget.scaffoldKey,
         body: AnimatedSwitcher(
           duration: const Duration(milliseconds: 100),
-          child: Container(
-            key: ValueKey<int>(_currentIndex),
-            child: _currentPage,
+          child: Builder(
+            builder: (subcontext) {
+              return Column(
+                children: <Widget>[
+                  widget.appBarBuilder(subcontext),
+                  Expanded(
+                    child: Container(
+                      key: ValueKey<int>(_currentIndex),
+                      child: _currentPage,
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
         ),
-        appBar: (appBar != null) ? appBar : globalWidgets.appBar,
-        drawer: (drawer != null) ? drawer : globalWidgets.drawer,
-        floatingActionButton: (fab != null) ? fab : globalWidgets.floatingActionButton,
+        drawer: widget.drawerBuilder(context),
+        floatingActionButton: widget.floatingActionButtonBuilder(context),
         bottomNavigationBar: _buildBottomNavigation(context),
       ),
     );

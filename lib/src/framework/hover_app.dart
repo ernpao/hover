@@ -14,7 +14,6 @@ class Hover extends StatelessWidget {
   static Future<SharedPreferences> sharedPreferencesInstance() => SharedPreferencesHelper.getInstance();
 
   static final List<SingleChildWidget> _providers = List();
-  static final HoverGlobalWidgets _globalElements = HoverGlobalWidgets();
 
   static HoverRoutingManager _router;
   static HoverRoutingManager get router => _router;
@@ -23,10 +22,10 @@ class Hover extends StatelessWidget {
 
   static HoverPageBase get currentPage => _router.currentRoute as HoverPageBase;
 
-  static get isDrawerOpen => currentPage.scaffoldKey.currentState.isDrawerOpen;
-  static void closeDrawer() => currentPage.closeDrawer();
-  static void openDrawer() => currentPage.openDrawer();
-  static void toggleDrawer() => currentPage.toggleDrawer();
+  static bool isDrawerOpen(BuildContext context) => currentPage.isDrawerOpen(context);
+  static void closeDrawer(BuildContext context) => currentPage.closeDrawer(context);
+  static void openDrawer(BuildContext context) => currentPage.openDrawer(context);
+  static void toggleDrawer(BuildContext context) => currentPage.toggleDrawer(context);
 
   static HoverThemeData _themeData;
 
@@ -57,20 +56,22 @@ class Hover extends StatelessWidget {
     @required List<HoverRoute> routes,
     @required Map<String, ThemeData> themes,
     List<SingleChildWidget> providers,
-    AppBar globalAppBar,
-    Drawer globalDrawer,
-    SnackBar globalSnackBar,
-    Widget globalFloatingActionButton,
+    Widget Function(BuildContext) globalAppBarBuilder,
+    Widget Function(BuildContext) globalDrawerBuilder,
+    Widget Function(BuildContext) globalSnackBarBuilder,
+    Widget Function(BuildContext) globalfloatingActionButtonBuilder,
   }) {
     if (_instance == null) {
       _instance = Hover._(
         routes: routes,
         themes: themes,
         providers: providers,
-        appBar: globalAppBar,
-        drawer: globalDrawer,
-        snackBar: globalSnackBar,
-        floatingActionButton: globalFloatingActionButton,
+        globalWidgets: HoverGlobalWidgets(
+          appBarBuilder: globalAppBarBuilder,
+          drawerBuilder: globalDrawerBuilder,
+          snackBarBuilder: globalSnackBarBuilder,
+          floatingActionButtonBuilder: globalfloatingActionButtonBuilder,
+        ),
       );
     }
 
@@ -81,10 +82,7 @@ class Hover extends StatelessWidget {
     @required List<HoverRoute> routes,
     @required Map<String, ThemeData> themes,
     List<SingleChildWidget> providers,
-    AppBar appBar,
-    Drawer drawer,
-    SnackBar snackBar,
-    Widget floatingActionButton,
+    HoverGlobalWidgets globalWidgets,
   }) {
     _router = HoverRouter(routes: routes);
     _providers.add(HoverRouterProvider(_router));
@@ -92,11 +90,7 @@ class Hover extends StatelessWidget {
     _themeData = HoverThemeData(themes: themes);
     _providers.add(HoverThemeProvider(_themeData));
 
-    _globalElements.appBar = appBar;
-    _globalElements.drawer = drawer;
-    _globalElements.snackBar = snackBar;
-    _globalElements.floatingActionButton = floatingActionButton;
-    _providers.add(HoverGlobalWidgetsProvider(_globalElements));
+    _providers.add(HoverGlobalWidgetsProvider(globalWidgets));
 
     if (providers != null) {
       _providers.addAll(providers);

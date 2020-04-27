@@ -6,19 +6,18 @@ class ProfilePage extends HoverPage {
   String get routeName => "/profile";
 
   @override
-  Widget buildPageContent(BuildContext context) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          Text("This is the profile page"),
-          CallToActionButton(
-            text: "Return to landing page",
-            onPressed: () {
-              navigateTo("/landing", context);
-            },
-          ),
-        ],
-      ),
+  Widget render(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text("This is the profile page"),
+        CallToActionButton(
+          text: "Return to landing page",
+          onPressed: () {
+            navigateTo("/landing", context);
+          },
+        ),
+      ],
     );
   }
 }

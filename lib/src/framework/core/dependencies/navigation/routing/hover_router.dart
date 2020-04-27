@@ -51,15 +51,11 @@ class HoverRouter implements HoverRoutingManager {
   Future _navigate(BuildContext context, String routeName, {bool usePush: false}) async {
     routes.forEach((page) {
       if (page.routeName == routeName) {
-        if (routeName != _currentRoute?.routeName) {
-          _currentRoute = page;
-          if (usePush) {
-            return Navigator.pushNamed(context, page.routeName);
-          } else {
-            return Navigator.popAndPushNamed(context, page.routeName);
-          }
+        _currentRoute = page;
+        if (usePush) {
+          return Navigator.pushNamed(context, page.routeName);
         } else {
-          print('Attempted to navigate to $routeName but current route is already ${_currentRoute.routeName}');
+          return Navigator.popAndPushNamed(context, page.routeName);
         }
       }
       return null;
@@ -78,7 +74,7 @@ class HoverRouter implements HoverRoutingManager {
     final Map<String, Widget Function(BuildContext)> _routes = Map();
 
     for (HoverRoute page in routes) {
-      _routes[page.routeName] = (_) {
+      _routes[page.routeName] = (context) {
         return page;
       };
     }
