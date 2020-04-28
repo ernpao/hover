@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'hover_page_base.dart';
 
 abstract class HoverSwapper extends HoverPageBase {
@@ -15,11 +14,6 @@ abstract class HoverSwapper extends HoverPageBase {
 
   @override
   Widget render(BuildContext context) {
-    return null;
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return _HoverContentSwapper(
       pages: buildPages(context),
       appBarBuilder: buildAppBar,
@@ -28,6 +22,11 @@ abstract class HoverSwapper extends HoverPageBase {
       backgroundColor: backgroundColor,
       navigationBuilder: buildBottomNavigation,
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return render(context);
   }
 
   Widget buildBottomNavigation(BuildContext context, int currentIndex, List<Widget> controls);

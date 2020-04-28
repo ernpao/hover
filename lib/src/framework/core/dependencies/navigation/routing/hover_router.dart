@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'hover_route.dart';
 
+/// An interface for routing and navigation.
 abstract class HoverNavigation {
   Future navigateToInitialPage(BuildContext context);
   Future navigateTo(String route, BuildContext context, {bool push: false});
@@ -75,7 +76,8 @@ class HoverRouter implements HoverRoutingManager {
 
     for (HoverRoute page in routes) {
       _routes[page.routeName] = (context) {
-        return page;
+        final regenerate = page.regenerate(context);
+        return regenerate != null ? regenerate : page;
       };
     }
     return _routes;

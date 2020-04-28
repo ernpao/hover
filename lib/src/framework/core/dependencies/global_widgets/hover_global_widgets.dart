@@ -7,12 +7,10 @@ class HoverGlobalWidgets {
   HoverGlobalWidgets({
     this.appBarBuilder,
     this.drawerBuilder,
-    this.snackBarBuilder,
     this.floatingActionButtonBuilder,
   });
   final Widget Function(BuildContext) appBarBuilder;
   final Widget Function(BuildContext) drawerBuilder;
-  final Widget Function(BuildContext) snackBarBuilder;
   final Widget Function(BuildContext) floatingActionButtonBuilder;
 }
 

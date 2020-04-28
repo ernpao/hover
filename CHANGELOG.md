@@ -13,3 +13,7 @@
 ## [0.1.3] - 4/28/2020.
 * Updated the routing and drawer toggle functions.
 * Removed the use of Global keys for scaffolds.
+
+## [0.1.4] - 4/29/2020.
+* Updated the SnackBar functions.
+* Added regenerate method for routing.

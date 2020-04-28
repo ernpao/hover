@@ -37,6 +37,12 @@ final HoverSwapperPage page1 = HoverSwapperPage(
           },
         ),
         CallToActionButton(
+          text: 'Show plain snackbar',
+          onPressed: () {
+            Hover.showPlainSnackBar(context, "This a test");
+          },
+        ),
+        CallToActionButton(
           text: "Toggle Theme",
           onPressed: () {
             Hover.getCurrentThemeName().then((themeName) {
@@ -107,7 +113,7 @@ class Page2ContentState extends State<Page2Content> {
               });
             });
           },
-        )
+        ),
       ],
     );
   }

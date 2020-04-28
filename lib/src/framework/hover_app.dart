@@ -1,50 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/hover_page_base.dart';
 import 'core/dependencies/theme/hover_theme.dart';
-import 'core/dependencies/helpers/shared_preferences_helper.dart';
 import 'core/dependencies/navigation/routing/hover_route.dart';
 import 'core/dependencies/navigation/routing/hover_router.dart';
+import 'core/dependencies/helpers/hover_snackbar_helper.dart';
+import 'core/dependencies/helpers/hover_shared_preferences_helper.dart';
 import 'core/dependencies/global_widgets/hover_global_widgets.dart';
 
 class Hover extends StatelessWidget {
-  static Future<SharedPreferences> sharedPreferencesInstance() => SharedPreferencesHelper.getInstance();
-
+  static Hover _instance;
   static final List<SingleChildWidget> _providers = List();
 
+  // Routing
   static HoverRoutingManager _router;
   static HoverRoutingManager get router => _router;
-
-  static Hover _instance;
-
   static HoverPageBase get currentPage => _router.currentRoute as HoverPageBase;
 
+  // Drawer
   static bool isDrawerOpen(BuildContext context) => currentPage.isDrawerOpen(context);
   static void closeDrawer(BuildContext context) => currentPage.closeDrawer(context);
   static void openDrawer(BuildContext context) => currentPage.openDrawer(context);
   static void toggleDrawer(BuildContext context) => currentPage.toggleDrawer(context);
 
+  // Theme
   static HoverThemeData _themeData;
-
-  static void setThemeByName(String themeName) {
-    _themeData.setThemeByName(themeName);
-  }
-
-  static Future<String> getCurrentThemeName() {
-    return _themeData.getCurrentThemeName();
-  }
+  static Future<String> getCurrentThemeName() => _themeData.getCurrentThemeName();
+  static void setThemeByName(String themeName) => _themeData.setThemeByName(themeName);
 
   /// Save key-value pair to shared preferences.
-  static void saveSetting(String key, String value) {
-    SharedPreferencesHelper.saveSetting(key, value);
-  }
+  static void saveSetting(String key, String value) => HoverSharedPreferencesHelper.saveSetting(key, value);
 
   /// Load a value from shared preferences referenced by a key.
-  static Future<String> loadSetting(String key) {
-    return SharedPreferencesHelper.loadSetting(key);
+  static Future<String> loadSetting(String key) => HoverSharedPreferencesHelper.loadSetting(key);
+
+  static void showSnackBar(
+    BuildContext context,
+    Widget content, {
+    Duration duration: HoverSnackBarHelper.defaultSnackBarDuration,
+  }) {
+    HoverSnackBarHelper.showSnackBar(context, content, duration: duration);
+  }
+
+  static void showPlainSnackBar(
+    BuildContext context,
+    String message, {
+    Duration duration: HoverSnackBarHelper.defaultSnackBarDuration,
+  }) {
+    HoverSnackBarHelper.showPlainSnackBar(context, message, duration: duration);
   }
 
   ///
@@ -58,7 +63,6 @@ class Hover extends StatelessWidget {
     List<SingleChildWidget> providers,
     Widget Function(BuildContext) globalAppBarBuilder,
     Widget Function(BuildContext) globalDrawerBuilder,
-    Widget Function(BuildContext) globalSnackBarBuilder,
     Widget Function(BuildContext) globalfloatingActionButtonBuilder,
   }) {
     if (_instance == null) {
@@ -69,12 +73,10 @@ class Hover extends StatelessWidget {
         globalWidgets: HoverGlobalWidgets(
           appBarBuilder: globalAppBarBuilder,
           drawerBuilder: globalDrawerBuilder,
-          snackBarBuilder: globalSnackBarBuilder,
           floatingActionButtonBuilder: globalfloatingActionButtonBuilder,
         ),
       );
     }
-
     return _instance;
   }
 
