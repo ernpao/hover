@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'structure/hover_scaffold.dart';
-import 'structure/hover_snackbar_displayer.dart';
-import 'dependencies/helpers/hover_snackbar_helper.dart';
 import 'dependencies/navigation/routing/hover_route.dart';
-import 'dependencies/navigation/routing/hover_router.dart';
 import 'dependencies/global_widgets/hover_global_widgets.dart';
 
-abstract class HoverPageBase extends HoverScaffold implements HoverRoute, HoverNavigation, HoverSnackBarDisplayer {
+abstract class HoverPageBase extends HoverScaffold implements HoverRoute {
   final String title;
   final Color backgroundColor;
 
@@ -44,64 +41,32 @@ abstract class HoverPageBase extends HoverScaffold implements HoverRoute, HoverN
     );
   }
 
-  HoverRoutingManager _getAppNavigationManager(BuildContext context) {
-    return Provider.of<HoverRoutingManager>(context, listen: false);
-  }
-
-  @override
-  Future navigateToInitialPage(BuildContext context) {
-    closeDrawer(context);
-    return _getAppNavigationManager(context).navigateToInitialPage(context);
-  }
-
-  @override
-  Future navigateTo(String route, BuildContext context, {bool push: false}) {
-    closeDrawer(context);
-    return _getAppNavigationManager(context).navigateTo(route, context, push: push);
-  }
-
-  @override
-  Future pop(BuildContext context) {
-    closeDrawer(context);
-    return _getAppNavigationManager(context).pop(context);
-  }
-
-  HoverGlobalWidgets getGlobalWidgets(BuildContext context) {
+  HoverGlobalWidgets _getGlobalWidgets(BuildContext context) {
     return Provider.of<HoverGlobalWidgets>(context, listen: false);
   }
 
   Widget buildAppBar(BuildContext context) {
-    if (getGlobalWidgets(context).appBarBuilder != null) {
-      return getGlobalWidgets(context).appBarBuilder(context);
+    if (_getGlobalWidgets(context).appBarBuilder != null) {
+      return _getGlobalWidgets(context).appBarBuilder(context);
     } else {
       return SizedBox.shrink();
     }
   }
 
   Widget buildDrawer(BuildContext context) {
-    if (getGlobalWidgets(context).drawerBuilder != null) {
-      return getGlobalWidgets(context).drawerBuilder(context);
+    if (_getGlobalWidgets(context).drawerBuilder != null) {
+      return _getGlobalWidgets(context).drawerBuilder(context);
     } else {
       return SizedBox.shrink();
     }
   }
 
   Widget buildFloatingActionButton(BuildContext context) {
-    if (getGlobalWidgets(context).floatingActionButtonBuilder != null) {
-      return getGlobalWidgets(context).floatingActionButtonBuilder(context);
+    if (_getGlobalWidgets(context).floatingActionButtonBuilder != null) {
+      return _getGlobalWidgets(context).floatingActionButtonBuilder(context);
     } else {
       return SizedBox.shrink();
     }
-  }
-
-  @override
-  void showSnackBar(BuildContext context, Widget content, {Duration duration}) {
-    HoverSnackBarHelper.showSnackBar(context, content, duration: duration);
-  }
-
-  @override
-  void showPlainSnackBar(BuildContext context, String message, {Duration duration}) {
-    HoverSnackBarHelper.showPlainSnackBar(context, message, duration: duration);
   }
 
   @override

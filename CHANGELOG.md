@@ -17,3 +17,7 @@
 ## [0.1.4] - 4/29/2020.
 * Updated the SnackBar functions.
 * Added regenerate method for routing.
+
+## [0.1.5] - 4/30/2020.
+* Updated the routing functions.
+* Moved widget classes to a separate library.

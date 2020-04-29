@@ -5,9 +5,13 @@ import 'hover_route.dart';
 
 /// An interface for routing and navigation.
 abstract class HoverNavigation {
-  Future navigateToInitialPage(BuildContext context);
-  Future navigateTo(String route, BuildContext context, {bool push: false});
-  Future<void> pop(BuildContext context);
+  Future<T> navigateTo<T extends Object, TO extends Object>(
+    String route,
+    BuildContext context, {
+    bool push: false,
+    TO result,
+  });
+  void pop<T extends Object>(BuildContext context, [T result]);
 }
 
 abstract class HoverRoutingManager implements HoverNavigation {
@@ -40,33 +44,41 @@ class HoverRouter implements HoverRoutingManager {
   }
 
   @override
-  Future navigateToInitialPage(BuildContext context) async {
-    return _navigate(context, initialRoute.routeName);
+  Future<T> navigateTo<T extends Object, TO extends Object>(
+    String route,
+    BuildContext context, {
+    bool push: false,
+    TO result,
+  }) async {
+    return _navigate<T, TO>(context, route, usePush: push, result: result);
   }
 
-  @override
-  Future navigateTo(String route, BuildContext context, {bool push: false}) async {
-    _navigate(context, route, usePush: push);
-  }
-
-  Future _navigate(BuildContext context, String routeName, {bool usePush: false}) async {
-    routes.forEach((page) {
-      if (page.routeName == routeName) {
-        _currentRoute = page;
+  Future<T> _navigate<T extends Object, TO extends Object>(
+    BuildContext context,
+    String routeName, {
+    bool usePush: false,
+    TO result,
+  }) async {
+    for (int i = 0; i < routes.length; i++) {
+      final route = routes[i];
+      if (route.routeName == routeName) {
+        _currentRoute = route;
         if (usePush) {
-          return Navigator.pushNamed(context, page.routeName);
+          return Navigator.pushNamed<T>(context, route.routeName);
         } else {
-          return Navigator.popAndPushNamed(context, page.routeName);
+          return Navigator.popAndPushNamed<T, TO>(context, route.routeName, result: result);
         }
       }
-      return null;
-    });
+    }
+    return null;
   }
 
   @override
-  Future<void> pop(BuildContext context) async {
+  void pop<T extends Object>(BuildContext context, [T result]) {
     if (Navigator.canPop(context)) {
-      Navigator.pop(context);
+      Navigator.pop<T>(context, result);
+    } else {
+      print('Can\'t pop the navigation stack.');
     }
   }
 

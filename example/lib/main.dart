@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hover/hover.dart';
 
-import 'app/profile_page.dart';
-import 'app/landing_page.dart';
+import 'app/return_data_example.dart';
+import 'app/swapper_example.dart';
 
 void main() => runApp(HoverExample());
 
 class HoverExample extends StatelessWidget {
-  final LandingPage landingPage = LandingPage();
-  final ProfilePage profilePage = ProfilePage();
+  final SwapperPage landingPage = SwapperPage();
+  final ReturnDataPage profilePage = ReturnDataPage();
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,7 @@ class HoverExample extends StatelessWidget {
                   return ListTile(
                     onTap: () {
                       // Hover.closeDrawer();
-                      Hover.router.navigateTo('/landing', context);
+                      Hover.router.navigateTo('/swapper', context);
                     },
                     title: Text(items[i]),
                   );

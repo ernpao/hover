@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hover/hover.dart';
+import 'package:hover/hover_widgets.dart';
 
-class LandingPage extends HoverSwapper {
+class SwapperPage extends HoverSwapper {
   @override
-  String get routeName => "/landing";
+  String get routeName => "/swapper";
 
   @override
   Widget buildBottomNavigation(BuildContext context, int selectedPageIndex, List<Widget> controls) {
@@ -31,9 +32,15 @@ final HoverSwapperPage page1 = HoverSwapperPage(
         HoverTitle("Recommended For You"),
         _sampleSlider,
         CallToActionButton(
-          text: "Go to Profile",
-          onPressed: () {
-            Hover.router.navigateTo("/profile", context);
+          text: "Return Data Example",
+          onPressed: () async {
+            final data = await Hover.router.navigateTo("/return", context, push: true);
+            print(data);
+            if (data != null) {
+              Hover.showPlainSnackBar(context, data);
+            } else {
+              Hover.showPlainSnackBar(context, "No data recieved!");
+            }
           },
         ),
         CallToActionButton(
