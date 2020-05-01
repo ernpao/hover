@@ -137,15 +137,16 @@ final HoverSwapperPage page2 = HoverSwapperPage(
 );
 
 final HoverSwapperPage page3 = HoverSwapperPage(
-  builder: (_) => Column(
+  builder: (context) => Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
-    children: [Text("add")],
+    children: [
+      Text("add"),
+      Text("Screen Width: ${Hover.getScreenWidth(context)}"),
+      Text("Screen Height: ${Hover.getScreenHeight(context)}"),
+    ],
   ),
   toggleBuilder: (_, isSelected) {
-    return Icon(
-      Icons.library_add,
-      color: isSelected ? Colors.white : Colors.white60,
-    );
+    return Icon(Icons.phone_android, color: isSelected ? Colors.white : Colors.white60);
   },
 );
 

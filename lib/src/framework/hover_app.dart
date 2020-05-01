@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
-import 'core/hover_page_base.dart';
 import 'core/dependencies/theme/hover_theme.dart';
 import 'core/dependencies/navigation/routing/hover_route.dart';
 import 'core/dependencies/navigation/routing/hover_router.dart';
-import 'core/dependencies/helpers/hover_snackbar_helper.dart';
-import 'core/dependencies/helpers/hover_shared_preferences_helper.dart';
 import 'core/dependencies/global_widgets/hover_global_widgets.dart';
+
+import 'helpers/hover_drawer_helper.dart';
+import 'helpers/hover_snackbar_helper.dart';
+import 'helpers/hover_dimensions_helper.dart';
+import 'helpers/hover_shared_preferences_helper.dart';
 
 class Hover extends StatelessWidget {
   static Hover _instance;
@@ -17,13 +19,19 @@ class Hover extends StatelessWidget {
   // Routing
   static HoverRoutingManager _router;
   static HoverRoutingManager get router => _router;
-  static HoverPageBase get currentPage => _router.currentRoute as HoverPageBase;
 
   // Drawer
-  static bool isDrawerOpen(BuildContext context) => currentPage.isDrawerOpen(context);
-  static void closeDrawer(BuildContext context) => currentPage.closeDrawer(context);
-  static void openDrawer(BuildContext context) => currentPage.openDrawer(context);
-  static void toggleDrawer(BuildContext context) => currentPage.toggleDrawer(context);
+  static bool isDrawerOpen(BuildContext context) => HoverDrawerHelper.isDrawerOpen(context);
+  static bool hasDrawer(BuildContext context) => HoverDrawerHelper.hasDrawer(context);
+  static void openDrawer(BuildContext context) => HoverDrawerHelper.openDrawer(context);
+  static void closeDrawer(BuildContext context) => HoverDrawerHelper.closeDrawer(context);
+  static void toggleDrawer(BuildContext context) => HoverDrawerHelper.toggleDrawer(context);
+
+  // Dimensions
+  static double getScreenWidth(BuildContext context) => HoverDimensionsHelper.getScreenWidth(context);
+  static double getScreenHeight(BuildContext context) => HoverDimensionsHelper.getScreenHeight(context);
+  static double getScreenWidthWithScale(BuildContext context, double scale) => getScreenWidth(context) * scale;
+  static double getScreenHeightWithScale(BuildContext context, double scale) => getScreenHeight(context) * scale;
 
   // Theme
   static HoverThemeData _themeData;
@@ -36,6 +44,7 @@ class Hover extends StatelessWidget {
   /// Load a value from shared preferences referenced by a key.
   static Future<String> loadSetting(String key) => HoverSharedPreferencesHelper.loadSetting(key);
 
+  /// Helper method for displaying a snackbar widget
   static void showSnackBar(
     BuildContext context,
     Widget content, {
@@ -44,6 +53,7 @@ class Hover extends StatelessWidget {
     HoverSnackBarHelper.showSnackBar(context, content, duration: duration);
   }
 
+  /// Helper method for displaying a simple snackbar
   static void showPlainSnackBar(
     BuildContext context,
     String message, {

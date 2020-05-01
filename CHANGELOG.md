@@ -21,3 +21,6 @@
 ## [0.1.5] - 4/30/2020.
 * Updated the routing functions.
 * Moved widget classes to a separate library.
+
+## [0.1.6] - 5/2/2020.
+* Created static helper methods for getting the screen height/width.

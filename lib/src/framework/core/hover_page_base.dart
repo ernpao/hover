@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'structure/hover_scaffold.dart';
 import 'dependencies/navigation/routing/hover_route.dart';
 import 'dependencies/global_widgets/hover_global_widgets.dart';
 
-abstract class HoverPageBase extends HoverScaffold implements HoverRoute {
+abstract class HoverPageBase extends StatelessWidget implements HoverRoute {
   final String title;
   final Color backgroundColor;
 
