@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
+import '../../hover.dart';
 import 'core/dependencies/theme/hover_theme.dart';
-import 'core/dependencies/navigation/routing/hover_route.dart';
 import 'core/dependencies/navigation/routing/hover_router.dart';
 import 'core/dependencies/global_widgets/hover_global_widgets.dart';
 
@@ -21,28 +21,41 @@ class Hover extends StatelessWidget {
   static HoverRoutingManager get router => _router;
 
   // Drawer
-  static bool isDrawerOpen(BuildContext context) => HoverDrawerHelper.isDrawerOpen(context);
-  static bool hasDrawer(BuildContext context) => HoverDrawerHelper.hasDrawer(context);
-  static void openDrawer(BuildContext context) => HoverDrawerHelper.openDrawer(context);
-  static void closeDrawer(BuildContext context) => HoverDrawerHelper.closeDrawer(context);
-  static void toggleDrawer(BuildContext context) => HoverDrawerHelper.toggleDrawer(context);
+  static bool isDrawerOpen(BuildContext context) =>
+      HoverDrawerHelper.isDrawerOpen(context);
+  static bool hasDrawer(BuildContext context) =>
+      HoverDrawerHelper.hasDrawer(context);
+  static void openDrawer(BuildContext context) =>
+      HoverDrawerHelper.openDrawer(context);
+  static void closeDrawer(BuildContext context) =>
+      HoverDrawerHelper.closeDrawer(context);
+  static void toggleDrawer(BuildContext context) =>
+      HoverDrawerHelper.toggleDrawer(context);
 
   // Dimensions
-  static double getScreenWidth(BuildContext context) => HoverDimensionsHelper.getScreenWidth(context);
-  static double getScreenHeight(BuildContext context) => HoverDimensionsHelper.getScreenHeight(context);
-  static double getScreenWidthWithScale(BuildContext context, double scale) => getScreenWidth(context) * scale;
-  static double getScreenHeightWithScale(BuildContext context, double scale) => getScreenHeight(context) * scale;
+  static double getScreenWidth(BuildContext context) =>
+      HoverDimensionsHelper.getScreenWidth(context);
+  static double getScreenHeight(BuildContext context) =>
+      HoverDimensionsHelper.getScreenHeight(context);
+  static double getScreenWidthWithScale(BuildContext context, double scale) =>
+      getScreenWidth(context) * scale;
+  static double getScreenHeightWithScale(BuildContext context, double scale) =>
+      getScreenHeight(context) * scale;
 
   // Theme
   static HoverThemeData _themeData;
-  static Future<String> getCurrentThemeName() => _themeData.getCurrentThemeName();
-  static void setThemeByName(String themeName) => _themeData.setThemeByName(themeName);
+  static Future<String> getCurrentThemeName() =>
+      _themeData.getCurrentThemeName();
+  static void setThemeByName(String themeName) =>
+      _themeData.setThemeByName(themeName);
 
   /// Save key-value pair to shared preferences.
-  static void saveSetting(String key, String value) => HoverSharedPreferencesHelper.saveSetting(key, value);
+  static void saveSetting(String key, String value) =>
+      HoverSharedPreferencesHelper.saveSetting(key, value);
 
   /// Load a value from shared preferences referenced by a key.
-  static Future<String> loadSetting(String key) => HoverSharedPreferencesHelper.loadSetting(key);
+  static Future<String> loadSetting(String key) =>
+      HoverSharedPreferencesHelper.loadSetting(key);
 
   /// Helper method for displaying a snackbar widget
   static void showSnackBar(
@@ -68,7 +81,7 @@ class Hover extends StatelessWidget {
   /// MaterialApp nested inside a MultiProvider.
   ///
   static Hover create({
-    @required List<HoverRoute> routes,
+    @required List<HoverPage> routes,
     @required Map<String, ThemeData> themes,
     List<SingleChildWidget> providers,
     Widget Function(BuildContext) globalAppBarBuilder,
@@ -91,7 +104,7 @@ class Hover extends StatelessWidget {
   }
 
   Hover._({
-    @required List<HoverRoute> routes,
+    @required List<HoverPage> routes,
     @required Map<String, ThemeData> themes,
     List<SingleChildWidget> providers,
     HoverGlobalWidgets globalWidgets,

@@ -5,6 +5,8 @@ class HoverText extends StatelessWidget {
   final TextAlign textAlign;
   final double bottomPadding;
   final double topPadding;
+  final double leftPadding;
+  final double rightPadding;
   final Color color;
   final double fontSize;
   final FontWeight fontWeight;
@@ -13,8 +15,10 @@ class HoverText extends StatelessWidget {
     this.text, {
     this.textAlign,
     this.fontSize,
-    this.bottomPadding: 0.0,
+    this.leftPadding: 8.0,
     this.topPadding: 0.0,
+    this.rightPadding: 8.0,
+    this.bottomPadding: 0.0,
     this.color,
     this.fontWeight: FontWeight.normal,
     this.fontStyle,
@@ -22,7 +26,12 @@ class HoverText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(8.0, topPadding, 8.0, bottomPadding),
+      padding: EdgeInsets.fromLTRB(
+        leftPadding,
+        topPadding,
+        rightPadding,
+        bottomPadding,
+      ),
       child: Text(
         text,
         textAlign: textAlign,

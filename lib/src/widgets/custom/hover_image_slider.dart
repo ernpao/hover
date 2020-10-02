@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class ImageSlide extends StatelessWidget {
+class HoverImageSlide extends StatelessWidget {
   final Widget title;
   final Image image;
 
-  ImageSlide({
+  HoverImageSlide({
     this.title,
     @required this.image,
   });
@@ -35,13 +35,13 @@ class ImageSlide extends StatelessWidget {
   }
 }
 
-class ImageSlider extends StatefulWidget {
-  final List<ImageSlide> slides;
+class HoverImageSlider extends StatefulWidget {
+  final List<HoverImageSlide> slides;
   final double slideBorderRadius;
   final double slideHeight;
   final double slideWidth;
 
-  ImageSlider({
+  HoverImageSlider({
     @required this.slides,
     this.slideBorderRadius,
     @required this.slideHeight,
@@ -50,11 +50,11 @@ class ImageSlider extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return _ImageSliderState();
+    return _HoverImageSliderState();
   }
 }
 
-class _ImageSliderState extends State<ImageSlider> {
+class _HoverImageSliderState extends State<HoverImageSlider> {
   @override
   Widget build(BuildContext context) {
     return Container(

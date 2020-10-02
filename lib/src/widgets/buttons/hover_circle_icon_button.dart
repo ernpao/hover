@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class CircleIconButton extends StatelessWidget {
+class HoverCircleIconButton extends StatelessWidget {
   final VoidCallback onTap;
   final double size;
   final Color color;
   final Color iconColor;
   final IconData iconData;
-  CircleIconButton({
+  HoverCircleIconButton({
     @required this.onTap,
     @required this.size,
     @required this.color,

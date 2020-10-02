@@ -2,11 +2,11 @@ import 'package:flutter/widgets.dart';
 import '../base/custom_form_field.dart';
 import '../validation/fluent_form_validation.dart';
 
-class EmailField extends CustomFormField {
+class HoverEmailField extends CustomFormField {
   static const String fieldName = "email";
   static const String fieldLabel = "Email";
 
-  EmailField({
+  HoverEmailField({
     String initialValue,
   }) : super(
           name: fieldName,

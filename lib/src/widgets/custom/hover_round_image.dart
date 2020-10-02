@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class RoundImage extends StatelessWidget {
+class HoverRoundImage extends StatelessWidget {
   final String imageUrl;
   final double radius;
   final BoxFit fit;
-  RoundImage({
+  HoverRoundImage({
     @required this.imageUrl,
     @required this.radius,
     this.fit: BoxFit.cover,

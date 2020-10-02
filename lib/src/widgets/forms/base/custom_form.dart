@@ -4,6 +4,15 @@ import '../../buttons/base/custom_raised_button.dart';
 import 'custom_form_field.dart';
 
 abstract class CustomForm extends StatefulWidget {
+  final String formName;
+  final String title;
+  final String subtitle;
+  final String submitText;
+  final Color submitColor;
+  final Color submitTextColor;
+  final List<CustomFormField> fields;
+  final Function(Map<String, String>) onSubmit;
+
   CustomForm({
     this.title,
     this.subtitle,
@@ -14,15 +23,6 @@ abstract class CustomForm extends StatefulWidget {
     this.submitTextColor,
     this.submitColor,
   });
-
-  final String formName;
-  final String title;
-  final String subtitle;
-  final String submitText;
-  final Color submitColor;
-  final Color submitTextColor;
-  final List<CustomFormField> fields;
-  final Future<String> Function(Map<String, String>) onSubmit;
 
   @override
   State<StatefulWidget> createState() {
@@ -66,16 +66,14 @@ class _CustomFormState extends State<CustomForm> {
 
   Widget _buildSubmitButton() {
     return CustomFormSubmitButton(
-      // name: "Submit Button for ${widget.formName}",
       color: widget.submitColor,
       submitText: widget.submitText,
       submitTextColor: widget.submitTextColor,
       onPressed: () {
         if (_formKey.currentState.validate()) {
-          widget.onSubmit(getFormData()).then((message) {
-            print("Form passed the validation rules. Result message: $message");
-            return "${widget.formName} was submitted.";
-          });
+          print("${widget.formName} was submitted.");
+          print("Form passed the validation rules.");
+          widget.onSubmit(getFormData());
         } else {
           print("Form did not pass the validation rules!");
           print("Failed to submit form: ${widget.formName}");
@@ -112,6 +110,8 @@ class _CustomFormState extends State<CustomForm> {
         padding: EdgeInsets.only(
           top: 32.0,
           bottom: 32.0,
+          left: 8,
+          right: 8,
         ),
         child: Form(
           key: _formKey,

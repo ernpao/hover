@@ -1,26 +1,24 @@
 import 'package:flutter/widgets.dart';
 import 'base/custom_form.dart';
-import 'fields/email_field.dart';
-import 'fields/password_field.dart';
+import 'fields/hover_email_field.dart';
+import 'fields/hover_password_field.dart';
 
-class EmailSignUpForm extends CustomForm {
-  factory EmailSignUpForm({
-    @required Future<String> Function(String email, String password) onSubmit,
+class HoverEmailSignUpForm extends CustomForm {
+  factory HoverEmailSignUpForm({
+    @required Function(String email, String password) onSubmit,
     @required String formName,
     Color submitButtonColor,
     Color submitButtonTextColor,
   }) {
-    return EmailSignUpForm._(
+    return HoverEmailSignUpForm._(
       formName: formName,
-      passwordField: PasswordField(
-        initialValue: "password",
-      ),
+      passwordField: PasswordField(),
       onSubmit: onSubmit,
     );
   }
 
-  EmailSignUpForm._({
-    @required Future<String> Function(String email, String password) onSubmit,
+  HoverEmailSignUpForm._({
+    @required Function(String email, String password) onSubmit,
     @required PasswordField passwordField,
     @required String formName,
     Color submitButtonColor,
@@ -29,16 +27,14 @@ class EmailSignUpForm extends CustomForm {
           formName: formName,
           title: "Sign Up",
           fields: [
-            EmailField(
-              initialValue: "ernpao@gmail.com",
-            ),
+            HoverEmailField(),
             passwordField,
             PasswordConfirmationField(passwordField),
           ],
           onSubmit: (Map<String, String> map) {
-            String email = map[EmailField.fieldName];
+            String email = map[HoverEmailField.fieldName];
             String password = map[PasswordField.fieldName];
-            return onSubmit(email, password);
+            onSubmit(email, password);
           },
           submitTextColor: submitButtonTextColor,
           submitColor: submitButtonColor,

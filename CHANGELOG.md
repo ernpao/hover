@@ -24,3 +24,10 @@
 
 ## [0.1.6] - 5/2/2020.
 * Created static helper methods for getting the screen height/width.
+
+## [0.1.7] - 10/2/2020.
+* Hover.create now requires List<`HoverPage`> instead of List<`HoverRoute`>
+* Removed the HoverSwapper widget from the library.
+* Removed the HoverSwapper sample page from the example app.
+* Added form widgets.
+* Created a sample page for the EmailSignInForm widget.

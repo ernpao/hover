@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class SquareImage extends StatelessWidget {
+class HoverSquareImage extends StatelessWidget {
   final String imageUrl;
   final double size;
   final BoxFit fit;
-  SquareImage({
+  HoverSquareImage({
     @required this.imageUrl,
     @required this.size,
     this.fit: BoxFit.cover,
@@ -21,11 +21,11 @@ class SquareImage extends StatelessWidget {
   }
 }
 
-class SquareImageCard extends StatelessWidget {
+class HoverSquareImageCard extends StatelessWidget {
   final String imageUrl;
   final double size;
   final double borderRadius;
-  SquareImageCard({
+  HoverSquareImageCard({
     @required this.imageUrl,
     @required this.size,
     this.borderRadius: 0,
@@ -38,7 +38,7 @@ class SquareImageCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(borderRadius),
       ),
-      child: SquareImage(
+      child: HoverSquareImage(
         imageUrl: imageUrl,
         size: size,
       ),

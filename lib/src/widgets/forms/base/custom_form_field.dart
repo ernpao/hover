@@ -58,7 +58,6 @@ class _CustomFormFieldState extends State<CustomFormField> {
         padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
         child: TextFormField(
           key: widget._fieldKey,
-          // controller: _fieldController,
           validator: widget.validator,
           obscureText: _obscureText,
           keyboardType: widget.keyboardType,

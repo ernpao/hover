@@ -1,9 +1,9 @@
 import 'package:flutter/widgets.dart';
 import 'base/custom_form.dart';
-import 'fields/email_field.dart';
+import 'fields/hover_email_field.dart';
 
-class PasswordRestForm extends CustomForm {
-  PasswordRestForm({
+class HoverPasswordRestForm extends CustomForm {
+  HoverPasswordRestForm({
     @required Future<String> Function(String) onSubmit,
     String formName,
   }) : super(
@@ -13,10 +13,10 @@ class PasswordRestForm extends CustomForm {
           formName: formName,
           submitText: "Reset my password",
           fields: [
-            EmailField(),
+            HoverEmailField(),
           ],
           onSubmit: (formData) {
-            String email = formData[EmailField.fieldName];
+            String email = formData[HoverEmailField.fieldName];
             return onSubmit(email);
           },
         );

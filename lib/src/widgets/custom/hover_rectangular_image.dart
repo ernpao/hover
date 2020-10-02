@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class RectangularImage extends StatelessWidget {
+class HoverRectangularImage extends StatelessWidget {
   final String imageUrl;
   final double width;
   final double height;
   final BoxFit fit;
-  RectangularImage({
+  HoverRectangularImage({
     @required this.imageUrl,
     @required this.width,
     @required this.height,
@@ -42,7 +42,7 @@ class RectangularImageCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(borderRadius),
       ),
-      child: RectangularImage(
+      child: HoverRectangularImage(
         imageUrl: imageUrl,
         height: height,
         width: width,

@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:hover/hover.dart';
 
-import 'app/return_data_example.dart';
-import 'app/swapper_example.dart';
+import 'app/profile_example.dart';
+import 'app/login_form_example.dart';
 
 void main() => runApp(HoverExample());
 
 class HoverExample extends StatelessWidget {
-  final SwapperPage landingPage = SwapperPage();
-  final ReturnDataPage profilePage = ReturnDataPage();
+  final ProfileExample profilePage = ProfileExample();
+  final LoginFormExample loginFormExample = LoginFormExample();
 
   @override
   Widget build(BuildContext context) {
     return Hover.create(
       routes: [
-        landingPage,
+        loginFormExample,
         profilePage,
       ],
       themes: {
@@ -32,12 +32,10 @@ class HoverExample extends StatelessWidget {
   /// create a globally accessible navigation drawer
   ///
   Drawer buildDrawer(BuildContext context) {
-    final items = [
-      "Favorites",
-      "Recommended",
-      "Messages",
-      "Settings",
-    ];
+    final items = {
+      "Login": loginFormExample,
+      "Profile": profilePage,
+    };
     return Drawer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,10 +55,10 @@ class HoverExample extends StatelessWidget {
                 itemBuilder: (context, i) {
                   return ListTile(
                     onTap: () {
-                      // Hover.closeDrawer();
-                      Hover.router.navigateTo('/swapper', context);
+                      Hover.router.navigateTo(
+                          items.values.elementAt(i).routeName, context);
                     },
-                    title: Text(items[i]),
+                    title: Text(items.keys.elementAt(i)),
                   );
                 }),
           ),

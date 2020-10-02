@@ -2,8 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'base/custom_button_text.dart';
 import 'base/custom_raised_button.dart';
 
-class CallToActionButton extends CustomRaisedButton {
-  CallToActionButton({
+class HoverCallToActionButton extends CustomRaisedButton {
+  HoverCallToActionButton({
     @required String text,
     Color color,
     Color textColor,
