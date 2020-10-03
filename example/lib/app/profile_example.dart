@@ -18,6 +18,28 @@ class ProfileExample extends HoverPage {
             print('Query: $query');
           },
         ),
+        HoverCallToActionButton(
+          borderRadius: 24,
+          text: "Press Me!",
+          color: Colors.blue,
+          textColor: Colors.white,
+          onPressed: () {
+            Hover.showSnackBar(
+              context,
+              HoverSnackBar(
+                width: 250,
+                content: HoverBaseCard(
+                  color: Colors.blue,
+                  child: HoverText(
+                    "Hello!",
+                    color: Colors.white,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
       ],
     );
   }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HoverDrawerHelper {
-  static bool isDrawerOpen(BuildContext context) => Scaffold.of(context).isDrawerOpen;
+  static bool isDrawerOpen(BuildContext context) =>
+      Scaffold.of(context).isDrawerOpen;
 
   static bool hasDrawer(BuildContext context) => Scaffold.of(context).hasDrawer;
 

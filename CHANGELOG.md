@@ -31,3 +31,8 @@
 * Removed the HoverSwapper sample page from the example app.
 * Added form widgets.
 * Created a sample page for the EmailSignInForm widget.
+
+## [0.1.8] - 10/4/2020.
+* Updated names to some widgets missing the 'Hover' prefix.
+* Created the HoverSnackBar and updated the helper functions for displaying snackbars
+* Created the HoverBaseCard widget.

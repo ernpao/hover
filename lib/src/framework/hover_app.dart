@@ -58,12 +58,8 @@ class Hover extends StatelessWidget {
       HoverSharedPreferencesHelper.loadSetting(key);
 
   /// Helper method for displaying a snackbar widget
-  static void showSnackBar(
-    BuildContext context,
-    Widget content, {
-    Duration duration: HoverSnackBarHelper.defaultSnackBarDuration,
-  }) {
-    HoverSnackBarHelper.showSnackBar(context, content, duration: duration);
+  static void showSnackBar(BuildContext context, SnackBar snackBar) {
+    HoverSnackBarHelper.showSnackBar(context, snackBar);
   }
 
   /// Helper method for displaying a simple snackbar

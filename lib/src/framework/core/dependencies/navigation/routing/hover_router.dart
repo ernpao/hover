@@ -66,7 +66,8 @@ class HoverRouter implements HoverRoutingManager {
         if (usePush) {
           return Navigator.pushNamed<T>(context, route.routeName);
         } else {
-          return Navigator.popAndPushNamed<T, TO>(context, route.routeName, result: result);
+          return Navigator.popAndPushNamed<T, TO>(context, route.routeName,
+              result: result);
         }
       }
     }
@@ -97,5 +98,6 @@ class HoverRouter implements HoverRoutingManager {
 }
 
 class HoverRouterProvider extends Provider<HoverRoutingManager> {
-  HoverRouterProvider(HoverRoutingManager appNavigationManager) : super(create: (_) => appNavigationManager);
+  HoverRouterProvider(HoverRoutingManager appNavigationManager)
+      : super(create: (_) => appNavigationManager);
 }
