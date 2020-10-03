@@ -14,6 +14,7 @@ export 'custom/hover_rectangular_image.dart';
 export 'custom/hover_square_image.dart';
 export 'custom/hover_image_slider.dart';
 export 'custom/hover_search_bar.dart';
+export 'custom/hover_base_card.dart';
 
 //Typography
 export 'typography/typography.dart';
