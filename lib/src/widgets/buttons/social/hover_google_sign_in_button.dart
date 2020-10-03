@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'social_sign_in_button.dart';
 
-class GoogleSignInButton extends SocialSignInButton {
-  GoogleSignInButton({
+class HoverGoogleSignInButton extends SocialSignInButton {
+  HoverGoogleSignInButton({
     @required VoidCallback onPressed,
   }) : super(
           imageAssetName: 'images/google-logo.png',

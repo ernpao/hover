@@ -23,12 +23,12 @@ class HoverRectangularImage extends StatelessWidget {
   }
 }
 
-class RectangularImageCard extends StatelessWidget {
+class HoverRectangularImageCard extends StatelessWidget {
   final String imageUrl;
   final double width;
   final double height;
   final double borderRadius;
-  RectangularImageCard({
+  HoverRectangularImageCard({
     @required this.imageUrl,
     @required this.width,
     @required this.height,

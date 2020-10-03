@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'social_sign_in_button.dart';
 
-class FacebookSignInButton extends SocialSignInButton {
-  FacebookSignInButton({
+class HoverFacebookSignInButton extends SocialSignInButton {
+  HoverFacebookSignInButton({
     @required VoidCallback onPressed,
   }) : super(
           imageAssetName: 'images/facebook-logo.png',
