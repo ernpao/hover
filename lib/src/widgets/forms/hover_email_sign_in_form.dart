@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'fields/hover_email_field.dart';
 import 'fields/hover_password_field.dart';
@@ -10,9 +11,11 @@ class HoverEmailSignInForm extends CustomForm {
     @required String formName,
     Color submitTextColor,
     Color submitButtonColor,
+    Color titleColor = Colors.black,
   }) : super(
           formName: formName,
           title: "Sign In",
+          titleColor: titleColor,
           fields: [
             HoverEmailField(),
             HoverPasswordField(),

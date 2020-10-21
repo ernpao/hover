@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import '../../buttons/base/custom_button_text.dart';
 import '../../buttons/base/custom_raised_button.dart';
@@ -6,6 +7,7 @@ import 'custom_form_field.dart';
 abstract class CustomForm extends StatefulWidget {
   final String formName;
   final String title;
+  final Color titleColor;
   final String subtitle;
   final String submitText;
   final Color submitColor;
@@ -22,6 +24,7 @@ abstract class CustomForm extends StatefulWidget {
     @required this.submitText,
     this.submitTextColor,
     this.submitColor,
+    this.titleColor = Colors.black,
   });
 
   @override
@@ -50,6 +53,7 @@ class _CustomFormState extends State<CustomForm> {
       style: TextStyle(
         fontSize: 32.0,
         fontWeight: FontWeight.w600,
+        color: widget.titleColor,
       ),
     );
   }
