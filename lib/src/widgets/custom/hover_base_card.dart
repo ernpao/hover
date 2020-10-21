@@ -13,16 +13,20 @@ class HoverBaseCard extends StatelessWidget {
   final double topPadding;
   final double rightPadding;
   final double bottomPadding;
+  final double padding;
+  final double margin;
 
   HoverBaseCard({
     this.child = const SizedBox.shrink(),
     this.elevation = 2.0,
     this.borderRadius = 24.0,
     this.color: Colors.white,
+    this.margin,
     this.leftMargin = 12,
     this.topMargin = 12,
     this.rightMargin = 12,
     this.bottomMargin = 12,
+    this.padding,
     this.leftPadding = 16,
     this.topPadding = 16,
     this.bottomPadding = 16,
@@ -33,23 +37,27 @@ class HoverBaseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: color,
-      margin: EdgeInsets.only(
-        top: topMargin,
-        left: leftMargin,
-        right: rightMargin,
-        bottom: bottomMargin,
-      ),
+      margin: margin != null
+          ? EdgeInsets.all(margin)
+          : EdgeInsets.only(
+              top: topMargin,
+              left: leftMargin,
+              right: rightMargin,
+              bottom: bottomMargin,
+            ),
       elevation: elevation,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(borderRadius),
       ),
       child: Padding(
-        padding: EdgeInsets.only(
-          left: leftPadding,
-          top: topPadding,
-          right: rightPadding,
-          bottom: bottomPadding,
-        ),
+        padding: padding != null
+            ? EdgeInsets.all(padding)
+            : EdgeInsets.only(
+                left: leftPadding,
+                top: topPadding,
+                right: rightPadding,
+                bottom: bottomPadding,
+              ),
         child: child,
       ),
     );
