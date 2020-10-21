@@ -24,6 +24,7 @@ export 'typography/typography.dart';
 export 'forms/hover_email_sign_in_form.dart';
 export 'forms/hover_email_sign_up_form.dart';
 export 'forms/hover_password_reset_form.dart';
+export 'forms/hover_sign_in_form.dart';
 export 'forms/fields/hover_email_field.dart';
 export 'forms/fields/hover_password_field.dart';
 export 'forms/fields/hover_basic_field.dart';
