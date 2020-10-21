@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hover/src/framework/helpers/hover_bottom_sheet_helper.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
@@ -69,6 +70,14 @@ class Hover extends StatelessWidget {
     Duration duration: HoverSnackBarHelper.defaultSnackBarDuration,
   }) {
     HoverSnackBarHelper.showPlainSnackBar(context, message, duration: duration);
+  }
+
+  /// Helper method for displaying the bottom sheet
+  static void showBottomSheet(
+    BuildContext context,
+    Widget Function(BuildContext) builder,
+  ) {
+    HoverBottomSheetHelper.showBottomDrawer(context, builder);
   }
 
   ///
