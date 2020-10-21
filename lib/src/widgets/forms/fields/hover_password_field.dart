@@ -17,11 +17,11 @@ class _PasswordField extends CustomFormField {
             validator: validator);
 }
 
-class PasswordField extends _PasswordField {
+class HoverPasswordField extends _PasswordField {
   static const String fieldName = "password";
   static const String fieldLabel = "Password";
 
-  PasswordField({
+  HoverPasswordField({
     String initialValue,
   }) : super(
           name: fieldName,
@@ -38,7 +38,7 @@ class PasswordConfirmationField extends _PasswordField {
   static const String fieldName = "password_confirmation";
   static const String fieldLabel = "Confirm Password";
 
-  final PasswordField passwordFieldToConfirm;
+  final HoverPasswordField passwordFieldToConfirm;
   PasswordConfirmationField(this.passwordFieldToConfirm)
       : super(
           name: fieldName,
