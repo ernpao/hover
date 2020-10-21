@@ -1,6 +1,6 @@
-import 'validation_rule.dart';
+import 'hover_validation_rule.dart';
 
-class InputLengthRule implements ValidationRule {
+class InputLengthRule implements HoverValidationRule {
   final int _maxLength;
   final int _minLength;
 

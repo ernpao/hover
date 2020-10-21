@@ -1,6 +1,6 @@
-import 'validation_rule.dart';
+import 'hover_validation_rule.dart';
 
-class PasswordConfirmationRule implements ValidationRule {
+class PasswordConfirmationRule implements HoverValidationRule {
   PasswordConfirmationRule(this._passwordConfirmationValue);
   final String _passwordConfirmationValue;
 

@@ -17,7 +17,7 @@ class HoverImageSlide extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         borderRadius: BorderRadius.circular(16),
         child: Stack(
-          overflow: Overflow.clip,
+          clipBehavior: Clip.antiAlias,
           alignment: Alignment.center,
           children: <Widget>[
             Container(

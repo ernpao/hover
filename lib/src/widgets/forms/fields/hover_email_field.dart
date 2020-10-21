@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import '../base/custom_form_field.dart';
-import '../validation/fluent_form_validation.dart';
+import '../validation/hover_fluent_validator.dart';
 
 class HoverEmailField extends CustomFormField {
   static const String fieldName = "email";
@@ -13,9 +13,9 @@ class HoverEmailField extends CustomFormField {
           labelText: fieldLabel,
           initialValue: initialValue,
           keyboardType: TextInputType.emailAddress,
-          validator: FluentFormValidation()
+          validator: HoverFluentValidator()
               .validateAsEmail()
               .validateAsRequired()
-              .getValidator,
+              .build,
         );
 }

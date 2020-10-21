@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import '../base/custom_form_field.dart';
-import '../validation/fluent_form_validation.dart';
+import '../validation/hover_fluent_validator.dart';
 
 class _PasswordField extends CustomFormField {
   _PasswordField({
@@ -27,10 +27,10 @@ class PasswordField extends _PasswordField {
           name: fieldName,
           labelText: fieldLabel,
           initialValue: initialValue,
-          validator: FluentFormValidation()
+          validator: HoverFluentValidator()
               .validateAsPassword(8)
               .validateAsRequired()
-              .getValidator,
+              .build,
         );
 }
 
@@ -44,10 +44,10 @@ class PasswordConfirmationField extends _PasswordField {
           name: fieldName,
           labelText: fieldLabel,
           initialValue: passwordFieldToConfirm.initialValue,
-          validator: FluentFormValidation()
+          validator: HoverFluentValidator()
               .validateAsPassword(8)
               .validateAsPasswordConfirmation(passwordFieldToConfirm.getValue())
               .validateAsRequired()
-              .getValidator,
+              .build,
         );
 }

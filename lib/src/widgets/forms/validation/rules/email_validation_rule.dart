@@ -1,6 +1,6 @@
-import 'validation_rule.dart';
+import 'hover_validation_rule.dart';
 
-class EmailValidationRule implements ValidationRule {
+class EmailValidationRule implements HoverValidationRule {
   @override
   String validate(String email) {
     bool emailValid = RegExp(

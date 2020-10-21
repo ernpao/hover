@@ -17,6 +17,10 @@ abstract class CustomFormField extends StatefulWidget {
   final String name;
   final String labelText;
   final String initialValue;
+
+  /// A function that returns an error message string
+  /// to display if the input [valueToValidate] not pass a validation
+  /// test and returns null otherwise.
   final String Function(String) validator;
   final TextInputType keyboardType;
   final bool obscureText;
@@ -58,7 +62,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
         padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
         child: TextFormField(
           key: widget._fieldKey,
-          validator: widget.validator,
+          validator: widget.validator != null ? widget.validator : (_) => null,
           obscureText: _obscureText,
           keyboardType: widget.keyboardType,
           initialValue: widget.initialValue,
