@@ -53,25 +53,26 @@ class HoverFluentValidator implements HoverValidator {
   }
 
   @override
-  HoverValidator validateAsEmail() {
+  HoverFluentValidator validateAsEmail() {
     _validationRules.add(EmailValidationRule());
     return this;
   }
 
   @override
-  HoverValidator validateAsPassword(int passwordMinLength) {
+  HoverFluentValidator validateAsPassword(int passwordMinLength) {
     _validationRules.add(MinLengthRule(passwordMinLength));
     return this;
   }
 
   @override
-  HoverValidator validateAsRequired() {
+  HoverFluentValidator validateAsRequired() {
     _validationRules.add(RequiredFieldValidationRule());
     return this;
   }
 
   @override
-  HoverValidator validateAsPasswordConfirmation(String passwordConfirmation) {
+  HoverFluentValidator validateAsPasswordConfirmation(
+      String passwordConfirmation) {
     _validationRules.add(PasswordConfirmationRule(passwordConfirmation));
     return this;
   }
@@ -80,7 +81,7 @@ class HoverFluentValidator implements HoverValidator {
   String Function(String) get build => validate;
 
   @override
-  HoverValidator addValidator(HoverValidationRule validationRule) {
+  HoverFluentValidator addValidator(HoverValidationRule validationRule) {
     _validationRules.add(validationRule);
     return this;
   }
