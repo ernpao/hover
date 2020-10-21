@@ -15,11 +15,11 @@ class HoverEmailSignInForm extends CustomForm {
           title: "Sign In",
           fields: [
             HoverEmailField(),
-            PasswordField(),
+            HoverPasswordField(),
           ],
           onSubmit: (Map<String, String> map) {
             String email = map[HoverEmailField.fieldName];
-            String password = map[PasswordField.fieldName];
+            String password = map[HoverPasswordField.fieldName];
             onSubmit(email, password);
           },
           submitTextColor: submitTextColor,
