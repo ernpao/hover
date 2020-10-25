@@ -11,7 +11,7 @@ class WidgetsGallery extends HoverPage {
         HoverSearchBar(
           hintText: "Search",
         ),
-        HoverImageSlider(
+        HoverSlider(
           slides: [
             HoverImageSlide(
               width: 350,
