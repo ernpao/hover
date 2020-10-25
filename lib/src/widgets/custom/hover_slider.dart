@@ -47,24 +47,24 @@ class HoverImageSlide extends StatelessWidget {
   }
 }
 
-class HoverImageSlider extends StatefulWidget {
+class HoverSlider extends StatefulWidget {
   /// HoverImageSlides to display.
   final List<Widget> slides;
 
   final double slideBorderRadius;
 
-  HoverImageSlider({
+  HoverSlider({
     @required this.slides,
     this.slideBorderRadius,
   });
 
   @override
   State<StatefulWidget> createState() {
-    return _HoverImageSliderState();
+    return _HoverSliderState();
   }
 }
 
-class _HoverImageSliderState extends State<HoverImageSlider> {
+class _HoverSliderState extends State<HoverSlider> {
   @override
   Widget build(BuildContext context) {
     return Container(
