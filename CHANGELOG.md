@@ -1,3 +1,7 @@
+## [0.1.10] - 10/4/2020.
+* Renamed HoverImageSlider to HoverSlider and updated the widget's layout structure.
+* Added documentation for widgets.
+
 ## [0.1.9] - 10/4/2020.
 * Created HoverBasicField class to provide a customizable field for forms.
 * Added HoverFluentValidator and HoverValidationRule for use with form validation.
