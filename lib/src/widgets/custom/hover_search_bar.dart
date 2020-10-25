@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 
 class HoverSearchBar extends StatefulWidget {
+  /// Function to call when the search bar input changes.
   final Function(String) onChanged;
+
+  /// Hint text to display on the search bar.
   final String hintText;
+
+  /// Color to use for the search icon.
   final Color iconColor;
+
+  /// The z-coordinate at which to place this card. This controls the size of
+  /// the shadow below the card.
   final double elevation;
 
   HoverSearchBar({
