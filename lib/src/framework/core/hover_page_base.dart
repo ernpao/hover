@@ -5,7 +5,10 @@ import 'dependencies/navigation/routing/hover_route.dart';
 import 'dependencies/global_widgets/hover_global_widgets.dart';
 
 abstract class HoverPageBase extends StatelessWidget implements HoverRoute {
+  /// Title of the page. Currently unused by Hover in any mechanisms.
   final String title;
+
+  /// Color to use for the background of the page.
   final Color backgroundColor;
 
   HoverPageBase({
@@ -13,6 +16,15 @@ abstract class HoverPageBase extends StatelessWidget implements HoverRoute {
     this.backgroundColor,
   });
 
+  /// Similar to the build method for widgets, this
+  /// describes the part of the user interface represented
+  /// by this widget.
+  ///
+  /// Note that widget returned by this function will be
+  /// placed under an Expanded widget, which in turn is nested
+  /// under a Column with a crossAxisAlignment property set to
+  /// CrossAxisAlignment.stretch and mainAxisAlignment set to
+  /// MainAxisAlignment.start.
   Widget render(BuildContext context);
 
   @override
