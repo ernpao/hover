@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 
 class HoverRectangularImage extends StatelessWidget {
+  /// URL of the image to display.
   final String imageUrl;
+
+  /// Width of the widget.
   final double width;
+
+  /// Height of the widget.
   final double height;
+
+  /// How to inscribe the image into the space allocated during layout.
   final BoxFit fit;
   HoverRectangularImage({
     @required this.imageUrl,
