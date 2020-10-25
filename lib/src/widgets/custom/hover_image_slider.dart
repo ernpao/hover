@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 
+/// A content slide to display inside a HoverImageSlider widget
 class HoverImageSlide extends StatelessWidget {
+  /// The title text to display.
   final Widget title;
+
+  /// The content to display
   final Image image;
+
+  final double width;
+
+  final double height;
 
   HoverImageSlide({
     this.title,
     @required this.image,
+    @required this.width,
+    @required this.height,
   });
 
   @override
@@ -21,6 +31,8 @@ class HoverImageSlide extends StatelessWidget {
           alignment: Alignment.center,
           children: <Widget>[
             Container(
+              width: width,
+              height: height,
               child: image,
             ),
             Positioned(
@@ -36,16 +48,14 @@ class HoverImageSlide extends StatelessWidget {
 }
 
 class HoverImageSlider extends StatefulWidget {
-  final List<HoverImageSlide> slides;
+  /// HoverImageSlides to display.
+  final List<Widget> slides;
+
   final double slideBorderRadius;
-  final double slideHeight;
-  final double slideWidth;
 
   HoverImageSlider({
     @required this.slides,
     this.slideBorderRadius,
-    @required this.slideHeight,
-    @required this.slideWidth,
   });
 
   @override
@@ -59,15 +69,20 @@ class _HoverImageSliderState extends State<HoverImageSlider> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 4),
-      height: widget.slideHeight,
-      width: widget.slideWidth,
-      child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: widget.slides.length,
-          itemBuilder: (context, i) {
-            final slide = widget.slides[i];
-            return slide;
-          }),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: widget.slides,
+        ),
+      ),
+
+      // ListView.builder(
+      //     scrollDirection: Axis.horizontal,
+      //     itemCount: widget.slides.length,
+      //     itemBuilder: (context, i) {
+      //       final slide = widget.slides[i];
+      //       return slide;
+      //     }),
     );
   }
 }
