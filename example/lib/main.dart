@@ -1,3 +1,4 @@
+import 'package:example/app/widgets_gallery.dart';
 import 'package:flutter/material.dart';
 import 'package:hover/hover.dart';
 
@@ -9,6 +10,7 @@ void main() => runApp(HoverExample());
 class HoverExample extends StatelessWidget {
   final ProfileExample profilePage = ProfileExample();
   final LoginFormExample loginFormExample = LoginFormExample();
+  final WidgetsGallery widgetsGallery = WidgetsGallery();
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +18,7 @@ class HoverExample extends StatelessWidget {
       routes: [
         loginFormExample,
         profilePage,
+        widgetsGallery,
       ],
       themes: {
         "light": ThemeData.light(),
@@ -35,6 +38,7 @@ class HoverExample extends StatelessWidget {
     final items = {
       "Login": loginFormExample,
       "Profile": profilePage,
+      "Hover Widgets": widgetsGallery,
     };
     return Drawer(
       child: Column(
@@ -56,7 +60,9 @@ class HoverExample extends StatelessWidget {
                   return ListTile(
                     onTap: () {
                       Hover.router.navigateTo(
-                          items.values.elementAt(i).routeName, context);
+                        items.values.elementAt(i).routeName,
+                        context,
+                      );
                     },
                     title: Text(items.keys.elementAt(i)),
                   );
