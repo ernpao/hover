@@ -5,11 +5,13 @@ class HoverImageSlide extends StatelessWidget {
   /// The title text to display.
   final Widget title;
 
-  /// The content to display
+  /// The Image widget to display.
   final Image image;
 
+  /// The width of the slide.
   final double width;
 
+  /// The height of the slide.
   final double height;
 
   HoverImageSlide({
@@ -48,14 +50,11 @@ class HoverImageSlide extends StatelessWidget {
 }
 
 class HoverSlider extends StatefulWidget {
-  /// HoverImageSlides to display.
+  /// Slides to display.
   final List<Widget> slides;
-
-  final double slideBorderRadius;
 
   HoverSlider({
     @required this.slides,
-    this.slideBorderRadius,
   });
 
   @override
@@ -75,14 +74,6 @@ class _HoverSliderState extends State<HoverSlider> {
           children: widget.slides,
         ),
       ),
-
-      // ListView.builder(
-      //     scrollDirection: Axis.horizontal,
-      //     itemCount: widget.slides.length,
-      //     itemBuilder: (context, i) {
-      //       final slide = widget.slides[i];
-      //       return slide;
-      //     }),
     );
   }
 }
