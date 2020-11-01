@@ -1,2 +1,2 @@
 # Hover
-An app framework and widget library for Flutter 
+A helper and widget library for navigation, theme switching, responsive design, and more that aims to reduce boilerplate code
