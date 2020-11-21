@@ -51,7 +51,7 @@ class Hover extends StatelessWidget {
       _themeData.setThemeByName(themeName);
 
   /// Save key-value pair to shared preferences.
-  static void saveSetting(String key, String value) =>
+  static Future<bool> saveSetting(String key, String value) =>
       HoverSharedPreferencesHelper.saveSetting(key, value);
 
   /// Load a value from shared preferences referenced by a key.

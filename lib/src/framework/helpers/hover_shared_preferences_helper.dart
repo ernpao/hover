@@ -10,9 +10,9 @@ class HoverSharedPreferencesHelper {
     return _instance;
   }
 
-  static void saveSetting(String key, String value) async {
+  static Future<bool> saveSetting(String key, String value) async {
     final sharedPreferences = await getInstance();
-    sharedPreferences.setString(key, value);
+    return sharedPreferences.setString(key, value);
   }
 
   static Future<String> loadSetting(String key) async {
