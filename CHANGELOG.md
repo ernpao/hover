@@ -1,3 +1,6 @@
+## [0.1.11] - 12/3/2020.
+* HoverSharedPreferencesHelper: changed saveSetting to return Future<bool>
+
 ## [0.1.10] - 10/25/2020.
 * Renamed HoverImageSlider to HoverSlider and updated the widget's layout structure.
 * Added documentation for widgets.
