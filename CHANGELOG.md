@@ -1,3 +1,7 @@
+## [0.1.12] - 1/12/2021.
+* Created the HoverResponsiveGrid widget to provide a mobile responsive grid layout.
+* Updated the snackbar helper functions to use ScaffoldMessenger.
+
 ## [0.1.11] - 12/3/2020.
 * HoverSharedPreferencesHelper: changed saveSetting to return Future<bool>
 
