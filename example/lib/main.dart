@@ -19,10 +19,10 @@ class HoverExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Hover.create(
       routes: [
-        mobileResponsivenessExample,
-        loginFormExample,
-        profilePage,
         widgetsGallery,
+        profilePage,
+        loginFormExample,
+        mobileResponsivenessExample,
       ],
       themes: {
         "light": ThemeData.light(),
@@ -43,6 +43,7 @@ class HoverExample extends StatelessWidget {
       "Login": loginFormExample,
       "Profile": profilePage,
       "Hover Widgets": widgetsGallery,
+      "Mobile Responsive Example": mobileResponsivenessExample,
     };
     return Drawer(
       child: Column(
