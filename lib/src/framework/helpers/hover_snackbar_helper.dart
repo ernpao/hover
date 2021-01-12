@@ -4,12 +4,12 @@ class HoverSnackBarHelper {
   static const Duration defaultSnackBarDuration = const Duration(seconds: 2);
 
   static void showSnackBar(BuildContext context, SnackBar snackBar) {
-    Scaffold.of(context).showSnackBar(snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   static void showPlainSnackBar(BuildContext context, String message,
       {Duration duration: defaultSnackBarDuration}) {
-    Scaffold.of(context)
+    ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(message), duration: duration));
   }
 }
