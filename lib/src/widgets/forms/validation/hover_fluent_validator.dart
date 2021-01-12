@@ -37,7 +37,7 @@ abstract class HoverValidator {
 }
 
 class HoverFluentValidator implements HoverValidator {
-  List<HoverValidationRule> _validationRules = List<HoverValidationRule>();
+  List<HoverValidationRule> _validationRules = [];
 
   String validate(String valueToValidate) {
     String result;

@@ -15,7 +15,7 @@ import 'helpers/hover_shared_preferences_helper.dart';
 
 class Hover extends StatelessWidget {
   static Hover _instance;
-  static final List<SingleChildWidget> _providers = List();
+  static final List<SingleChildWidget> _providers = [];
 
   // Routing
   static HoverRoutingManager _router;

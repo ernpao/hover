@@ -88,7 +88,7 @@ class _CustomFormState extends State<CustomForm> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> children = List<Widget>();
+    final List<Widget> children = [];
 
     if (widget.title != null) {
       Widget titleWidget = _buildTitle(widget.title);
