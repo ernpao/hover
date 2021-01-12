@@ -1,3 +1,4 @@
+import 'package:example/app/mobile_responsiveness_example.dart';
 import 'package:example/app/widgets_gallery.dart';
 import 'package:flutter/material.dart';
 import 'package:hover/hover.dart';
@@ -8,6 +9,8 @@ import 'app/login_form_example.dart';
 void main() => runApp(HoverExample());
 
 class HoverExample extends StatelessWidget {
+  final MobileResponsivenessExample mobileResponsivenessExample =
+      MobileResponsivenessExample();
   final ProfileExample profilePage = ProfileExample();
   final LoginFormExample loginFormExample = LoginFormExample();
   final WidgetsGallery widgetsGallery = WidgetsGallery();
@@ -16,6 +19,7 @@ class HoverExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Hover.create(
       routes: [
+        mobileResponsivenessExample,
         loginFormExample,
         profilePage,
         widgetsGallery,
