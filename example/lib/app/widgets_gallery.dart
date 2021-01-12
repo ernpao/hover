@@ -8,9 +8,11 @@ class WidgetsGallery extends HoverPage {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        HoverTitle("HoverSearchBar"),
         HoverSearchBar(
           hintText: "Search",
         ),
+        HoverTitle("HoverSlider"),
         HoverSlider(
           slides: [
             HoverImageSlide(
@@ -38,6 +40,34 @@ class WidgetsGallery extends HoverPage {
               ),
             ),
           ],
+        ),
+        HoverBaseCard(
+          padding: 8.0,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              HoverTitle(
+                "HoverBaseCard",
+                textAlign: TextAlign.left,
+              ),
+              Column(
+                children: [
+                  HoverHeading("HoverCallToActionButton"),
+                  HoverCallToActionButton(
+                    color: Colors.blue,
+                    textColor: Colors.white,
+                    text: "Call Snackbar",
+                    onPressed: () {
+                      Hover.showPlainSnackBar(
+                        context,
+                        "This is a sample snackbar",
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ],
     );
