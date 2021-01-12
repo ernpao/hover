@@ -52,13 +52,15 @@ class HoverTitle extends HoverText {
     String text, {
     final TextAlign textAlign: TextAlign.center,
     final double fontSize: 24,
-    final double bottomPadding: 2.0,
+    final double bottomPadding: 8.0,
+    final double topPadding: 8.0,
     final Color color,
     final FontWeight fontWeight: FontWeight.bold,
     final FontStyle fontStyle: FontStyle.normal,
   }) : super(
           text,
           textAlign: textAlign,
+          topPadding: topPadding,
           bottomPadding: bottomPadding,
           color: color,
           fontWeight: fontWeight,
@@ -72,13 +74,15 @@ class HoverHeading extends HoverText {
     String text, {
     final TextAlign textAlign,
     final double fontSize: 16,
-    final double bottomPadding: 2.0,
+    final double bottomPadding: 8.0,
+    final double topPadding: 8.0,
     final Color color,
     final FontWeight fontWeight: FontWeight.bold,
     final FontStyle fontStyle: FontStyle.normal,
   }) : super(
           text,
           textAlign: textAlign,
+          topPadding: topPadding,
           bottomPadding: bottomPadding,
           color: color,
           fontWeight: fontWeight,
