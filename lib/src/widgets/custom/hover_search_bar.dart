@@ -14,11 +14,31 @@ class HoverSearchBar extends StatefulWidget {
   /// the shadow below the card.
   final double elevation;
 
+  /// Background color of the search bar.
+  final Color backgroundColor;
+
+  /// Color of the hint text.
+  final Color hintTextColor;
+
+  /// Font style of the hint text.
+  final FontStyle hintTextFontStyle;
+
+  /// Font size of the hint text.
+  final double hintTextFontSize;
+
+  /// Font weight of the hint text.
+  final FontWeight hintTextFontWeight;
+
   HoverSearchBar({
     this.onChanged,
     this.hintText,
     this.iconColor: Colors.black38,
     this.elevation: 1.0,
+    this.backgroundColor,
+    this.hintTextColor: Colors.black38,
+    this.hintTextFontSize,
+    this.hintTextFontStyle,
+    this.hintTextFontWeight,
   });
   @override
   State<StatefulWidget> createState() {
@@ -50,6 +70,7 @@ class _HoverSearchBarState extends State<HoverSearchBar> {
   Widget build(BuildContext context) {
     return Container(
       child: Card(
+        color: widget.backgroundColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
         margin: EdgeInsets.all(12),
         elevation: widget.elevation,
@@ -71,6 +92,12 @@ class _HoverSearchBarState extends State<HoverSearchBar> {
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: widget.hintText,
+                    hintStyle: TextStyle(
+                      color: widget.hintTextColor,
+                      fontWeight: widget.hintTextFontWeight,
+                      fontSize: widget.hintTextFontSize,
+                      fontStyle: widget.hintTextFontStyle,
+                    ),
                     contentPadding: EdgeInsets.all(0),
                   ),
                 ),
