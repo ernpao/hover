@@ -1,4 +1,5 @@
 import 'package:example/app/mobile_responsiveness_example.dart';
+import 'package:example/app/view_splitter_example.dart';
 import 'package:example/app/widgets_gallery.dart';
 import 'package:flutter/material.dart';
 import 'package:hover/hover.dart';
@@ -14,11 +15,13 @@ class HoverExample extends StatelessWidget {
   final ProfileExample profilePage = ProfileExample();
   final LoginFormExample loginFormExample = LoginFormExample();
   final WidgetsGallery widgetsGallery = WidgetsGallery();
+  final ViewSplitterExample viewSplitterExample = ViewSplitterExample();
 
   @override
   Widget build(BuildContext context) {
     return Hover.create(
       routes: [
+        viewSplitterExample,
         widgetsGallery,
         profilePage,
         loginFormExample,
@@ -44,6 +47,7 @@ class HoverExample extends StatelessWidget {
       "Profile": profilePage,
       "Hover Widgets": widgetsGallery,
       "Mobile Responsive Example": mobileResponsivenessExample,
+      "View Splitter Example": viewSplitterExample,
     };
     return Drawer(
       child: Column(

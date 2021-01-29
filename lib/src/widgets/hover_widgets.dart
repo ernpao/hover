@@ -31,6 +31,7 @@ export 'forms/fields/hover_basic_field.dart';
 
 //Mobile Responsiveness
 export 'responsive/hover_responsive_grid.dart';
+export 'responsive/hover_view_splitter.dart';
 
 //Validation
 export 'forms/validation/hover_fluent_validator.dart';
