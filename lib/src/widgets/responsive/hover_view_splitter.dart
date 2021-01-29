@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class HoverViewSplitter extends StatefulWidget {
+class HoverViewSplitter extends StatelessWidget {
   /// The widget to display on the main view (left side) of the split.
   final Widget mainViewChild;
 
@@ -43,14 +43,7 @@ class HoverViewSplitter extends StatefulWidget {
     this.duration: const Duration(milliseconds: 300),
     this.curve: Curves.easeInOut,
   });
-  @override
-  State<StatefulWidget> createState() {
-    return _HoverViewSplitterState();
-  }
-}
-
-class _HoverViewSplitterState extends State<HoverViewSplitter> {
-  double get _totalFlex => widget.mainViewFlex + widget.subViewFlex;
+  double get _totalFlex => mainViewFlex + subViewFlex;
 
   @override
   Widget build(BuildContext context) {
@@ -58,20 +51,20 @@ class _HoverViewSplitterState extends State<HoverViewSplitter> {
       return Row(
         children: [
           AnimatedContainer(
-            duration: widget.duration,
-            curve: widget.curve,
-            width: widget.showSubView
-                ? constraints.maxWidth * (widget.mainViewFlex / _totalFlex)
+            duration: duration,
+            curve: curve,
+            width: showSubView
+                ? constraints.maxWidth * (mainViewFlex / _totalFlex)
                 : constraints.maxWidth,
-            child: widget.mainViewChild,
+            child: mainViewChild,
           ),
           AnimatedContainer(
-            duration: widget.duration,
-            curve: widget.curve,
-            width: widget.showSubView
-                ? constraints.maxWidth * (widget.subViewFlex / _totalFlex)
+            duration: duration,
+            curve: curve,
+            width: showSubView
+                ? constraints.maxWidth * (subViewFlex / _totalFlex)
                 : 0,
-            child: widget.subViewChild,
+            child: subViewChild,
           ),
         ],
       );
