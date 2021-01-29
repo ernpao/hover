@@ -1,3 +1,8 @@
+## [0.1.13] - 1/12/2021.
+* Created the HoverViewSplitter widget.
+* Added tabletColumnsPerRow to HoverResponsiveGrid.
+* Added properties to HoverSearchBar for customization.
+
 ## [0.1.12] - 1/12/2021.
 * Created the HoverResponsiveGrid widget to provide a mobile responsive grid layout.
 * Updated the snackbar helper functions to use ScaffoldMessenger.
