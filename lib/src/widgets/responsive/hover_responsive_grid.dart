@@ -5,6 +5,9 @@ class HoverResponsiveGrid extends StatelessWidget {
   /// The maximum number of columns per row on desktop view.
   final int columnsPerRow;
 
+  /// The maximum number of columns per row on tablet view.
+  final int tabletColumnsPerRow;
+
   /// The screen width at which the view for tablets is rendered.
   final int tabletBreakpoint;
 
@@ -19,6 +22,7 @@ class HoverResponsiveGrid extends StatelessWidget {
   /// The number of columns rendered is determined by the width of the device.
   HoverResponsiveGrid({
     this.columnsPerRow: 3,
+    this.tabletColumnsPerRow: 2,
     this.mobilePhoneBreakpoint: 575,
     this.tabletBreakpoint: 768,
     @required this.columns,
@@ -34,7 +38,7 @@ class HoverResponsiveGrid extends StatelessWidget {
       crossAxisCount = columnsPerRow;
     } else if (screenWidth > mobilePhoneBreakpoint &&
         screenWidth <= tabletBreakpoint) {
-      crossAxisCount = 2;
+      crossAxisCount = tabletColumnsPerRow;
     } else {
       crossAxisCount = 1;
     }

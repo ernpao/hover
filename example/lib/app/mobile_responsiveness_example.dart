@@ -9,7 +9,8 @@ class MobileResponsivenessExample extends HoverPage {
       children: [
         Expanded(
           child: HoverResponsiveGrid(
-            columnsPerRow: 4,
+            columnsPerRow: 5,
+            tabletColumnsPerRow: 4,
             columns: [
               HoverBaseCard(child: Text("Column 1")),
               HoverBaseCard(child: Text("Column 2")),
