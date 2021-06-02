@@ -16,6 +16,6 @@ class HoverEmailField extends CustomFormField {
           validator: HoverFluentValidator()
               .validateAsEmail()
               .validateAsRequired()
-              .build,
+              .build(),
         );
 }

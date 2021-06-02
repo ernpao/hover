@@ -13,12 +13,12 @@ class HoverSnackBar extends SnackBar {
   /// The default duration is 2 seconds.
   final Duration duration;
 
-  /// Sets the width of the widget.
+  /// Sets the width of the snack bar.
   final double width;
 
   HoverSnackBar({
     @required this.content,
-    this.duration,
+    this.duration: defaultDuration,
     this.width,
   }) : super(
           duration: duration,

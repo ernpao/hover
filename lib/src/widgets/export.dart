@@ -21,10 +21,10 @@ export 'custom/hover_snack_bar.dart';
 export 'typography/typography.dart';
 
 //Form Widgets
-export 'forms/hover_email_sign_in_form.dart';
+export 'forms/hover_email_login_form.dart';
 export 'forms/hover_email_sign_up_form.dart';
 export 'forms/hover_password_reset_form.dart';
-export 'forms/hover_sign_in_form.dart';
+export 'forms/hover_login_form.dart';
 export 'forms/fields/hover_email_field.dart';
 export 'forms/fields/hover_password_field.dart';
 export 'forms/fields/hover_basic_field.dart';
@@ -32,6 +32,7 @@ export 'forms/fields/hover_basic_field.dart';
 //Mobile Responsiveness
 export 'responsive/hover_responsive_grid.dart';
 export 'responsive/hover_view_splitter.dart';
+export 'responsive/hover_responsive_builder.dart';
 
 //Validation
 export 'forms/validation/hover_fluent_validator.dart';

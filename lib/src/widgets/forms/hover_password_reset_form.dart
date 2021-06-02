@@ -14,7 +14,7 @@ class HoverPasswordResetForm extends CustomForm {
           subtitle:
               "Enter the email address for your account and we'll send you a password reset link.",
           formName: formName,
-          submitText: "Reset my password",
+          submitButtonText: "Reset my password",
           fields: [
             HoverEmailField(),
           ],

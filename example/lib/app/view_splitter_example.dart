@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hover/hover.dart';
-import 'package:hover/hover_widgets.dart';
+import 'package:hover/framework.dart';
+import 'package:hover/widgets.dart';
 
 class ViewSplitterExample extends HoverPage {
   @override

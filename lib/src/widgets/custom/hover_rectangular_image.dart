@@ -34,12 +34,12 @@ class HoverRectangularImageCard extends StatelessWidget {
   final String imageUrl;
   final double width;
   final double height;
-  final double borderRadius;
+  final double cornerRadius;
   HoverRectangularImageCard({
     @required this.imageUrl,
     @required this.width,
     @required this.height,
-    this.borderRadius: 0,
+    this.cornerRadius: 0,
   });
 
   @override
@@ -47,7 +47,7 @@ class HoverRectangularImageCard extends StatelessWidget {
     return Card(
       clipBehavior: Clip.antiAlias,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(borderRadius),
+        borderRadius: BorderRadius.circular(cornerRadius),
       ),
       child: HoverRectangularImage(
         imageUrl: imageUrl,

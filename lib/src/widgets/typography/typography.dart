@@ -93,7 +93,7 @@ class HoverHeading extends HoverText {
 
 class HoverLinkText extends StatelessWidget {
   final String text;
-  final VoidCallback onTap;
+  final Function onTap;
   HoverLinkText(
     this.text, {
     @required this.onTap,

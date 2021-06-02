@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
-// Global components that will be reused throughout the app.
-// User provider to pass the global elements to HoverPage widgets.
+/// Global builders that will be reused throughout the app.
+/// Use provider to pass the global elements to HoverPage widgets.
 class HoverGlobalWidgets {
   HoverGlobalWidgets({
     this.appBarBuilder,
@@ -15,6 +15,6 @@ class HoverGlobalWidgets {
 }
 
 class HoverGlobalWidgetsProvider extends Provider<HoverGlobalWidgets> {
-  HoverGlobalWidgetsProvider(HoverGlobalWidgets globalElements)
-      : super(create: (_) => globalElements);
+  HoverGlobalWidgetsProvider(HoverGlobalWidgets globalBuilders)
+      : super(create: (_) => globalBuilders);
 }

@@ -8,10 +8,13 @@ class HoverCallToActionButton extends CustomRaisedButton {
     Color color,
     Color textColor,
     double letterSpacing,
-    FontWeight fontWeight: FontWeight.bold,
-    double borderRadius: 8.0,
-    double textPadding: 0.0,
-    @required VoidCallback onPressed,
+    FontWeight fontWeight = FontWeight.bold,
+    double cornerRadius = 8.0,
+    double textPadding = 16.0,
+    TextAlign textAlign = TextAlign.center,
+    double width,
+    double height,
+    @required Function onPressed,
   })  : assert(text != null),
         super(
           child: CustomButtonText(
@@ -19,10 +22,13 @@ class HoverCallToActionButton extends CustomRaisedButton {
             textColor: textColor,
             fontWeight: fontWeight,
             letterSpacing: letterSpacing,
+            textAlign: textAlign,
           ),
           color: color,
+          height: height,
+          width: width,
           onPressed: onPressed,
-          borderRadius: borderRadius,
+          cornerRadius: cornerRadius,
           textPadding: textPadding,
         );
 }

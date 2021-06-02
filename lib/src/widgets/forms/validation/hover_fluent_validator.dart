@@ -6,7 +6,7 @@ import 'rules/hover_validation_rule.dart';
 
 abstract class HoverValidator {
   /// Generates the validation function.
-  String Function(String) get build;
+  String Function(String) build();
 
   /// Returns an error message string
   /// to display if the input [valueToValidate]
@@ -78,7 +78,7 @@ class HoverFluentValidator implements HoverValidator {
   }
 
   @override
-  String Function(String) get build => validate;
+  String Function(String) build() => validate;
 
   @override
   HoverFluentValidator addValidator(HoverValidationRule validationRule) {

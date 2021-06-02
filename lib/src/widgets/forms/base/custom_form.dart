@@ -5,26 +5,50 @@ import '../../buttons/base/custom_raised_button.dart';
 import 'custom_form_field.dart';
 
 abstract class CustomForm extends StatefulWidget {
+  /// An identifier for the form. Used for debugging only.
   final String formName;
+
+  /// The form title text located at the top of the form.
   final String title;
+  final FontWeight titleFontWeight;
+  final double titleFontSize;
   final Color titleColor;
+
+  /// The form's subtitle text located below the title.
   final String subtitle;
-  final String submitText;
-  final Color submitColor;
-  final Color submitTextColor;
+  final FontWeight subtitleFontWeight;
+  final double subtitleFontSize;
+  final Color subtitleColor;
+
+  /// Text for the form's submit button.
+  final String submitButtonText;
+  final double submitButtonTextSize;
+  final Color submitButtonColor;
+  final Color submitButtonTextColor;
+  final double submitButtonCornerRadius;
+  final double submitButtonPadding;
+
   final List<CustomFormField> fields;
   final Function(Map<String, String>) onSubmit;
 
   CustomForm({
-    this.title,
     this.subtitle,
+    this.subtitleFontSize = 16.0,
+    this.subtitleFontWeight,
+    this.subtitleColor,
     @required this.formName,
     @required this.fields,
     @required this.onSubmit,
-    @required this.submitText,
-    this.submitTextColor,
-    this.submitColor,
-    this.titleColor = Colors.black,
+    @required this.submitButtonText,
+    this.submitButtonTextSize = 16.0,
+    this.submitButtonTextColor,
+    this.submitButtonColor,
+    this.submitButtonCornerRadius = 6.0,
+    this.submitButtonPadding = 14.0,
+    this.title,
+    this.titleFontSize = 28.0,
+    this.titleColor,
+    this.titleFontWeight = FontWeight.w600,
   });
 
   @override
@@ -40,7 +64,7 @@ class _CustomFormState extends State<CustomForm> {
     Map<String, String> data = Map<String, String>();
 
     for (CustomFormField field in widget.fields) {
-      data[field.getName()] = field.getValue();
+      data[field.getName()] = field.value;
     }
 
     return data;
@@ -51,8 +75,8 @@ class _CustomFormState extends State<CustomForm> {
       title,
       textAlign: TextAlign.center,
       style: TextStyle(
-        fontSize: 32.0,
-        fontWeight: FontWeight.w600,
+        fontSize: widget.titleFontSize,
+        fontWeight: widget.titleFontWeight,
         color: widget.titleColor,
       ),
     );
@@ -63,24 +87,27 @@ class _CustomFormState extends State<CustomForm> {
       subtitle,
       textAlign: TextAlign.center,
       style: TextStyle(
-        fontSize: 16.0,
+        fontSize: widget.subtitleFontSize,
+        fontWeight: widget.subtitleFontWeight,
       ),
     );
   }
 
   Widget _buildSubmitButton() {
     return CustomFormSubmitButton(
-      color: widget.submitColor,
-      submitText: widget.submitText,
-      submitTextColor: widget.submitTextColor,
+      color: widget.submitButtonColor,
+      text: widget.submitButtonText,
+      textColor: widget.submitButtonTextColor,
+      textPadding: widget.submitButtonPadding,
+      textFontSize: widget.submitButtonTextSize,
+      cornerRadius: widget.submitButtonCornerRadius,
       onPressed: () {
+        print("Form '${widget.formName}' was submitted.");
         if (_formKey.currentState.validate()) {
-          print("${widget.formName} was submitted.");
-          print("Form passed the validation rules.");
+          print("'${widget.formName}' passed the validation rules.");
           widget.onSubmit(getFormData());
         } else {
-          print("Form did not pass the validation rules!");
-          print("Failed to submit form: ${widget.formName}");
+          print("Form '${widget.formName}' did not pass the validation rules!");
         }
       },
     );
@@ -131,16 +158,24 @@ class _CustomFormState extends State<CustomForm> {
 
 class CustomFormSubmitButton extends CustomRaisedButton {
   CustomFormSubmitButton({
-    @required VoidCallback onPressed,
+    @required Function onPressed,
     Color color,
-    String submitText,
-    Color submitTextColor,
+    String text,
+    Color textColor,
+    double textPadding,
+    double textFontSize,
+    double cornerRadius,
+    double height,
   }) : super(
           color: color,
           onPressed: onPressed,
           child: CustomButtonText(
-            text: submitText,
-            textColor: submitTextColor,
+            text: text,
+            textColor: textColor,
+            fontSize: textFontSize,
           ),
+          textPadding: textPadding,
+          cornerRadius: cornerRadius,
+          height: height,
         );
 }

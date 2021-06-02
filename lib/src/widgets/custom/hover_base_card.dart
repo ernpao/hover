@@ -9,7 +9,7 @@ class HoverBaseCard extends StatelessWidget {
   final double elevation;
 
   /// Sets the corner radius of the card.
-  final double borderRadius;
+  final double cornerRadius;
 
   /// The card's background color
   final Color color;
@@ -59,7 +59,7 @@ class HoverBaseCard extends StatelessWidget {
   HoverBaseCard({
     this.child = const SizedBox.shrink(),
     this.elevation = 2.0,
-    this.borderRadius = 24.0,
+    this.cornerRadius = 24.0,
     this.color: Colors.white,
     this.margin,
     this.leftMargin = 12,
@@ -87,7 +87,7 @@ class HoverBaseCard extends StatelessWidget {
             ),
       elevation: elevation,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(borderRadius),
+        borderRadius: BorderRadius.circular(cornerRadius),
       ),
       child: Padding(
         padding: padding != null

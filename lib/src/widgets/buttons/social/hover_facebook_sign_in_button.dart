@@ -3,7 +3,7 @@ import 'social_sign_in_button.dart';
 
 class HoverFacebookSignInButton extends SocialSignInButton {
   HoverFacebookSignInButton({
-    @required VoidCallback onPressed,
+    @required Function onPressed,
   }) : super(
           imageAssetName: 'images/facebook-logo.png',
           text: 'Sign in with Facebook',

@@ -11,7 +11,7 @@ abstract class CustomFormField extends StatefulWidget {
     this.icon,
     this.suffix,
   }) {
-    fieldData[name] = initialValue;
+    _fieldData[name] = initialValue;
   }
 
   final String name;
@@ -26,16 +26,14 @@ abstract class CustomFormField extends StatefulWidget {
   final bool obscureText;
   final Widget icon;
   final Widget suffix;
-  final Map<String, String> fieldData = Map();
+  final Map<String, String> _fieldData = Map();
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey();
 
   GlobalKey<FormFieldState> getFieldKey() {
     return _fieldKey;
   }
 
-  String getValue() {
-    return fieldData[name];
-  }
+  String get value => _fieldData[name];
 
   String getName() {
     return name;
@@ -66,7 +64,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
           obscureText: _obscureText,
           keyboardType: widget.keyboardType,
           initialValue: widget.initialValue,
-          onChanged: (value) => widget.fieldData[widget.name] = value,
+          onChanged: (value) => widget._fieldData[widget.name] = value,
           decoration: InputDecoration(
             labelText: widget.labelText,
             icon: (widget.icon != null) ? widget.icon : SizedBox.shrink(),

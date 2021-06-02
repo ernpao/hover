@@ -30,24 +30,28 @@ class HoverPasswordField extends _PasswordField {
           validator: HoverFluentValidator()
               .validateAsPassword(8)
               .validateAsRequired()
-              .build,
+              .build(),
         );
 }
 
-class PasswordConfirmationField extends _PasswordField {
+class HoverConfirmPasswordField extends _PasswordField {
   static const String fieldName = "password_confirmation";
   static const String fieldLabel = "Confirm Password";
 
   final HoverPasswordField passwordFieldToConfirm;
-  PasswordConfirmationField(this.passwordFieldToConfirm)
+  HoverConfirmPasswordField(this.passwordFieldToConfirm)
       : super(
-          name: fieldName,
-          labelText: fieldLabel,
-          initialValue: passwordFieldToConfirm.initialValue,
-          validator: HoverFluentValidator()
-              .validateAsPassword(8)
-              .validateAsPasswordConfirmation(passwordFieldToConfirm.getValue())
-              .validateAsRequired()
-              .build,
-        );
+            name: fieldName,
+            labelText: fieldLabel,
+            initialValue: passwordFieldToConfirm.initialValue,
+            validator: (input) {
+              print("Password Input: ${passwordFieldToConfirm.value}");
+              print("Confirmation Input: $input");
+
+              return HoverFluentValidator()
+                  .validateAsPassword(8)
+                  .validateAsPasswordConfirmation(passwordFieldToConfirm.value)
+                  .validateAsRequired()
+                  .validate(input);
+            });
 }

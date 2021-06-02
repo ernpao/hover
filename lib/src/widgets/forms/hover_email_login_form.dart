@@ -1,46 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'base/custom_form.dart';
 import 'fields/hover_email_field.dart';
 import 'fields/hover_password_field.dart';
 
-class HoverEmailSignUpForm extends CustomForm {
-  factory HoverEmailSignUpForm({
-    @required Function(String email, String password) onSubmit,
-    @required String formName,
-    String title = "Sign Up",
-    double titleFontSize = 28.0,
-    Color titleColor,
-    FontWeight titleFontWeight = FontWeight.w600,
-    String submitButtonText = "Sign up with email",
-    double submitButtonTextSize = 16.0,
-    Color submitButtonColor,
-    Color submitButtonTextColor,
-    double submitButtonCornerRadius,
-    double submitButtonPadding = 14.0,
-  }) {
-    return HoverEmailSignUpForm._(
-      formName: formName,
-      passwordField: HoverPasswordField(),
-      onSubmit: onSubmit,
-      titleColor: titleColor,
-    );
-  }
+import 'base/custom_form.dart';
 
-  HoverEmailSignUpForm._({
+class HoverEmailLoginForm extends CustomForm {
+  HoverEmailLoginForm({
     @required Function(String email, String password) onSubmit,
     @required String formName,
-    String title = "Sign Up",
+    String title = "Welcome Back!",
     double titleFontSize = 28.0,
     Color titleColor,
     FontWeight titleFontWeight = FontWeight.w600,
-    String submitButtonText = "Sign up with email",
+    String submitButtonText = "Login",
     double submitButtonTextSize = 16.0,
     Color submitButtonColor,
     Color submitButtonTextColor,
     double submitButtonCornerRadius,
     double submitButtonPadding = 14.0,
-    HoverPasswordField passwordField,
   }) : super(
           formName: formName,
           title: title,
@@ -49,8 +27,7 @@ class HoverEmailSignUpForm extends CustomForm {
           titleColor: titleColor,
           fields: [
             HoverEmailField(),
-            passwordField,
-            HoverConfirmPasswordField(passwordField),
+            HoverPasswordField(),
           ],
           submitButtonTextColor: submitButtonTextColor,
           submitButtonColor: submitButtonColor,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hover/hover.dart';
-import 'package:hover/hover_widgets.dart';
+import 'package:hover/framework.dart';
+import 'package:hover/widgets.dart';
 
 class ProfileExample extends HoverPage {
   @override
@@ -19,7 +19,7 @@ class ProfileExample extends HoverPage {
           },
         ),
         HoverCallToActionButton(
-          borderRadius: 24,
+          cornerRadius: 24,
           text: "Press Me!",
           color: Colors.blue,
           textColor: Colors.white,

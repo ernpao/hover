@@ -8,7 +8,7 @@ abstract class SocialSignInButton extends CustomRaisedButton {
     @required String imageAssetName,
     Color color,
     Color textColor,
-    VoidCallback onPressed,
+    Function onPressed,
   })  : assert(imageAssetName != null),
         assert(text != null),
         super(

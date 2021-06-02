@@ -6,9 +6,13 @@ class PasswordConfirmationRule implements HoverValidationRule {
 
   @override
   String validate(String valueToValidate) {
-    if (valueToValidate != _passwordConfirmationValue) {
-      return "Both passwords fields must match.";
+    print(
+        "Comparing passwords: $_passwordConfirmationValue vs $valueToValidate");
+    if (valueToValidate.startsWith(_passwordConfirmationValue) &&
+        valueToValidate.endsWith(_passwordConfirmationValue) &&
+        valueToValidate.hashCode == _passwordConfirmationValue.hashCode) {
+      return null;
     }
-    return null;
+    return "Value is not the same as the entered password.";
   }
 }

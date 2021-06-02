@@ -1,3 +1,8 @@
+## [0.2.0] - 6/2/2021.
+* Updated property names of some widgets.
+* Updated implementation of Form widgets.
+* Updated button widgets that were using deprecated widgets.
+
 ## [0.1.13] - 1/12/2021.
 * Created the HoverViewSplitter widget.
 * Added tabletColumnsPerRow to HoverResponsiveGrid.

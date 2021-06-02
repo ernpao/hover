@@ -1,4 +1,4 @@
 library hover_framework;
 
-export 'hover_app.dart';
+export 'hover.dart';
 export 'core/hover_page.dart';

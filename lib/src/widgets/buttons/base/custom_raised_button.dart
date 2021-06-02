@@ -2,40 +2,45 @@ import 'package:flutter/material.dart';
 
 abstract class CustomRaisedButton extends StatelessWidget {
   CustomRaisedButton({
-    this.child,
-    this.color,
-    this.borderRadius: 2.0,
-    this.height: 40.0,
-    this.onPressed,
-    this.textPadding: 0,
-  }) : assert(
-          borderRadius != null,
-          child != null,
-        );
+    @required this.child,
+    @required this.onPressed,
+    @required this.color,
+    this.cornerRadius = 6.0,
+    this.height = 40.0,
+    this.width,
+    this.textPadding = 4.0,
+  });
+
   final Widget child;
   final Color color;
-  final double borderRadius;
+  final double cornerRadius;
   final double height;
-  final VoidCallback onPressed;
+  final double width;
+  final Function onPressed;
   final double textPadding;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(0, 2, 0, 8),
+    return ElevatedButton(
       child: SizedBox(
         height: height,
-        child: RaisedButton(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: textPadding),
-            child: child,
+        width: width,
+        child: Center(child: child),
+      ),
+      style: ButtonStyle(
+        padding: MaterialStateProperty.resolveWith(
+          (states) => EdgeInsets.all(textPadding ?? 4.0),
+        ),
+        backgroundColor: MaterialStateProperty.resolveWith(
+          (states) => color,
+        ),
+        shape: MaterialStateProperty.resolveWith(
+          (states) => RoundedRectangleBorder(
+            borderRadius:
+                BorderRadius.all(Radius.circular(cornerRadius ?? 6.0)),
           ),
-          color: color,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
-          ),
-          onPressed: onPressed,
         ),
       ),
+      onPressed: onPressed ?? () {},
     );
   }
 }

@@ -59,25 +59,22 @@ abstract class HoverPageBase extends StatelessWidget implements HoverRoute {
   Widget buildAppBar(BuildContext context) {
     if (_getGlobalWidgets(context).appBarBuilder != null) {
       return _getGlobalWidgets(context).appBarBuilder(context);
-    } else {
-      return SizedBox.shrink();
     }
+    return SizedBox.shrink(); // Can't be null since it is a child of a Column
   }
 
   Widget buildDrawer(BuildContext context) {
     if (_getGlobalWidgets(context).drawerBuilder != null) {
       return _getGlobalWidgets(context).drawerBuilder(context);
-    } else {
-      return SizedBox.shrink();
     }
+    return null;
   }
 
   Widget buildFloatingActionButton(BuildContext context) {
     if (_getGlobalWidgets(context).floatingActionButtonBuilder != null) {
       return _getGlobalWidgets(context).floatingActionButtonBuilder(context);
-    } else {
-      return SizedBox.shrink();
     }
+    return null;
   }
 
   @override

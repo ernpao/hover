@@ -3,7 +3,7 @@ import 'social_sign_in_button.dart';
 
 class HoverGoogleSignInButton extends SocialSignInButton {
   HoverGoogleSignInButton({
-    @required VoidCallback onPressed,
+    @required Function onPressed,
   }) : super(
           imageAssetName: 'images/google-logo.png',
           text: 'Sign in with Google',

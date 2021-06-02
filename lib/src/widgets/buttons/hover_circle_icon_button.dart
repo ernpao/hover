@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HoverCircleIconButton extends StatelessWidget {
-  final VoidCallback onTap;
+  final Function onTap;
   final double size;
   final Color color;
   final Color iconColor;

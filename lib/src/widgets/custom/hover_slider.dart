@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-/// A content slide to display inside a HoverImageSlider widget
+/// A widget to display inside a HoverImageSlider
 class HoverImageSlide extends StatelessWidget {
-  /// The title text to display.
-  final Widget title;
+  /// The positioned widgets to display on top of the [image].
+  final List<Positioned> positionedChildren;
 
   /// The Image widget to display.
   final Image image;
@@ -14,35 +14,44 @@ class HoverImageSlide extends StatelessWidget {
   /// The height of the slide.
   final double height;
 
+  final double cornerRadius;
+  final double padding;
+
+  final Function onImageTapped;
+
   HoverImageSlide({
-    this.title,
+    this.positionedChildren,
     @required this.image,
     @required this.width,
     @required this.height,
+    this.cornerRadius = 24,
+    this.padding = 8,
+    this.onImageTapped,
   });
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> children = [];
+    children.add(GestureDetector(
+      onTap: onImageTapped?.call,
+      child: Container(
+        child: image,
+        width: width - (2 * padding),
+        height: height - (2 * padding),
+      ),
+    ));
+
+    children.addAll(positionedChildren ?? []);
+
     return Container(
-      padding: EdgeInsets.all(4),
+      padding: EdgeInsets.all(padding),
       child: Material(
         clipBehavior: Clip.antiAlias,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(cornerRadius),
         child: Stack(
           clipBehavior: Clip.antiAlias,
           alignment: Alignment.center,
-          children: <Widget>[
-            Container(
-              width: width,
-              height: height,
-              child: image,
-            ),
-            Positioned(
-              bottom: 8,
-              left: 8,
-              child: title != null ? title : SizedBox.shrink(),
-            ),
-          ],
+          children: children,
         ),
       ),
     );
@@ -64,11 +73,22 @@ class HoverSlider extends StatefulWidget {
 }
 
 class _HoverSliderState extends State<HoverSlider> {
+  ScrollController _controller = ScrollController();
+
+  @override
+  void initState() {
+    // _controller.addListener(() {
+    //   print("Hover Slider Offset: ${_controller.offset}");
+    // });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 4),
       child: SingleChildScrollView(
+        controller: _controller,
         scrollDirection: Axis.horizontal,
         child: Row(
           children: widget.slides,

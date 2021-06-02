@@ -34,7 +34,7 @@ class HoverSquareImageCard extends StatelessWidget {
   final double size;
 
   /// Sets the corner radius of the widget.
-  final double borderRadius;
+  final double cornerRadius;
 
   /// The z-coordinate at which to place this card. This controls the size of
   /// the shadow below the card.
@@ -43,7 +43,7 @@ class HoverSquareImageCard extends StatelessWidget {
   HoverSquareImageCard({
     @required this.imageUrl,
     @required this.size,
-    this.borderRadius: 0,
+    this.cornerRadius: 0,
     this.elevation: 1,
   });
 
@@ -53,7 +53,7 @@ class HoverSquareImageCard extends StatelessWidget {
       elevation: elevation,
       clipBehavior: Clip.antiAlias,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(borderRadius),
+        borderRadius: BorderRadius.circular(cornerRadius),
       ),
       child: HoverSquareImage(
         imageUrl: imageUrl,
