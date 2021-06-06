@@ -1,3 +1,7 @@
+## [0.2.1] - 6/6/2021.
+* Wrapped CustomForm in RawKeyboardListener to enable form submission using the Enter key.
+* Fixed HoverLoginForm default title text typo.
+
 ## [0.2.0] - 6/2/2021.
 * Updated property names of some widgets.
 * Updated implementation of Form widgets.
