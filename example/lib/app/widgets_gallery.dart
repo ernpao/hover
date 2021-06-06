@@ -32,10 +32,10 @@ class WidgetsGallery extends HoverPage {
                   Positioned(
                     bottom: 16,
                     child: HoverCallToActionButton(
-                      text: "Slide call to action",
+                      text: "CTA Button",
                       onPressed: () => Hover.showPlainSnackBar(
                         context,
-                        "Slide call to action!",
+                        "Called to action!",
                       ),
                     ),
                   ),
