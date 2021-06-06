@@ -143,9 +143,12 @@ class _CustomFormState extends State<CustomForm> {
     return RawKeyboardListener(
       focusNode: _textNode,
       onKey: (event) {
-        final key = event.data.logicalKey;
-        if (key == LogicalKeyboardKey.enter) {
-          _submitForm();
+        if (event.runtimeType.toString() == 'RawKeyDownEvent') {
+          print("Submit!");
+          final key = event.data.logicalKey;
+          if (key == LogicalKeyboardKey.enter) {
+            _submitForm();
+          }
         }
       },
       // padding: const EdgeInsets.all(8.0),
