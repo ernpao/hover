@@ -144,7 +144,6 @@ class _CustomFormState extends State<CustomForm> {
       focusNode: _textNode,
       onKey: (event) {
         if (event.runtimeType.toString() == 'RawKeyDownEvent') {
-          print("Submit!");
           final key = event.data.logicalKey;
           if (key == LogicalKeyboardKey.enter) {
             _submitForm();
