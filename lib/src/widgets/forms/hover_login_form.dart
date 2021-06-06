@@ -9,7 +9,7 @@ class HoverLoginForm extends CustomForm {
   HoverLoginForm({
     @required Function(String username, String password) onSubmit,
     @required String formName,
-    String title = "Welcom Back!",
+    String title = "Welcome Back!",
     double titleFontSize = 28.0,
     Color titleColor,
     FontWeight titleFontWeight = FontWeight.w600,
