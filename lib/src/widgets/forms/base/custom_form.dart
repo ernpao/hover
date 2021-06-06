@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import '../../buttons/base/custom_button_text.dart';
 import '../../buttons/base/custom_raised_button.dart';
@@ -59,6 +60,7 @@ abstract class CustomForm extends StatefulWidget {
 
 class _CustomFormState extends State<CustomForm> {
   final GlobalKey<FormState> _formKey = GlobalKey();
+  final FocusNode _textNode = new FocusNode();
 
   Map<String, String> getFormData() {
     Map<String, String> data = Map<String, String>();
@@ -93,6 +95,16 @@ class _CustomFormState extends State<CustomForm> {
     );
   }
 
+  void _submitForm() {
+    print("Form '${widget.formName}' was submitted.");
+    if (_formKey.currentState.validate()) {
+      print("'${widget.formName}' passed the validation rules.");
+      widget.onSubmit(getFormData());
+    } else {
+      print("Form '${widget.formName}' did not pass the validation rules!");
+    }
+  }
+
   Widget _buildSubmitButton() {
     return CustomFormSubmitButton(
       color: widget.submitButtonColor,
@@ -101,15 +113,7 @@ class _CustomFormState extends State<CustomForm> {
       textPadding: widget.submitButtonPadding,
       textFontSize: widget.submitButtonTextSize,
       cornerRadius: widget.submitButtonCornerRadius,
-      onPressed: () {
-        print("Form '${widget.formName}' was submitted.");
-        if (_formKey.currentState.validate()) {
-          print("'${widget.formName}' passed the validation rules.");
-          widget.onSubmit(getFormData());
-        } else {
-          print("Form '${widget.formName}' did not pass the validation rules!");
-        }
-      },
+      onPressed: _submitForm,
     );
   }
 
@@ -135,20 +139,30 @@ class _CustomFormState extends State<CustomForm> {
 
     Widget submitButton = _buildSubmitButton();
     children.add(submitButton);
-
-    return Container(
-      child: Padding(
-        padding: EdgeInsets.only(
-          top: 32.0,
-          bottom: 32.0,
-          left: 8,
-          right: 8,
-        ),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: children,
+    FocusScope.of(context).requestFocus(_textNode);
+    return RawKeyboardListener(
+      focusNode: _textNode,
+      onKey: (event) {
+        final key = event.data.logicalKey;
+        if (key == LogicalKeyboardKey.enter) {
+          _submitForm();
+        }
+      },
+      // padding: const EdgeInsets.all(8.0),
+      child: Container(
+        child: Padding(
+          padding: EdgeInsets.only(
+            top: 32.0,
+            bottom: 32.0,
+            left: 8,
+            right: 8,
+          ),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: children,
+            ),
           ),
         ),
       ),
