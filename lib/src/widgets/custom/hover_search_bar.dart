@@ -4,6 +4,9 @@ class HoverSearchBar extends StatefulWidget {
   /// Function to call when the search bar input changes.
   final Function(String) onChanged;
 
+  /// Function to call upon submission of the user's search query (i.e. enter key is pressed).
+  final Function(String) onSubmitted;
+
   /// Hint text to display on the search bar.
   final String hintText;
 
@@ -29,6 +32,11 @@ class HoverSearchBar extends StatefulWidget {
   /// Font weight of the hint text.
   final FontWeight hintTextFontWeight;
 
+  /// Controller for search bar's the text field.
+  final TextEditingController controller;
+
+  final String initialText;
+
   HoverSearchBar({
     this.onChanged,
     this.hintText,
@@ -39,6 +47,9 @@ class HoverSearchBar extends StatefulWidget {
     this.hintTextFontSize,
     this.hintTextFontStyle,
     this.hintTextFontWeight,
+    this.controller,
+    this.onSubmitted,
+    this.initialText = "",
   });
   @override
   State<StatefulWidget> createState() {
@@ -47,20 +58,17 @@ class HoverSearchBar extends StatefulWidget {
 }
 
 class _HoverSearchBarState extends State<HoverSearchBar> {
-  TextEditingController controller;
-
-  bool hasText;
-
+  TextEditingController _controller;
+  bool get _hasText => _controller.text.isNotEmpty;
+  String get _userQuery => _controller.value.text;
   @override
   void initState() {
-    hasText = false;
-    controller = TextEditingController();
-
-    controller.addListener(() {
-      widget.onChanged(controller.value.text);
-      setState(() {
-        hasText = controller.text.isNotEmpty;
-      });
+    _controller = widget.controller ?? TextEditingController();
+    _controller.text = widget.initialText;
+    _controller.addListener(() {
+      widget.onChanged?.call(_userQuery);
+      // setState() required to toggle visibility of clear text icon
+      setState(() => {});
     });
 
     super.initState();
@@ -75,20 +83,15 @@ class _HoverSearchBarState extends State<HoverSearchBar> {
         margin: EdgeInsets.all(12),
         elevation: widget.elevation,
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16.0,
-            vertical: .0,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Row(
             children: [
-              Icon(
-                Icons.search,
-                color: widget.iconColor,
-              ),
+              Icon(Icons.search, color: widget.iconColor),
               SizedBox(width: 8),
               Expanded(
                 child: TextField(
-                  controller: controller,
+                  onSubmitted: (query) => widget.onSubmitted?.call(_userQuery),
+                  controller: _controller,
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: widget.hintText,
@@ -103,15 +106,10 @@ class _HoverSearchBarState extends State<HoverSearchBar> {
                 ),
               ),
               SizedBox(width: 8),
-              hasText
+              _hasText
                   ? IconButton(
-                      icon: Icon(
-                        Icons.close,
-                        color: widget.iconColor,
-                      ),
-                      onPressed: () {
-                        controller.clear();
-                      },
+                      icon: Icon(Icons.close, color: widget.iconColor),
+                      onPressed: _controller.clear,
                     )
                   : SizedBox.shrink(),
             ],

@@ -12,6 +12,14 @@ class WidgetsGallery extends HoverPage {
           HoverTitle("HoverSearchBar"),
           HoverSearchBar(
             hintText: "Search",
+            // initialText: "Enter some text!",
+            onSubmitted: (query) {
+              Hover.showPlainSnackBar(
+                  context, "HoverSearchBar User Query: $query");
+            },
+            onChanged: (query) {
+              print("HoverSearchBar User Query: $query");
+            },
           ),
           HoverTitle("HoverSlider"),
           HoverSlider(

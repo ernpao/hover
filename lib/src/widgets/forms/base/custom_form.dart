@@ -150,7 +150,6 @@ class _CustomFormState extends State<CustomForm> {
           }
         }
       },
-      // padding: const EdgeInsets.all(8.0),
       child: Container(
         child: Padding(
           padding: EdgeInsets.only(

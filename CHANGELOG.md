@@ -1,3 +1,6 @@
+## [0.2.3] - 6/7/2021.
+* Added the onSubmmitted property to the HoverSearchBar to enable submission of the user's search query when the enter key is pressed.
+
 ## [0.2.2] - 6/6/2021.
 * Added logic for determining type of key event for the CustomForm's RawKeyboardListener.
 
