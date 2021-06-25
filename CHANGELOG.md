@@ -1,3 +1,6 @@
+## [0.3.0] - 6/26/2021.
+* Updated for null safety.
+
 ## [0.2.3] - 6/7/2021.
 * Added the onSubmmitted property to the HoverSearchBar to enable submission of the user's search query when the enter key is pressed.
 
