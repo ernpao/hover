@@ -7,18 +7,18 @@ import 'base/custom_form.dart';
 
 class HoverEmailLoginForm extends CustomForm {
   HoverEmailLoginForm({
-    @required Function(String email, String password) onSubmit,
-    @required String formName,
+    required Function(String? email, String? password) onSubmit,
+    required String formName,
     String title = "Welcome Back!",
     double titleFontSize = 28.0,
-    Color titleColor,
+    Color? titleColor,
     FontWeight titleFontWeight = FontWeight.w600,
     String submitButtonText = "Login",
     double submitButtonTextSize = 16.0,
-    Color submitButtonColor,
-    Color submitButtonTextColor,
-    double submitButtonCornerRadius,
-    double submitButtonPadding = 14.0,
+    Color? submitButtonColor,
+    Color? submitButtonTextColor,
+    double? submitButtonCornerRadius,
+    double? submitButtonPadding = 14.0,
   }) : super(
           formName: formName,
           title: title,
@@ -35,9 +35,9 @@ class HoverEmailLoginForm extends CustomForm {
           submitButtonCornerRadius: submitButtonCornerRadius,
           submitButtonTextSize: submitButtonTextSize,
           submitButtonPadding: submitButtonPadding,
-          onSubmit: (Map<String, String> map) {
-            String email = map[HoverEmailField.fieldName];
-            String password = map[HoverPasswordField.fieldName];
+          onSubmit: (Map<String, String?> map) {
+            String? email = map[HoverEmailField.fieldName];
+            String? password = map[HoverPasswordField.fieldName];
             onSubmit(email, password);
           },
         );

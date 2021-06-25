@@ -1,12 +1,10 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HoverSharedPreferencesHelper {
-  static SharedPreferences _instance;
+  static late SharedPreferences _instance;
 
   static Future<SharedPreferences> getInstance() async {
-    if (_instance == null) {
-      _instance = await SharedPreferences.getInstance();
-    }
+    _instance = await SharedPreferences.getInstance();
     return _instance;
   }
 
@@ -15,7 +13,7 @@ class HoverSharedPreferencesHelper {
     return sharedPreferences.setString(key, value);
   }
 
-  static Future<String> loadSetting(String key) async {
+  static Future<String?> loadSetting(String key) async {
     final sharedPreferences = await getInstance();
     return sharedPreferences.getString(key);
   }

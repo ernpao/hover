@@ -3,7 +3,7 @@ import 'hover_page_base.dart';
 
 abstract class HoverPage extends HoverPageBase {
   HoverPage({
-    String title,
-    Color backgroundColor,
+    String? title,
+    Color? backgroundColor,
   }) : super(title: title, backgroundColor: backgroundColor);
 }

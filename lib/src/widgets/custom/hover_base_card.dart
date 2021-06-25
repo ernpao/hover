@@ -6,55 +6,55 @@ class HoverBaseCard extends StatelessWidget {
 
   /// The z-coordinate at which to place this card. This controls the size of
   /// the shadow below the card.
-  final double elevation;
+  final double? elevation;
 
   /// Sets the corner radius of the card.
-  final double cornerRadius;
+  final double? cornerRadius;
 
   /// The card's background color
-  final Color color;
+  final Color? color;
 
   /// Left margin of the card. Overridden by [margin] if
   /// [margin] is set.
-  final double leftMargin;
+  final double? leftMargin;
 
   /// Top margin of the card. Overridden by [margin] if
   /// [margin] is set.
-  final double topMargin;
+  final double? topMargin;
 
   /// Right margin of the card. Overridden by [margin] if
   /// [margin] is set.
-  final double rightMargin;
+  final double? rightMargin;
 
   /// Bottom margin of the card. Overridden by [margin] if
   /// [margin] is set.
-  final double bottomMargin;
+  final double? bottomMargin;
 
   /// Sets the margin for all sides of the card. If this is set it
   /// will override any values set for [leftMargin], [topMargin], [rightMargin],
   /// or [bottomMargin].
-  final double margin;
+  final double? margin;
 
   /// Left padding of the card. Overridden by [padding] if
   /// [padding] is set.
-  final double leftPadding;
+  final double? leftPadding;
 
   /// Top padding of the card. Overridden by [padding] if
   /// [padding] is set.
-  final double topPadding;
+  final double? topPadding;
 
   /// Right padding of the card. Overridden by [padding] if
   /// [padding] is set.
-  final double rightPadding;
+  final double? rightPadding;
 
   /// Bottom padding of the card. Overridden by [padding] if
   /// [padding] is set.
-  final double bottomPadding;
+  final double? bottomPadding;
 
   /// Sets the padding for all sides of the card. If this is set it
   /// will override any values set for [leftPadding], [topPadding], [rightPadding],
   /// or [bottomPadding].
-  final double padding;
+  final double? padding;
 
   HoverBaseCard({
     this.child = const SizedBox.shrink(),
@@ -78,25 +78,25 @@ class HoverBaseCard extends StatelessWidget {
     return Card(
       color: color,
       margin: margin != null
-          ? EdgeInsets.all(margin)
+          ? EdgeInsets.all(margin!)
           : EdgeInsets.only(
-              top: topMargin,
-              left: leftMargin,
-              right: rightMargin,
-              bottom: bottomMargin,
+              top: topMargin!,
+              left: leftMargin!,
+              right: rightMargin!,
+              bottom: bottomMargin!,
             ),
       elevation: elevation,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(cornerRadius),
+        borderRadius: BorderRadius.circular(cornerRadius!),
       ),
       child: Padding(
         padding: padding != null
-            ? EdgeInsets.all(padding)
+            ? EdgeInsets.all(padding!)
             : EdgeInsets.only(
-                left: leftPadding,
-                top: topPadding,
-                right: rightPadding,
-                bottom: bottomPadding,
+                left: leftPadding!,
+                top: topPadding!,
+                right: rightPadding!,
+                bottom: bottomPadding!,
               ),
         child: child,
       ),

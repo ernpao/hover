@@ -28,7 +28,7 @@ class HoverResponsiveGrid extends StatelessWidget {
     this.columnsPerRowOnPhones: 1,
     this.breakpointForPhones: 575,
     this.breakpointForTablets: 768,
-    @required this.children,
+    required this.children,
   }) : assert(columnsPerRow > 0 && breakpointForTablets > breakpointForPhones);
 
   @override

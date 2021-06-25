@@ -7,10 +7,10 @@ class HoverEmailField extends CustomFormField {
   static const String fieldLabel = "Email";
 
   HoverEmailField({
-    String initialValue,
+    String? initialValue,
   }) : super(
           name: fieldName,
-          labelText: fieldLabel,
+          label: fieldLabel,
           initialValue: initialValue,
           keyboardType: TextInputType.emailAddress,
           validator: HoverFluentValidator()

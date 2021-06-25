@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 
 class HoverText extends StatelessWidget {
   final String text;
-  final TextAlign textAlign;
+  final TextAlign? textAlign;
   final double bottomPadding;
   final double topPadding;
   final double leftPadding;
   final double rightPadding;
-  final Color color;
-  final double fontSize;
+  final Color? color;
+  final double? fontSize;
   final FontWeight fontWeight;
-  final FontStyle fontStyle;
+  final FontStyle? fontStyle;
   HoverText(
     this.text, {
     this.textAlign,
@@ -54,7 +54,7 @@ class HoverTitle extends HoverText {
     final double fontSize: 24,
     final double bottomPadding: 8.0,
     final double topPadding: 8.0,
-    final Color color,
+    final Color? color,
     final FontWeight fontWeight: FontWeight.bold,
     final FontStyle fontStyle: FontStyle.normal,
   }) : super(
@@ -72,11 +72,11 @@ class HoverTitle extends HoverText {
 class HoverHeading extends HoverText {
   HoverHeading(
     String text, {
-    final TextAlign textAlign,
+    final TextAlign? textAlign,
     final double fontSize: 16,
     final double bottomPadding: 8.0,
     final double topPadding: 8.0,
-    final Color color,
+    final Color? color,
     final FontWeight fontWeight: FontWeight.bold,
     final FontStyle fontStyle: FontStyle.normal,
   }) : super(
@@ -93,21 +93,17 @@ class HoverHeading extends HoverText {
 
 class HoverLinkText extends StatelessWidget {
   final String text;
-  final Function onTap;
+  final Function()? onTap;
   HoverLinkText(
     this.text, {
-    @required this.onTap,
+    required this.onTap,
   });
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 8.0),
       child: GestureDetector(
-        onTap: () {
-          if (onTap != null) {
-            onTap();
-          }
-        },
+        onTap: onTap,
         child: Text(
           text,
           style: TextStyle(

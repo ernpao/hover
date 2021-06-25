@@ -13,9 +13,9 @@ class HoverRectangularImage extends StatelessWidget {
   /// How to inscribe the image into the space allocated during layout.
   final BoxFit fit;
   HoverRectangularImage({
-    @required this.imageUrl,
-    @required this.width,
-    @required this.height,
+    required this.imageUrl,
+    required this.width,
+    required this.height,
     this.fit: BoxFit.cover,
   });
   @override
@@ -36,9 +36,9 @@ class HoverRectangularImageCard extends StatelessWidget {
   final double height;
   final double cornerRadius;
   HoverRectangularImageCard({
-    @required this.imageUrl,
-    @required this.width,
-    @required this.height,
+    required this.imageUrl,
+    required this.width,
+    required this.height,
     this.cornerRadius: 0,
   });
 

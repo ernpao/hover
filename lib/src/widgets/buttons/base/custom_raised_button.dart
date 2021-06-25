@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 
 abstract class CustomRaisedButton extends StatelessWidget {
   CustomRaisedButton({
-    @required this.child,
-    @required this.onPressed,
-    @required this.color,
-    this.cornerRadius = 6.0,
+    required this.child,
+    required this.onPressed,
+    required this.color,
+    this.cornerRadius,
     this.height = 40.0,
     this.width,
-    this.textPadding = 4.0,
+    this.textPadding,
   });
 
   final Widget child;
-  final Color color;
-  final double cornerRadius;
-  final double height;
-  final double width;
-  final Function onPressed;
-  final double textPadding;
+  final Color? color;
+  final double? cornerRadius;
+  final double? height;
+  final double? width;
+  final Function()? onPressed;
+  final double? textPadding;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(

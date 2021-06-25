@@ -4,13 +4,13 @@ import '../validation/hover_fluent_validator.dart';
 
 class _PasswordField extends CustomFormField {
   _PasswordField({
-    @required String name,
-    @required String labelText,
-    String initialValue,
-    String Function(String) validator,
+    required String name,
+    required String labelText,
+    String? initialValue,
+    required String? Function(String?) validator,
   }) : super(
             name: name,
-            labelText: labelText,
+            label: labelText,
             initialValue: initialValue,
             keyboardType: TextInputType.visiblePassword,
             obscureText: true,
@@ -22,7 +22,7 @@ class HoverPasswordField extends _PasswordField {
   static const String fieldLabel = "Password";
 
   HoverPasswordField({
-    String initialValue,
+    String? initialValue,
   }) : super(
           name: fieldName,
           labelText: fieldLabel,

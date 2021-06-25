@@ -6,10 +6,10 @@ import 'dependencies/global_widgets/hover_global_widgets.dart';
 
 abstract class HoverPageBase extends StatelessWidget implements HoverRoute {
   /// Title of the page. Currently unused by Hover in any mechanisms.
-  final String title;
+  final String? title;
 
   /// Color to use for the background of the page.
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   HoverPageBase({
     this.title,
@@ -58,21 +58,21 @@ abstract class HoverPageBase extends StatelessWidget implements HoverRoute {
 
   Widget buildAppBar(BuildContext context) {
     if (_getGlobalWidgets(context).appBarBuilder != null) {
-      return _getGlobalWidgets(context).appBarBuilder(context);
+      return _getGlobalWidgets(context).appBarBuilder!(context);
     }
     return SizedBox.shrink(); // Can't be null since it is a child of a Column
   }
 
-  Widget buildDrawer(BuildContext context) {
+  Widget? buildDrawer(BuildContext context) {
     if (_getGlobalWidgets(context).drawerBuilder != null) {
-      return _getGlobalWidgets(context).drawerBuilder(context);
+      return _getGlobalWidgets(context).drawerBuilder!(context);
     }
     return null;
   }
 
-  Widget buildFloatingActionButton(BuildContext context) {
+  Widget? buildFloatingActionButton(BuildContext context) {
     if (_getGlobalWidgets(context).floatingActionButtonBuilder != null) {
-      return _getGlobalWidgets(context).floatingActionButtonBuilder(context);
+      return _getGlobalWidgets(context).floatingActionButtonBuilder!(context);
     }
     return null;
   }

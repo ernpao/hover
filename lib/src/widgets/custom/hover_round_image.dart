@@ -10,8 +10,8 @@ class HoverRoundImage extends StatelessWidget {
   /// How to inscribe the image into the space allocated during layout.
   final BoxFit fit;
   HoverRoundImage({
-    @required this.imageUrl,
-    @required this.radius,
+    required this.imageUrl,
+    required this.radius,
     this.fit: BoxFit.cover,
   });
 

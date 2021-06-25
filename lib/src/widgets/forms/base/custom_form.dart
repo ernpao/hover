@@ -10,24 +10,24 @@ abstract class CustomForm extends StatefulWidget {
   final String formName;
 
   /// The form title text located at the top of the form.
-  final String title;
-  final FontWeight titleFontWeight;
-  final double titleFontSize;
-  final Color titleColor;
+  final String? title;
+  final FontWeight? titleFontWeight;
+  final double? titleFontSize;
+  final Color? titleColor;
 
   /// The form's subtitle text located below the title.
-  final String subtitle;
-  final FontWeight subtitleFontWeight;
-  final double subtitleFontSize;
-  final Color subtitleColor;
+  final String? subtitle;
+  final FontWeight? subtitleFontWeight;
+  final double? subtitleFontSize;
+  final Color? subtitleColor;
 
   /// Text for the form's submit button.
   final String submitButtonText;
-  final double submitButtonTextSize;
-  final Color submitButtonColor;
-  final Color submitButtonTextColor;
-  final double submitButtonCornerRadius;
-  final double submitButtonPadding;
+  final double? submitButtonTextSize;
+  final Color? submitButtonColor;
+  final Color? submitButtonTextColor;
+  final double? submitButtonCornerRadius;
+  final double? submitButtonPadding;
 
   final List<CustomFormField> fields;
   final Function(Map<String, String>) onSubmit;
@@ -37,10 +37,10 @@ abstract class CustomForm extends StatefulWidget {
     this.subtitleFontSize = 16.0,
     this.subtitleFontWeight,
     this.subtitleColor,
-    @required this.formName,
-    @required this.fields,
-    @required this.onSubmit,
-    @required this.submitButtonText,
+    required this.formName,
+    required this.fields,
+    required this.onSubmit,
+    required this.submitButtonText,
     this.submitButtonTextSize = 16.0,
     this.submitButtonTextColor,
     this.submitButtonColor,
@@ -72,9 +72,9 @@ class _CustomFormState extends State<CustomForm> {
     return data;
   }
 
-  Widget _buildTitle(String title) {
+  Widget _buildTitle(String? title) {
     return Text(
-      title,
+      title!,
       textAlign: TextAlign.center,
       style: TextStyle(
         fontSize: widget.titleFontSize,
@@ -84,9 +84,9 @@ class _CustomFormState extends State<CustomForm> {
     );
   }
 
-  Widget _buildSubtitle(String subtitle) {
+  Widget _buildSubtitle(String? subtitle) {
     return Text(
-      subtitle,
+      subtitle!,
       textAlign: TextAlign.center,
       style: TextStyle(
         fontSize: widget.subtitleFontSize,
@@ -97,7 +97,7 @@ class _CustomFormState extends State<CustomForm> {
 
   void _submitForm() {
     print("Form '${widget.formName}' was submitted.");
-    if (_formKey.currentState.validate()) {
+    if (_formKey.currentState!.validate()) {
       print("'${widget.formName}' passed the validation rules.");
       widget.onSubmit(getFormData());
     } else {
@@ -173,14 +173,14 @@ class _CustomFormState extends State<CustomForm> {
 
 class CustomFormSubmitButton extends CustomRaisedButton {
   CustomFormSubmitButton({
-    @required Function onPressed,
-    Color color,
-    String text,
-    Color textColor,
-    double textPadding,
-    double textFontSize,
-    double cornerRadius,
-    double height,
+    required Function()? onPressed,
+    Color? color,
+    required String text,
+    Color? textColor,
+    double? textPadding,
+    double? textFontSize,
+    double? cornerRadius,
+    double? height,
   }) : super(
           color: color,
           onPressed: onPressed,

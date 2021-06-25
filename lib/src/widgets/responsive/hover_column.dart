@@ -4,7 +4,7 @@ class HoverColumn extends StatelessWidget {
   final Widget child;
 
   HoverColumn({
-    @required this.child,
+    required this.child,
   });
 
   @override

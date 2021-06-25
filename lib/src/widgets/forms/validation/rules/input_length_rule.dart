@@ -8,7 +8,7 @@ class InputLengthRule implements HoverValidationRule {
       : assert(_minLength < _maxLength);
 
   @override
-  String validate(String valueToValidate) {
+  String? validate(String valueToValidate) {
     int length = valueToValidate.length;
 
     if (length < _minLength) {

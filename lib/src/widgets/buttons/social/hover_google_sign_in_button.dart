@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'social_sign_in_button.dart';
 
 class HoverGoogleSignInButton extends SocialSignInButton {
-  HoverGoogleSignInButton({
-    @required Function onPressed,
-  }) : super(
+  HoverGoogleSignInButton({required Function()? onPressed})
+      : super(
           imageAssetName: 'images/google-logo.png',
           text: 'Sign in with Google',
           color: Colors.white,

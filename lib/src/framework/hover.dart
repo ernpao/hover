@@ -14,11 +14,10 @@ import 'helpers/hover_dimensions_helper.dart';
 import 'helpers/hover_shared_preferences_helper.dart';
 
 class Hover extends StatelessWidget {
-  static Hover _instance;
   static final List<SingleChildWidget> _providers = [];
 
   // Routing
-  static HoverRoutingManager _router;
+  static late HoverRoutingManager _router;
   static HoverRoutingManager get router => _router;
 
   // Drawer
@@ -44,8 +43,8 @@ class Hover extends StatelessWidget {
       getScreenHeight(context) * scale;
 
   // Theme
-  static HoverThemeData _themeData;
-  static Future<String> getCurrentThemeName() =>
+  static late HoverThemeData _themeData;
+  static Future<String?> getCurrentThemeName() =>
       _themeData.getCurrentThemeName();
   static void setThemeByName(String themeName) =>
       _themeData.setThemeByName(themeName);
@@ -55,7 +54,7 @@ class Hover extends StatelessWidget {
       HoverSharedPreferencesHelper.saveSetting(key, value);
 
   /// Load a value from shared preferences referenced by a key.
-  static Future<String> loadSetting(String key) =>
+  static Future<String?> loadSetting(String key) =>
       HoverSharedPreferencesHelper.loadSetting(key);
 
   /// Helper method for displaying a snackbar widget
@@ -91,33 +90,30 @@ class Hover extends StatelessWidget {
   /// The app loads the first theme in this Map on startup.
   ///
   static Hover create({
-    @required List<HoverPage> pages,
-    @required Map<String, ThemeData> themes,
+    required List<HoverPage> pages,
+    required Map<String, ThemeData> themes,
     List<SingleChildWidget> providers = const [],
-    Widget Function(BuildContext) appBarBuilder,
-    Widget Function(BuildContext) drawerBuilder,
-    Widget Function(BuildContext) floatingActionButtonBuilder,
+    Widget Function(BuildContext)? appBarBuilder,
+    Widget Function(BuildContext)? drawerBuilder,
+    Widget Function(BuildContext)? floatingActionButtonBuilder,
   }) {
-    if (_instance == null) {
-      _instance = Hover._(
-        pages: pages,
-        themes: themes,
-        providers: providers,
-        globalWidgets: HoverGlobalWidgets(
-          appBarBuilder: appBarBuilder,
-          drawerBuilder: drawerBuilder,
-          floatingActionButtonBuilder: floatingActionButtonBuilder,
-        ),
-      );
-    }
-    return _instance;
+    return Hover._(
+      pages: pages,
+      themes: themes,
+      providers: providers,
+      globalWidgets: HoverGlobalWidgets(
+        appBarBuilder: appBarBuilder,
+        drawerBuilder: drawerBuilder,
+        floatingActionButtonBuilder: floatingActionButtonBuilder,
+      ),
+    );
   }
 
   Hover._({
-    @required List<HoverPage> pages,
-    @required Map<String, ThemeData> themes,
+    required List<HoverPage> pages,
+    required Map<String, ThemeData> themes,
     List<SingleChildWidget> providers = const [],
-    HoverGlobalWidgets globalWidgets,
+    required HoverGlobalWidgets globalWidgets,
   }) {
     _router = HoverRouter(routes: pages);
     _providers.add(HoverRouterProvider(_router));
@@ -144,7 +140,7 @@ class Hover extends StatelessWidget {
 class _HoverAppBody extends StatefulWidget {
   final HoverThemeData themeData;
   _HoverAppBody({
-    @required this.themeData,
+    required this.themeData,
   });
   @override
   _HoverAppBodyState createState() {

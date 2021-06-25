@@ -9,12 +9,12 @@ class HoverGlobalWidgets {
     this.drawerBuilder,
     this.floatingActionButtonBuilder,
   });
-  final Widget Function(BuildContext) appBarBuilder;
-  final Widget Function(BuildContext) drawerBuilder;
-  final Widget Function(BuildContext) floatingActionButtonBuilder;
+  final Widget Function(BuildContext)? appBarBuilder;
+  final Widget Function(BuildContext)? drawerBuilder;
+  final Widget Function(BuildContext)? floatingActionButtonBuilder;
 }
 
 class HoverGlobalWidgetsProvider extends Provider<HoverGlobalWidgets> {
-  HoverGlobalWidgetsProvider(HoverGlobalWidgets globalBuilders)
-      : super(create: (_) => globalBuilders);
+  HoverGlobalWidgetsProvider(HoverGlobalWidgets? globalBuilders)
+      : super(create: (_) => globalBuilders!);
 }

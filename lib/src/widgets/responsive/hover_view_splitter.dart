@@ -35,8 +35,8 @@ class HoverViewSplitter extends StatelessWidget {
   final Curve curve;
 
   HoverViewSplitter({
-    @required this.mainViewChild,
-    @required this.subViewChild,
+    required this.mainViewChild,
+    required this.subViewChild,
     this.showSubView: false,
     this.mainViewFlex: 1,
     this.subViewFlex: 1,

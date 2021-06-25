@@ -14,9 +14,9 @@ class HoverResponsiveBuilder extends StatelessWidget {
     this.breakpointForPhones: 575,
     this.breakpointForTablets: 768,
     this.children = const [],
-    @required this.builder,
-    @required this.tabletViewBuilder,
-    @required this.phoneViewBuilder,
+    required this.builder,
+    required this.tabletViewBuilder,
+    required this.phoneViewBuilder,
   }) : assert(breakpointForTablets > breakpointForPhones);
 
   /// Builder for phone view.

@@ -6,13 +6,13 @@ import 'rules/hover_validation_rule.dart';
 
 abstract class HoverValidator {
   /// Generates the validation function.
-  String Function(String) build();
+  String? Function(String) build();
 
   /// Returns an error message string
   /// to display if the input [valueToValidate]
   /// not pass a validation
   /// test and returns null otherwise.
-  String validate(String valueToValidate);
+  String? validate(String valueToValidate);
 
   /// Adds a rule that will validate that
   /// the input string is a valid
@@ -39,11 +39,12 @@ abstract class HoverValidator {
 class HoverFluentValidator implements HoverValidator {
   List<HoverValidationRule> _validationRules = [];
 
-  String validate(String valueToValidate) {
-    String result;
+  @override
+  String? validate(String? valueToValidate) {
+    String? result;
 
     for (HoverValidationRule rule in _validationRules) {
-      String validationMessage = rule.validate(valueToValidate);
+      String? validationMessage = rule.validate(valueToValidate!);
       if (validationMessage != null && validationMessage.isNotEmpty) {
         result = validationMessage;
       }
@@ -78,7 +79,7 @@ class HoverFluentValidator implements HoverValidator {
   }
 
   @override
-  String Function(String) build() => validate;
+  String? Function(String?) build() => validate;
 
   @override
   HoverFluentValidator addValidator(HoverValidationRule validationRule) {

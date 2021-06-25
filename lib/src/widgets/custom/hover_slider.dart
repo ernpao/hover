@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 /// A widget to display inside a HoverImageSlider
 class HoverImageSlide extends StatelessWidget {
   /// The positioned widgets to display on top of the [image].
-  final List<Positioned> positionedChildren;
+  final List<Positioned>? positionedChildren;
 
   /// The Image widget to display.
   final Image image;
@@ -17,13 +17,13 @@ class HoverImageSlide extends StatelessWidget {
   final double cornerRadius;
   final double padding;
 
-  final Function onImageTapped;
+  final Function()? onImageTapped;
 
   HoverImageSlide({
     this.positionedChildren,
-    @required this.image,
-    @required this.width,
-    @required this.height,
+    required this.image,
+    required this.width,
+    required this.height,
     this.cornerRadius = 24,
     this.padding = 8,
     this.onImageTapped,
@@ -63,7 +63,7 @@ class HoverSlider extends StatefulWidget {
   final List<Widget> slides;
 
   HoverSlider({
-    @required this.slides,
+    required this.slides,
   });
 
   @override

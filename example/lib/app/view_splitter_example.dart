@@ -17,7 +17,7 @@ class _ViewSplitterExampleContent extends StatefulWidget {
 
 class _ViewSplitterExampleContentState
     extends State<_ViewSplitterExampleContent> {
-  bool _showSubView;
+  late bool _showSubView;
   @override
   void initState() {
     _showSubView = false;

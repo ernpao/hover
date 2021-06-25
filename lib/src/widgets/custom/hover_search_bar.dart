@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class HoverSearchBar extends StatefulWidget {
   /// Function to call when the search bar input changes.
-  final Function(String) onChanged;
+  final Function(String)? onChanged;
 
   /// Function to call upon submission of the user's search query (i.e. enter key is pressed).
-  final Function(String) onSubmitted;
+  final Function(String)? onSubmitted;
 
   /// Hint text to display on the search bar.
   final String hintText;
@@ -18,28 +18,28 @@ class HoverSearchBar extends StatefulWidget {
   final double elevation;
 
   /// Background color of the search bar.
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   /// Color of the hint text.
   final Color hintTextColor;
 
   /// Font style of the hint text.
-  final FontStyle hintTextFontStyle;
+  final FontStyle? hintTextFontStyle;
 
   /// Font size of the hint text.
-  final double hintTextFontSize;
+  final double? hintTextFontSize;
 
   /// Font weight of the hint text.
-  final FontWeight hintTextFontWeight;
+  final FontWeight? hintTextFontWeight;
 
   /// Controller for search bar's the text field.
-  final TextEditingController controller;
+  final TextEditingController? controller;
 
   final String initialText;
 
   HoverSearchBar({
     this.onChanged,
-    this.hintText,
+    this.hintText: "",
     this.iconColor: Colors.black38,
     this.elevation: 1.0,
     this.backgroundColor,
@@ -58,7 +58,7 @@ class HoverSearchBar extends StatefulWidget {
 }
 
 class _HoverSearchBarState extends State<HoverSearchBar> {
-  TextEditingController _controller;
+  late TextEditingController _controller;
   bool get _hasText => _controller.text.isNotEmpty;
   String get _userQuery => _controller.value.text;
   @override

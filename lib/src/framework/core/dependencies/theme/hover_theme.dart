@@ -4,28 +4,28 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class HoverThemeData extends ChangeNotifier {
   final Map<String, ThemeData> themes;
-  ThemeData _currentTheme;
+  late ThemeData _currentTheme;
   ThemeData get currentTheme => _currentTheme;
   ThemeData get initialTheme => themes.values.elementAt(0);
 
   HoverThemeData({
-    @required this.themes,
+    required this.themes,
   }) {
-    _currentTheme = themes[themes.keys.elementAt(0)];
+    _currentTheme = themes[themes.keys.elementAt(0)]!;
   }
 
   void setThemeByName(String themeName) async {
     final sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setString('theme', themeName);
     if (themes[themeName] != null) {
-      _currentTheme = themes[themeName];
+      _currentTheme = themes[themeName]!;
       notifyListeners();
     } else {
       print('Theme "$themeName" not found.');
     }
   }
 
-  Future<String> getCurrentThemeName() async {
+  Future<String?> getCurrentThemeName() async {
     final sharedPreferences = await SharedPreferences.getInstance();
     return sharedPreferences.getString('theme');
   }

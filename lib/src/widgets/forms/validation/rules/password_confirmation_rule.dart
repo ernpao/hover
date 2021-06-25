@@ -5,7 +5,7 @@ class PasswordConfirmationRule implements HoverValidationRule {
   final String _passwordConfirmationValue;
 
   @override
-  String validate(String valueToValidate) {
+  String? validate(String valueToValidate) {
     print(
         "Comparing passwords: $_passwordConfirmationValue vs $valueToValidate");
     if (valueToValidate.startsWith(_passwordConfirmationValue) &&

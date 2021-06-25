@@ -4,14 +4,12 @@ import '../base/custom_raised_button.dart';
 
 abstract class SocialSignInButton extends CustomRaisedButton {
   SocialSignInButton({
-    @required String text,
-    @required String imageAssetName,
-    Color color,
-    Color textColor,
-    Function onPressed,
-  })  : assert(imageAssetName != null),
-        assert(text != null),
-        super(
+    required String text,
+    required String imageAssetName,
+    Color? color,
+    Color? textColor,
+    Function()? onPressed,
+  }) : super(
           onPressed: onPressed,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

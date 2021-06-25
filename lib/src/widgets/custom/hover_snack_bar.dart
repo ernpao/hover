@@ -14,10 +14,10 @@ class HoverSnackBar extends SnackBar {
   final Duration duration;
 
   /// Sets the width of the snack bar.
-  final double width;
+  final double? width;
 
   HoverSnackBar({
-    @required this.content,
+    required this.content,
     this.duration: defaultDuration,
     this.width,
   }) : super(

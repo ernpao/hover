@@ -10,8 +10,8 @@ class HoverSquareImage extends StatelessWidget {
   /// How to inscribe the image into the space allocated during layout.
   final BoxFit fit;
   HoverSquareImage({
-    @required this.imageUrl,
-    @required this.size,
+    required this.imageUrl,
+    required this.size,
     this.fit: BoxFit.cover,
   });
   @override
@@ -41,8 +41,8 @@ class HoverSquareImageCard extends StatelessWidget {
   final double elevation;
 
   HoverSquareImageCard({
-    @required this.imageUrl,
-    @required this.size,
+    required this.imageUrl,
+    required this.size,
     this.cornerRadius: 0,
     this.elevation: 1,
   });
