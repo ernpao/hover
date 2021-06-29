@@ -14,7 +14,7 @@ class LoginFormExample extends HoverPage {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               HoverEmailLoginForm(
-                formName: "Sign in",
+                formName: "login-form",
                 onSubmit: (email, password) {
                   print(
                       "Sign in form submitted. Email: $email Password: $password");

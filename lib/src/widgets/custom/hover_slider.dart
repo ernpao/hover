@@ -14,8 +14,8 @@ class HoverImageSlide extends StatelessWidget {
   /// The height of the slide.
   final double height;
 
-  final double cornerRadius;
-  final double padding;
+  final double? cornerRadius;
+  final double? padding;
 
   final Function()? onImageTapped;
 
@@ -24,10 +24,12 @@ class HoverImageSlide extends StatelessWidget {
     required this.image,
     required this.width,
     required this.height,
-    this.cornerRadius = 24,
-    this.padding = 8,
+    this.cornerRadius,
+    this.padding,
     this.onImageTapped,
   });
+
+  double get _padding => padding ?? 8.0;
 
   @override
   Widget build(BuildContext context) {
@@ -36,18 +38,18 @@ class HoverImageSlide extends StatelessWidget {
       onTap: onImageTapped?.call,
       child: Container(
         child: image,
-        width: width - (2 * padding),
-        height: height - (2 * padding),
+        width: width - (2 * _padding),
+        height: height - (2 * _padding),
       ),
     ));
 
     children.addAll(positionedChildren ?? []);
 
     return Container(
-      padding: EdgeInsets.all(padding),
+      padding: EdgeInsets.all(_padding),
       child: Material(
         clipBehavior: Clip.antiAlias,
-        borderRadius: BorderRadius.circular(cornerRadius),
+        borderRadius: BorderRadius.circular(cornerRadius ?? 24.0),
         child: Stack(
           clipBehavior: Clip.antiAlias,
           alignment: Alignment.center,

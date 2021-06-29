@@ -5,22 +5,47 @@ import 'fields/hover_email_field.dart';
 
 class HoverPasswordResetForm extends CustomForm {
   HoverPasswordResetForm({
-    required Future<String> Function(String) onSubmit,
-    required String formName,
-    Color titleColor = Colors.black,
+    required Function(String? email) onSubmit,
+    String? formName,
+    String? title,
+    double? titleFontSize,
+    Color? titleColor,
+    FontWeight? titleFontWeight,
+    String? submitButtonText,
+    double? submitButtonTextSize,
+    Color? submitButtonColor,
+    Color? submitButtonTextColor,
+    double? submitButtonCornerRadius,
+    double? submitButtonHorizontalPadding,
+    double? submitButtonVerticalPadding,
+    String? subtitle,
+    Color? subtitleColor,
+    double? subtitleFontSize,
+    FontWeight? subtitleFontWeight,
   }) : super(
-          title: "Password Reset",
-          titleColor: titleColor,
-          subtitle:
-              "Enter the email address for your account and we'll send you a password reset link.",
           formName: formName,
-          submitButtonText: "Reset my password",
+          title: title ?? "Reset Your Password",
+          titleFontSize: titleFontSize,
+          titleFontWeight: titleFontWeight,
+          titleColor: titleColor,
           fields: [
             HoverEmailField(),
           ],
-          onSubmit: (formData) {
-            String email = formData[HoverEmailField.fieldName]!;
-            return onSubmit(email);
+          submitButtonTextColor: submitButtonTextColor,
+          submitButtonColor: submitButtonColor,
+          submitButtonText: submitButtonText ?? "Reset My Password",
+          submitButtonCornerRadius: submitButtonCornerRadius,
+          submitButtonTextSize: submitButtonTextSize,
+          submitButtonHorizontalPadding: submitButtonHorizontalPadding,
+          submitButtonVerticalPadding: submitButtonVerticalPadding,
+          subtitle: subtitle ??
+              "Enter the email address linked to your account and we'll send you a password reset link.",
+          subtitleColor: subtitleColor,
+          subtitleFontSize: subtitleFontSize,
+          subtitleFontWeight: subtitleFontWeight,
+          onSubmit: (Map<String, String?> map) {
+            String? email = map[HoverEmailField.fieldName];
+            onSubmit(email);
           },
         );
 }

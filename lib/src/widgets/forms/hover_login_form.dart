@@ -7,21 +7,26 @@ import 'base/custom_form.dart';
 
 class HoverLoginForm extends CustomForm {
   HoverLoginForm({
-    required Function(String username, String password) onSubmit,
-    required String formName,
-    String title = "Welcome Back!",
-    double titleFontSize = 28.0,
+    required Function(String? username, String? password) onSubmit,
+    String? formName,
+    String? title,
+    double? titleFontSize,
     Color? titleColor,
-    FontWeight titleFontWeight = FontWeight.w600,
-    String submitButtonText = "Login",
-    double submitButtonTextSize = 16.0,
+    FontWeight? titleFontWeight,
+    String? submitButtonText,
+    double? submitButtonTextSize,
     Color? submitButtonColor,
     Color? submitButtonTextColor,
     double? submitButtonCornerRadius,
-    double submitButtonPadding = 14.0,
+    double? submitButtonHorizontalPadding,
+    double? submitButtonVerticalPadding,
+    String? subtitle,
+    Color? subtitleColor,
+    double? subtitleFontSize,
+    FontWeight? subtitleFontWeight,
   }) : super(
           formName: formName,
-          title: title,
+          title: title ?? "Welcome Back!",
           titleFontSize: titleFontSize,
           titleFontWeight: titleFontWeight,
           titleColor: titleColor,
@@ -33,15 +38,20 @@ class HoverLoginForm extends CustomForm {
             HoverPasswordField(),
           ],
           onSubmit: (Map<String, String> map) {
-            String username = map["username"]!;
-            String password = map[HoverPasswordField.fieldName]!;
+            String? username = map["username"];
+            String? password = map[HoverPasswordField.fieldName];
             onSubmit(username, password);
           },
           submitButtonTextColor: submitButtonTextColor,
           submitButtonColor: submitButtonColor,
-          submitButtonText: submitButtonText,
+          submitButtonText: submitButtonText ?? "Login",
           submitButtonCornerRadius: submitButtonCornerRadius,
           submitButtonTextSize: submitButtonTextSize,
-          submitButtonPadding: submitButtonPadding,
+          submitButtonHorizontalPadding: submitButtonHorizontalPadding,
+          submitButtonVerticalPadding: submitButtonVerticalPadding,
+          subtitle: subtitle,
+          subtitleColor: subtitleColor,
+          subtitleFontSize: subtitleFontSize,
+          subtitleFontWeight: subtitleFontWeight,
         );
 }

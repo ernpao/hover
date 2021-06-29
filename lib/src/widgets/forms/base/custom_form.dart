@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import '../../buttons/base/custom_button_text.dart';
-import '../../buttons/base/custom_raised_button.dart';
+import 'package:hover/src/widgets/buttons/hover_call_to_action_button.dart';
 import 'custom_form_field.dart';
 
 abstract class CustomForm extends StatefulWidget {
   /// An identifier for the form. Used for debugging only.
-  final String formName;
+  final String? formName;
 
   /// The form title text located at the top of the form.
   final String? title;
@@ -22,34 +21,36 @@ abstract class CustomForm extends StatefulWidget {
   final Color? subtitleColor;
 
   /// Text for the form's submit button.
-  final String submitButtonText;
+  final String? submitButtonText;
   final double? submitButtonTextSize;
   final Color? submitButtonColor;
   final Color? submitButtonTextColor;
   final double? submitButtonCornerRadius;
-  final double? submitButtonPadding;
+  final double? submitButtonVerticalPadding;
+  final double? submitButtonHorizontalPadding;
 
   final List<CustomFormField> fields;
   final Function(Map<String, String>) onSubmit;
 
   CustomForm({
     this.subtitle,
-    this.subtitleFontSize = 16.0,
+    this.subtitleFontSize,
     this.subtitleFontWeight,
     this.subtitleColor,
     required this.formName,
     required this.fields,
     required this.onSubmit,
     required this.submitButtonText,
-    this.submitButtonTextSize = 16.0,
+    this.submitButtonTextSize,
     this.submitButtonTextColor,
     this.submitButtonColor,
-    this.submitButtonCornerRadius = 8.0,
-    this.submitButtonPadding = 14.0,
+    this.submitButtonCornerRadius,
+    this.submitButtonHorizontalPadding,
+    this.submitButtonVerticalPadding,
     this.title,
-    this.titleFontSize = 28.0,
+    this.titleFontSize,
     this.titleColor,
-    this.titleFontWeight = FontWeight.w600,
+    this.titleFontWeight,
   });
 
   @override
@@ -73,12 +74,15 @@ class _CustomFormState extends State<CustomForm> {
   }
 
   Widget _buildTitle(String? title) {
+    if (title == null) {
+      return SizedBox.shrink();
+    }
     return Text(
-      title!,
+      title,
       textAlign: TextAlign.center,
       style: TextStyle(
-        fontSize: widget.titleFontSize,
-        fontWeight: widget.titleFontWeight,
+        fontSize: widget.titleFontSize ?? 28.0,
+        fontWeight: widget.titleFontWeight ?? FontWeight.w600,
         color: widget.titleColor,
       ),
     );
@@ -96,22 +100,23 @@ class _CustomFormState extends State<CustomForm> {
   }
 
   void _submitForm() {
-    print("Form '${widget.formName}' was submitted.");
+    final formName = widget.formName ?? "CustomForm";
+    print("Form '$formName' was submitted.");
     if (_formKey.currentState!.validate()) {
-      print("'${widget.formName}' passed the validation rules.");
+      print("'$formName' passed the validation rules.");
       widget.onSubmit(getFormData());
     } else {
-      print("Form '${widget.formName}' did not pass the validation rules!");
+      print("Form '$formName' did not pass the validation rules!");
     }
   }
 
   Widget _buildSubmitButton() {
-    return CustomFormSubmitButton(
+    return HoverCallToActionButton(
       color: widget.submitButtonColor,
-      text: widget.submitButtonText,
+      text: widget.submitButtonText ?? "Submit",
       textColor: widget.submitButtonTextColor,
-      textPadding: widget.submitButtonPadding,
-      textFontSize: widget.submitButtonTextSize,
+      horizontalPadding: widget.submitButtonHorizontalPadding,
+      verticalPadding: widget.submitButtonVerticalPadding,
       cornerRadius: widget.submitButtonCornerRadius,
       onPressed: _submitForm,
     );
@@ -122,15 +127,16 @@ class _CustomFormState extends State<CustomForm> {
     final List<Widget> children = [];
 
     if (widget.title != null) {
-      Widget titleWidget = _buildTitle(widget.title);
-      children.add(titleWidget);
+      children.add(_buildTitle(widget.title));
     }
 
     if (widget.subtitle != null) {
-      Widget subtitleWidget = _buildSubtitle(widget.subtitle);
-      children.add(SizedBox(height: 12.0)); //spacer below the subtitle
-      children.add(subtitleWidget);
+      children.add(SizedBox(height: 12.0)); //spacer above the subtitle
+      children.add(_buildSubtitle(widget.subtitle));
     }
+
+    //spacer between the title/subtitle and fields
+    children.add(SizedBox(height: 18.0));
 
     children.addAll(widget.fields);
 
@@ -169,28 +175,4 @@ class _CustomFormState extends State<CustomForm> {
       ),
     );
   }
-}
-
-class CustomFormSubmitButton extends CustomRaisedButton {
-  CustomFormSubmitButton({
-    required Function()? onPressed,
-    Color? color,
-    required String text,
-    Color? textColor,
-    double? textPadding,
-    double? textFontSize,
-    double? cornerRadius,
-    double? height,
-  }) : super(
-          color: color,
-          onPressed: onPressed,
-          child: CustomButtonText(
-            text: text,
-            textColor: textColor,
-            fontSize: textFontSize,
-          ),
-          textPadding: textPadding,
-          cornerRadius: cornerRadius,
-          height: height,
-        );
 }

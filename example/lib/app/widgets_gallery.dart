@@ -40,6 +40,7 @@ class WidgetsGallery extends HoverPage {
                   Positioned(
                     bottom: 16,
                     child: HoverCallToActionButton(
+                      horizontalPadding: 32.0,
                       text: "CTA Button",
                       onPressed: () => Hover.showPlainSnackBar(
                         context,
@@ -85,7 +86,6 @@ class WidgetsGallery extends HoverPage {
                     HoverHeading("HoverCallToActionButton"),
                     HoverCallToActionButton(
                       text: "Call Snackbar",
-                      width: 200,
                       onPressed: () {
                         Hover.showPlainSnackBar(
                           context,
@@ -98,6 +98,7 @@ class WidgetsGallery extends HoverPage {
               ],
             ),
           ),
+          HoverPasswordResetForm(onSubmit: (password) {}),
         ],
       ),
     );

@@ -3,39 +3,41 @@ import 'package:flutter/material.dart';
 class HoverText extends StatelessWidget {
   final String text;
   final TextAlign? textAlign;
-  final double bottomPadding;
-  final double topPadding;
-  final double leftPadding;
-  final double rightPadding;
+  final double? bottomPadding;
+  final double? topPadding;
+  final double? leftPadding;
+  final double? rightPadding;
   final Color? color;
   final double? fontSize;
-  final FontWeight fontWeight;
+  final FontWeight? fontWeight;
   final FontStyle? fontStyle;
+  final bool? softWrap;
   HoverText(
     this.text, {
     this.textAlign,
     this.fontSize,
-    this.leftPadding: 8.0,
-    this.topPadding: 0.0,
-    this.rightPadding: 8.0,
-    this.bottomPadding: 0.0,
+    this.leftPadding,
+    this.topPadding,
+    this.rightPadding,
+    this.bottomPadding,
     this.color,
-    this.fontWeight: FontWeight.normal,
+    this.fontWeight,
     this.fontStyle,
+    this.softWrap,
   });
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.fromLTRB(
-        leftPadding,
-        topPadding,
-        rightPadding,
-        bottomPadding,
+        leftPadding ?? 8.0,
+        topPadding ?? 0.0,
+        rightPadding ?? 8.0,
+        bottomPadding ?? 0.0,
       ),
       child: Text(
         text,
         textAlign: textAlign,
-        softWrap: true,
+        softWrap: softWrap ?? true,
         style: TextStyle(
           fontWeight: fontWeight,
           fontSize: fontSize,
@@ -50,21 +52,21 @@ class HoverText extends StatelessWidget {
 class HoverTitle extends HoverText {
   HoverTitle(
     String text, {
-    final TextAlign textAlign: TextAlign.center,
-    final double fontSize: 24,
-    final double bottomPadding: 8.0,
-    final double topPadding: 8.0,
+    final TextAlign? textAlign,
+    final double? fontSize,
+    final double? bottomPadding,
+    final double? topPadding,
     final Color? color,
-    final FontWeight fontWeight: FontWeight.bold,
-    final FontStyle fontStyle: FontStyle.normal,
+    final FontWeight? fontWeight,
+    final FontStyle? fontStyle: FontStyle.normal,
   }) : super(
           text,
-          textAlign: textAlign,
-          topPadding: topPadding,
-          bottomPadding: bottomPadding,
+          textAlign: textAlign ?? TextAlign.center,
+          topPadding: topPadding ?? 8.0,
+          bottomPadding: bottomPadding ?? 8.0,
           color: color,
-          fontWeight: fontWeight,
-          fontSize: fontSize,
+          fontWeight: fontWeight ?? FontWeight.bold,
+          fontSize: fontSize ?? 24,
           fontStyle: fontStyle,
         );
 }
@@ -73,20 +75,20 @@ class HoverHeading extends HoverText {
   HoverHeading(
     String text, {
     final TextAlign? textAlign,
-    final double fontSize: 16,
-    final double bottomPadding: 8.0,
-    final double topPadding: 8.0,
+    final double? fontSize,
+    final double? bottomPadding,
+    final double? topPadding,
     final Color? color,
-    final FontWeight fontWeight: FontWeight.bold,
-    final FontStyle fontStyle: FontStyle.normal,
+    final FontWeight? fontWeight: FontWeight.bold,
+    final FontStyle? fontStyle: FontStyle.normal,
   }) : super(
           text,
-          textAlign: textAlign,
-          topPadding: topPadding,
-          bottomPadding: bottomPadding,
+          textAlign: textAlign ?? TextAlign.center,
+          topPadding: topPadding ?? 8.0,
+          bottomPadding: bottomPadding ?? 8.0,
           color: color,
-          fontWeight: fontWeight,
-          fontSize: fontSize,
+          fontWeight: fontWeight ?? FontWeight.bold,
+          fontSize: fontSize ?? 16.0,
           fontStyle: fontStyle,
         );
 }

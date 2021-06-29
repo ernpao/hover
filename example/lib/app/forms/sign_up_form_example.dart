@@ -14,7 +14,9 @@ class SignUpFormExample extends HoverPage {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               HoverEmailSignUpForm(
-                formName: "Sign Up",
+                title: "Create An Account!",
+                subtitle: "This is some sample subtitle",
+                formName: "sign-up-form",
                 onSubmit: (email, password) {
                   print(
                       "Sign up form submitted. Email: $email Password: $password");

@@ -6,8 +6,7 @@ class CustomButtonText extends Text {
     Color? textColor,
     FontWeight? fontWeight,
     double? letterSpacing,
-    double? fontSize = 16.0,
-    TextAlign? textAlign = TextAlign.center,
+    double? fontSize,
   }) : super(
           text,
           style: TextStyle(
@@ -16,6 +15,5 @@ class CustomButtonText extends Text {
             fontWeight: fontWeight,
             letterSpacing: letterSpacing,
           ),
-          textAlign: textAlign,
         );
 }

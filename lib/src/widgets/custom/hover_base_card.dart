@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class HoverBaseCard extends StatelessWidget {
   /// The widget below this widget in the tree.
-  final Widget child;
+  final Widget? child;
 
   /// The z-coordinate at which to place this card. This controls the size of
   /// the shadow below the card.
@@ -58,19 +58,19 @@ class HoverBaseCard extends StatelessWidget {
 
   HoverBaseCard({
     this.child = const SizedBox.shrink(),
-    this.elevation = 2.0,
-    this.cornerRadius = 24.0,
+    this.elevation,
+    this.cornerRadius,
     this.color: Colors.white,
     this.margin,
-    this.leftMargin = 12,
-    this.topMargin = 12,
-    this.rightMargin = 12,
-    this.bottomMargin = 12,
+    this.leftMargin,
+    this.topMargin,
+    this.rightMargin,
+    this.bottomMargin,
     this.padding,
-    this.leftPadding = 16,
-    this.topPadding = 16,
-    this.bottomPadding = 16,
-    this.rightPadding = 16,
+    this.leftPadding,
+    this.topPadding,
+    this.bottomPadding,
+    this.rightPadding,
   });
 
   @override
@@ -80,23 +80,23 @@ class HoverBaseCard extends StatelessWidget {
       margin: margin != null
           ? EdgeInsets.all(margin!)
           : EdgeInsets.only(
-              top: topMargin!,
-              left: leftMargin!,
-              right: rightMargin!,
-              bottom: bottomMargin!,
+              top: topMargin ?? 12.0,
+              left: leftMargin ?? 12.0,
+              right: rightMargin ?? 12.0,
+              bottom: bottomMargin ?? 12.0,
             ),
       elevation: elevation,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(cornerRadius!),
+        borderRadius: BorderRadius.circular(cornerRadius ?? 24.0),
       ),
       child: Padding(
         padding: padding != null
             ? EdgeInsets.all(padding!)
             : EdgeInsets.only(
-                left: leftPadding!,
-                top: topPadding!,
-                right: rightPadding!,
-                bottom: bottomPadding!,
+                left: leftPadding ?? 16.0,
+                top: topPadding ?? 16.0,
+                right: rightPadding ?? 16.0,
+                bottom: bottomPadding ?? 16.0,
               ),
         child: child,
       ),

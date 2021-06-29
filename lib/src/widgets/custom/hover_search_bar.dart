@@ -8,20 +8,20 @@ class HoverSearchBar extends StatefulWidget {
   final Function(String)? onSubmitted;
 
   /// Hint text to display on the search bar.
-  final String hintText;
+  final String? hintText;
 
   /// Color to use for the search icon.
-  final Color iconColor;
+  final Color? iconColor;
 
   /// The z-coordinate at which to place this card. This controls the size of
   /// the shadow below the card.
-  final double elevation;
+  final double? elevation;
 
   /// Background color of the search bar.
   final Color? backgroundColor;
 
   /// Color of the hint text.
-  final Color hintTextColor;
+  final Color? hintTextColor;
 
   /// Font style of the hint text.
   final FontStyle? hintTextFontStyle;
@@ -32,24 +32,23 @@ class HoverSearchBar extends StatefulWidget {
   /// Font weight of the hint text.
   final FontWeight? hintTextFontWeight;
 
-  /// Controller for search bar's the text field.
-  final TextEditingController? controller;
+  final String? initialText;
 
-  final String initialText;
+  final bool clearOnSubmit;
 
   HoverSearchBar({
     this.onChanged,
-    this.hintText: "",
-    this.iconColor: Colors.black38,
-    this.elevation: 1.0,
+    this.hintText,
+    this.iconColor,
+    this.elevation,
     this.backgroundColor,
-    this.hintTextColor: Colors.black38,
+    this.hintTextColor,
     this.hintTextFontSize,
     this.hintTextFontStyle,
     this.hintTextFontWeight,
-    this.controller,
     this.onSubmitted,
-    this.initialText = "",
+    this.initialText,
+    this.clearOnSubmit = false,
   });
   @override
   State<StatefulWidget> createState() {
@@ -63,11 +62,11 @@ class _HoverSearchBarState extends State<HoverSearchBar> {
   String get _userQuery => _controller.value.text;
   @override
   void initState() {
-    _controller = widget.controller ?? TextEditingController();
-    _controller.text = widget.initialText;
+    _controller = TextEditingController();
+    _controller.text = widget.initialText ?? "";
     _controller.addListener(() {
       widget.onChanged?.call(_userQuery);
-      // setState() required to toggle visibility of clear text icon
+      // Calling setState is required to toggle visibility of clear text icon
       setState(() => {});
     });
 
@@ -79,24 +78,31 @@ class _HoverSearchBarState extends State<HoverSearchBar> {
     return Container(
       child: Card(
         color: widget.backgroundColor,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
-        margin: EdgeInsets.all(12),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(32.0),
+        ),
+        margin: EdgeInsets.all(12.0),
         elevation: widget.elevation,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Row(
             children: [
-              Icon(Icons.search, color: widget.iconColor),
+              Icon(Icons.search, color: widget.iconColor ?? Colors.black38),
               SizedBox(width: 8),
               Expanded(
                 child: TextField(
-                  onSubmitted: (query) => widget.onSubmitted?.call(_userQuery),
+                  onSubmitted: (query) {
+                    widget.onSubmitted?.call(_userQuery);
+                    if (widget.clearOnSubmit) {
+                      _controller.clear();
+                    }
+                  },
                   controller: _controller,
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: widget.hintText,
+                    hintText: widget.hintText ?? "",
                     hintStyle: TextStyle(
-                      color: widget.hintTextColor,
+                      color: widget.hintTextColor ?? Colors.black38,
                       fontWeight: widget.hintTextFontWeight,
                       fontSize: widget.hintTextFontSize,
                       fontStyle: widget.hintTextFontStyle,
