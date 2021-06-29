@@ -44,7 +44,7 @@ abstract class CustomForm extends StatefulWidget {
     this.submitButtonTextSize = 16.0,
     this.submitButtonTextColor,
     this.submitButtonColor,
-    this.submitButtonCornerRadius = 6.0,
+    this.submitButtonCornerRadius = 8.0,
     this.submitButtonPadding = 14.0,
     this.title,
     this.titleFontSize = 28.0,

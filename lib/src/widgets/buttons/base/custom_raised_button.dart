@@ -36,7 +36,7 @@ abstract class CustomRaisedButton extends StatelessWidget {
         shape: MaterialStateProperty.resolveWith(
           (states) => RoundedRectangleBorder(
             borderRadius:
-                BorderRadius.all(Radius.circular(cornerRadius ?? 6.0)),
+                BorderRadius.all(Radius.circular(cornerRadius ?? 8.0)),
           ),
         ),
       ),
