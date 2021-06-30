@@ -1,3 +1,5 @@
+## [0.3.2] - 6/30/2021
+* Made enhancements for web and improved features on mobile responsive widgets.
 ## [0.3.1] - 6/29/2021
 * Updated widget default values for consistency.
 ## [0.3.0] - 6/26/2021
@@ -8,7 +10,6 @@
 
 ## [0.2.2] - 6/6/2021
 * Added logic for determining type of key event for the CustomForm's RawKeyboardListener.
-
 
 ## [0.2.1] - 6/6/2021
 * Wrapped CustomForm in RawKeyboardListener to enable form submission using the Enter key.

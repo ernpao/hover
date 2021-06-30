@@ -40,6 +40,7 @@ class _ViewSplitterExampleContentState
       body: HoverViewSplitter(
         subViewFlex: 1,
         mainViewFlex: 1,
+        subViewPosition: HoverViewSplitterPosition.left,
         mainViewChild: Container(
           color: Colors.amber,
           constraints: BoxConstraints.expand(),

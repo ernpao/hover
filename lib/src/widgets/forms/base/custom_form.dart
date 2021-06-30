@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -146,7 +147,7 @@ class _CustomFormState extends State<CustomForm> {
     Widget submitButton = _buildSubmitButton();
     children.add(submitButton);
     FocusScope.of(context).requestFocus(_textNode);
-    return RawKeyboardListener(
+    final Widget form = RawKeyboardListener(
       focusNode: _textNode,
       onKey: (event) {
         if (event.runtimeType.toString() == 'RawKeyDownEvent') {
@@ -174,5 +175,6 @@ class _CustomFormState extends State<CustomForm> {
         ),
       ),
     );
+    return kIsWeb ? SizedBox(width: 450, child: form) : form;
   }
 }

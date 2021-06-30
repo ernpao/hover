@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 abstract class CustomRaisedButton extends StatelessWidget {
@@ -20,6 +21,16 @@ abstract class CustomRaisedButton extends StatelessWidget {
   final double? horizontalPadding;
   final double? margin;
   final double? maxWidth;
+
+  final double _defaultPadding = 12.0;
+
+  double get _horizontalPadding =>
+      (horizontalPadding ?? _defaultPadding) * _paddingScale;
+  double get _verticalPadding =>
+      (verticalPadding ?? _defaultPadding) * _paddingScale;
+
+  double get _paddingScale => kIsWeb ? 2 : 1;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -31,8 +42,8 @@ abstract class CustomRaisedButton extends StatelessWidget {
           style: ButtonStyle(
             padding: MaterialStateProperty.resolveWith(
               (states) => EdgeInsets.symmetric(
-                horizontal: horizontalPadding ?? 12.0,
-                vertical: verticalPadding ?? 12.0,
+                horizontal: _horizontalPadding,
+                vertical: _verticalPadding,
               ),
             ),
             backgroundColor: MaterialStateProperty.resolveWith(
@@ -45,7 +56,7 @@ abstract class CustomRaisedButton extends StatelessWidget {
               ),
             ),
           ),
-          onPressed: onPressed ?? () {},
+          onPressed: onPressed?.call,
         ),
       ),
     );
