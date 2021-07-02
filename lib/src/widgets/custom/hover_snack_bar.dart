@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hover/src/framework/helpers/hover_snackbar_helper.dart';
+
+import '../../framework/helpers/hover_snackbar_helper.dart';
 
 class HoverSnackBar extends SnackBar {
   /// Default duration for the snack bar is 2 seconds.

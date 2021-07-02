@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+
 import '../base/custom_form_field.dart';
 import '../validation/hover_fluent_validator.dart';
 
@@ -23,12 +24,21 @@ class HoverPasswordField extends _PasswordField {
 
   HoverPasswordField({
     String? initialValue,
+    int? passwordMinLength,
+    bool? requireLowercase,
+    bool? requireUppercase,
+    bool? requireSpecialCharacters,
   }) : super(
           name: fieldName,
           labelText: fieldLabel,
           initialValue: initialValue,
           validator: HoverFluentValidator()
-              .validateAsPassword(8)
+              .validateAsPassword(
+                passwordMinLength ?? 8,
+                mustContainLowercase: requireLowercase ?? false,
+                mustContainUppercase: requireUppercase ?? false,
+                mustContainNumber: requireSpecialCharacters ?? false,
+              )
               .validateAsRequired()
               .build(),
         );
@@ -49,7 +59,6 @@ class HoverConfirmPasswordField extends _PasswordField {
               print("Confirmation Input: $input");
 
               return HoverFluentValidator()
-                  .validateAsPassword(8)
                   .validateAsPasswordConfirmation(passwordFieldToConfirm.value)
                   .validateAsRequired()
                   .validate(input);

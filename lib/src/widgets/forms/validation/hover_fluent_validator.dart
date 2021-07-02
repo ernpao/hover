@@ -1,8 +1,11 @@
-import 'rules/email_validation_rule.dart';
-import 'rules/input_length_rule.dart';
-import 'rules/password_confirmation_rule.dart';
-import 'rules/required_field_rule.dart';
+import 'rules/email_validation.dart';
 import 'rules/hover_validation_rule.dart';
+import 'rules/input_length.dart';
+import 'rules/password_confirmation.dart';
+import 'rules/require_lowercase.dart';
+import 'rules/require_number.dart';
+import 'rules/require_uppercase.dart';
+import 'rules/required_field.dart';
 
 abstract class HoverValidator {
   /// Generates the validation function.
@@ -21,8 +24,15 @@ abstract class HoverValidator {
 
   /// Adds a rule that will ensure the input
   /// meets a minimum password length
-  /// [passwordMinLength].
-  HoverValidator validateAsPassword(int passwordMinLength);
+  /// [passwordMinLength]. Can also be configured
+  /// to require uppercase letters, lowercase letters,
+  /// or special characters.
+  HoverValidator validateAsPassword(
+    int passwordMinLength, {
+    bool mustContainUppercase = false,
+    bool mustContainLowercase = false,
+    bool mustContainNumber = false,
+  });
 
   /// Adds a rule that will ensure the input
   /// matches the [passwordConfirmation] value.
@@ -46,7 +56,11 @@ class HoverFluentValidator implements HoverValidator {
     for (HoverValidationRule rule in _validationRules) {
       String? validationMessage = rule.validate(valueToValidate!);
       if (validationMessage != null && validationMessage.isNotEmpty) {
-        result = validationMessage;
+        if (result != null) {
+          result += "\n" + validationMessage;
+        } else {
+          result = validationMessage;
+        }
       }
     }
 
@@ -55,26 +69,44 @@ class HoverFluentValidator implements HoverValidator {
 
   @override
   HoverFluentValidator validateAsEmail() {
-    _validationRules.add(EmailValidationRule());
+    _validationRules.add(EmailValidation());
     return this;
   }
 
   @override
-  HoverFluentValidator validateAsPassword(int passwordMinLength) {
+  HoverFluentValidator validateAsPassword(
+    int passwordMinLength, {
+    bool mustContainUppercase = false,
+    bool mustContainLowercase = false,
+    bool mustContainNumber = false,
+  }) {
     _validationRules.add(MinLengthRule(passwordMinLength));
+
+    if (mustContainUppercase) {
+      _validationRules.add(RequireUppercase());
+    }
+
+    if (mustContainLowercase) {
+      _validationRules.add(RequireLowercase());
+    }
+
+    if (mustContainNumber) {
+      _validationRules.add(RequireNumber());
+    }
+
     return this;
   }
 
   @override
   HoverFluentValidator validateAsRequired() {
-    _validationRules.add(RequiredFieldValidationRule());
+    _validationRules.add(RequiredField());
     return this;
   }
 
   @override
   HoverFluentValidator validateAsPasswordConfirmation(
       String passwordConfirmation) {
-    _validationRules.add(PasswordConfirmationRule(passwordConfirmation));
+    _validationRules.add(PasswordConfirmation(passwordConfirmation));
     return this;
   }
 

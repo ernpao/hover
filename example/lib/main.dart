@@ -23,10 +23,10 @@ class HoverExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Hover.create(
       pages: [
+        signUpFormExample,
         mobileResponsivenessExample,
         widgetsGallery,
         signInFormExample,
-        signUpFormExample,
         viewSplitterExample,
         profilePage,
       ],

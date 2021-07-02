@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
 import 'base/custom_form.dart';
 import 'fields/hover_email_field.dart';
 import 'fields/hover_password_field.dart';
@@ -23,6 +24,10 @@ class HoverEmailSignUpForm extends CustomForm {
     Color? subtitleColor,
     double? subtitleFontSize,
     FontWeight? subtitleFontWeight,
+    int? passwordMinLength,
+    bool? requireLowercase,
+    bool? requireUppercase,
+    bool? requireSpecialCharacters,
   }) {
     return HoverEmailSignUpForm._(
       formName: formName,
@@ -37,7 +42,12 @@ class HoverEmailSignUpForm extends CustomForm {
       submitButtonVerticalPadding: submitButtonVerticalPadding,
       submitButtonTextColor: submitButtonTextColor,
       submitButtonTextSize: submitButtonTextSize,
-      passwordField: HoverPasswordField(),
+      passwordField: HoverPasswordField(
+        passwordMinLength: passwordMinLength,
+        requireLowercase: requireLowercase,
+        requireUppercase: requireUppercase,
+        requireSpecialCharacters: requireSpecialCharacters,
+      ),
       onSubmit: onSubmit,
       subtitle: subtitle,
       subtitleColor: subtitleColor,

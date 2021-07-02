@@ -69,6 +69,9 @@ class _CustomFormFieldState extends State<CustomFormField> {
             labelText: widget.label,
             icon: (widget.icon != null) ? widget.icon : SizedBox.shrink(),
             suffix: _buildSuffix(),
+            errorStyle: TextStyle(
+              height: 1.75,
+            ),
           ),
         ),
       ),

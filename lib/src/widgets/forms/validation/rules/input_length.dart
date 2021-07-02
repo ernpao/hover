@@ -1,10 +1,10 @@
 import 'hover_validation_rule.dart';
 
-class InputLengthRule implements HoverValidationRule {
+class InputLength implements HoverValidationRule {
   final int _maxLength;
   final int _minLength;
 
-  InputLengthRule(this._minLength, this._maxLength)
+  InputLength(this._minLength, this._maxLength)
       : assert(_minLength < _maxLength);
 
   @override
@@ -12,20 +12,20 @@ class InputLengthRule implements HoverValidationRule {
     int length = valueToValidate.length;
 
     if (length < _minLength) {
-      return "Please enter a value that is at least $_minLength characters long";
+      return "Please enter a value that is at least $_minLength characters long.";
     }
     if (length > _maxLength) {
-      return "Please enter a value that does not exceed $_maxLength characters in lenth.";
+      return "Please enter a value that does not exceed $_maxLength characters in length.";
     }
 
     return null;
   }
 }
 
-class MinLengthRule extends InputLengthRule {
+class MinLengthRule extends InputLength {
   MinLengthRule(int minLength) : super(minLength, 1024);
 }
 
-class MaxLengthRule extends InputLengthRule {
+class MaxLengthRule extends InputLength {
   MaxLengthRule(int maxLength) : super(0, maxLength);
 }

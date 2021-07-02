@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hover/widgets.dart';
-import 'fields/hover_password_field.dart';
 
+import '../../../widgets.dart';
 import 'base/custom_form.dart';
+import 'fields/hover_password_field.dart';
 
 class HoverLoginForm extends CustomForm {
   HoverLoginForm({

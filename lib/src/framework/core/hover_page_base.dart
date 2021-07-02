@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'dependencies/navigation/routing/hover_route.dart';
 import 'dependencies/global_widgets/hover_global_widgets.dart';
+import 'dependencies/navigation/routing/hover_route.dart';
 
 abstract class HoverPageBase extends StatelessWidget implements HoverRoute {
   /// Title of the page. Currently unused by Hover in any mechanisms.

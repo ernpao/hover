@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'fields/hover_email_field.dart';
-import 'fields/hover_password_field.dart';
 
 import 'base/custom_form.dart';
+import 'fields/hover_email_field.dart';
+import 'fields/hover_password_field.dart';
 
 class HoverEmailLoginForm extends CustomForm {
   HoverEmailLoginForm({

@@ -2,7 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hover/src/widgets/buttons/hover_call_to_action_button.dart';
+
+import '../../buttons/hover_call_to_action_button.dart';
 import 'custom_form_field.dart';
 
 abstract class CustomForm extends StatefulWidget {

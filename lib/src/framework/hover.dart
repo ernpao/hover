@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:hover/src/framework/helpers/hover_bottom_sheet_helper.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
 import '../../framework.dart';
-import 'core/dependencies/theme/hover_theme.dart';
-import 'core/dependencies/navigation/routing/hover_router.dart';
 import 'core/dependencies/global_widgets/hover_global_widgets.dart';
-
-import 'helpers/hover_drawer_helper.dart';
-import 'helpers/hover_snackbar_helper.dart';
+import 'core/dependencies/navigation/routing/hover_router.dart';
+import 'core/dependencies/theme/hover_theme.dart';
+import 'helpers/hover_bottom_sheet_helper.dart';
 import 'helpers/hover_dimensions_helper.dart';
+import 'helpers/hover_drawer_helper.dart';
 import 'helpers/hover_shared_preferences_helper.dart';
+import 'helpers/hover_snackbar_helper.dart';
 
 class Hover extends StatelessWidget {
   static final List<SingleChildWidget> _providers = [];
