@@ -1,21 +1,21 @@
-import 'rules/email_validation.dart';
-import 'rules/hover_validation_rule.dart';
-import 'rules/input_length.dart';
-import 'rules/password_confirmation.dart';
-import 'rules/require_lowercase.dart';
-import 'rules/require_number.dart';
-import 'rules/require_uppercase.dart';
-import 'rules/required_field.dart';
+import 'rules/rules.dart';
+
+export 'rules/rules.dart';
 
 abstract class HoverValidator {
   /// Generates the validation function.
   String? Function(String) build();
 
-  /// Returns an error message string
-  /// to display if the input [valueToValidate]
-  /// not pass a validation
-  /// test and returns null otherwise.
+  /// Returns validation error messages as
+  /// a single string joined with the
+  /// newline character if the input [valueToValidate]
+  /// does not pass validation and returns null otherwise.
   String? validate(String valueToValidate);
+
+  /// Returns validation error messages as
+  /// a list of strings if the input [valueToValidate]
+  /// does not pass validation and returns null otherwise.
+  List<String>? validateWithErrorsAsList(String valueToValidate);
 
   /// Checks if the input is valid based on the validation
   /// rules provided.
@@ -25,6 +25,11 @@ abstract class HoverValidator {
   /// the input string is a valid
   /// email address.
   HoverValidator validateAsEmail();
+
+  /// Adds a rule that will validate that
+  /// the input string is a valid
+  /// mobile number.
+  HoverValidator validateAsMobileNumber();
 
   /// Adds a rule that will ensure the input
   /// meets a minimum password length
@@ -47,7 +52,7 @@ abstract class HoverValidator {
   HoverValidator validateAsRequired();
 
   /// Add a custom validation rule.
-  HoverValidator addValidator(HoverValidationRule validationRule);
+  HoverValidator addRule(HoverValidationRule validationRule);
 }
 
 class HoverFluentValidator implements HoverValidator {
@@ -72,8 +77,24 @@ class HoverFluentValidator implements HoverValidator {
   }
 
   @override
+  List<String>? validateWithErrorsAsList(String valueToValidate) =>
+      validate(valueToValidate)?.split("\n");
+
+  @override
+  bool check(String valueToValidate) => validate(valueToValidate) == null;
+
+  @override
+  String? Function(String?) build() => validate;
+
+  @override
   HoverFluentValidator validateAsEmail() {
     _validationRules.add(EmailValidation());
+    return this;
+  }
+
+  @override
+  HoverFluentValidator addRule(HoverValidationRule validationRule) {
+    _validationRules.add(validationRule);
     return this;
   }
 
@@ -115,14 +136,8 @@ class HoverFluentValidator implements HoverValidator {
   }
 
   @override
-  String? Function(String?) build() => validate;
-
-  @override
-  HoverFluentValidator addValidator(HoverValidationRule validationRule) {
-    _validationRules.add(validationRule);
+  HoverValidator validateAsMobileNumber() {
+    _validationRules.add(MobileNumberValidation());
     return this;
   }
-
-  @override
-  bool check(String valueToValidate) => validate(valueToValidate) == null;
 }

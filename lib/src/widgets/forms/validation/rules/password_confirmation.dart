@@ -1,16 +1,15 @@
 import 'hover_validation_rule.dart';
 
 class PasswordConfirmation implements HoverValidationRule {
-  PasswordConfirmation(this._passwordConfirmationValue);
-  final String _passwordConfirmationValue;
+  PasswordConfirmation(this.passwordConfirmation);
+  final String passwordConfirmation;
 
   @override
-  String? validate(String valueToValidate) {
-    print(
-        "Comparing passwords: $_passwordConfirmationValue vs $valueToValidate");
-    if (valueToValidate.startsWith(_passwordConfirmationValue) &&
-        valueToValidate.endsWith(_passwordConfirmationValue) &&
-        valueToValidate.hashCode == _passwordConfirmationValue.hashCode) {
+  String? validate(String password) {
+    print("Comparing '$password' against '$passwordConfirmation'");
+    if (password.startsWith(passwordConfirmation) &&
+        password.endsWith(passwordConfirmation) &&
+        password.hashCode == passwordConfirmation.hashCode) {
       return null;
     }
     return "Value is not the same as the entered password.";

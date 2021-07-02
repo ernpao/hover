@@ -2,11 +2,6 @@ import 'hover_validation_rule.dart';
 
 class RequiredField implements HoverValidationRule {
   @override
-  String? validate(String? value) {
-    if (value == null || value.isEmpty) {
-      return "This is a required field.";
-    }
-
-    return null;
-  }
+  String? validate(String? input) =>
+      (input == null || input.isEmpty) ? "This is a required field." : null;
 }
