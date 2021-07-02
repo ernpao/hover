@@ -17,6 +17,10 @@ abstract class HoverValidator {
   /// test and returns null otherwise.
   String? validate(String valueToValidate);
 
+  /// Checks if the input is valid based on the validation
+  /// rules provided.
+  bool check(String valueToValidate);
+
   /// Adds a rule that will validate that
   /// the input string is a valid
   /// email address.
@@ -118,4 +122,7 @@ class HoverFluentValidator implements HoverValidator {
     _validationRules.add(validationRule);
     return this;
   }
+
+  @override
+  bool check(String valueToValidate) => validate(valueToValidate) == null;
 }
