@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+enum HoverResponsiveState {
+  desktop,
+  tablet,
+  phone,
+}
+
 class HoverResponsiveBuilder extends StatelessWidget {
   /// The screen width at which the view for tablets is rendered.
   final int breakpointForTablets;
@@ -15,20 +21,10 @@ class HoverResponsiveBuilder extends StatelessWidget {
     this.breakpointForTablets: 768,
     this.children = const [],
     required this.builder,
-    required this.tabletViewBuilder,
-    required this.phoneViewBuilder,
   }) : assert(breakpointForTablets > breakpointForPhones);
 
-  /// Builder for phone view.
-  final Widget Function(BuildContext context, List<Widget> children)
-      phoneViewBuilder;
-
-  /// Builder for tablet view.
-  final Widget Function(BuildContext context, List<Widget> children)
-      tabletViewBuilder;
-
-  /// Builder for desktop view.
-  final Widget Function(BuildContext context, List<Widget> children) builder;
+  final Widget Function(BuildContext context, HoverResponsiveState state,
+      List<Widget> children) builder;
 
   @override
   Widget build(BuildContext context) {
@@ -37,14 +33,14 @@ class HoverResponsiveBuilder extends StatelessWidget {
 
     if (screenWidth > breakpointForTablets) {
       // Render desktop view
-      return builder(context, children);
+      return builder(context, HoverResponsiveState.desktop, children);
     } else if (screenWidth > breakpointForPhones &&
         screenWidth <= breakpointForTablets) {
       // Render tablet view
-      return tabletViewBuilder(context, children);
+      return builder(context, HoverResponsiveState.tablet, children);
     } else {
       // Render phone view
-      return phoneViewBuilder(context, children);
+      return builder(context, HoverResponsiveState.phone, children);
     }
   }
 }

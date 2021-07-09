@@ -12,9 +12,16 @@ class MobileResponsivenessExample extends HoverPage {
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: HoverResponsiveBuilder(
-            builder: (_, __) => Text("Desktop view!"),
-            tabletViewBuilder: (_, __) => Text("Tablet view!"),
-            phoneViewBuilder: (_, __) => Text("Phone view!"),
+            builder: (_, state, __) {
+              switch (state) {
+                case HoverResponsiveState.tablet:
+                  return Text("Tablet view!");
+                case HoverResponsiveState.phone:
+                  return Text("Phone view!");
+                default:
+                  return Text("Desktop view!");
+              }
+            },
           ),
         ),
         Expanded(
