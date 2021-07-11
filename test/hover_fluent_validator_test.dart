@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hover/widgets.dart';
+import 'package:hover/hover.dart';
 
 main() {
   test("Hover Fluent Validator - Testing Email Validation", () {

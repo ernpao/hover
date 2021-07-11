@@ -1,12 +1,12 @@
-import 'package:example/app/mobile_responsiveness_example.dart';
-import 'package:example/app/forms/sign_up_form_example.dart';
-import 'package:example/app/view_splitter_example.dart';
-import 'package:example/app/widgets_gallery.dart';
 import 'package:flutter/material.dart';
-import 'package:hover/framework.dart';
+import 'package:hover/hover.dart';
 
 import 'app/profile_example.dart';
 import 'app/forms/login_form_example.dart';
+import 'app/mobile_responsiveness_example.dart';
+import 'app/forms/sign_up_form_example.dart';
+import 'app/view_splitter_example.dart';
+import 'app/widgets_gallery.dart';
 
 void main() => runApp(HoverExample());
 

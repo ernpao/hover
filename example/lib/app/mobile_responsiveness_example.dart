@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:hover/framework.dart';
-import 'package:hover/widgets.dart';
+import 'package:hover/hover.dart';
 
 class MobileResponsivenessExample extends HoverPage {
   @override

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
-import '../../framework.dart';
 import 'core/dependencies/global_widgets/hover_global_widgets.dart';
 import 'core/dependencies/navigation/routing/hover_router.dart';
 import 'core/dependencies/theme/hover_theme.dart';
+import 'core/hover_page.dart';
 import 'helpers/hover_bottom_sheet_helper.dart';
 import 'helpers/hover_dimensions_helper.dart';
 import 'helpers/hover_drawer_helper.dart';
