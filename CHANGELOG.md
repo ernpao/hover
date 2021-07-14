@@ -1,3 +1,6 @@
+## [0.4.0] - 7/15/2021
+* Revamp of library structure.
+
 ## [0.3.2] - 6/30/2021
 * Made enhancements for web and improved features on mobile responsive widgets.
 ## [0.3.1] - 6/29/2021

@@ -18,7 +18,7 @@ class HoverBasicField extends CustomFormField {
   }) : super(
           name: fieldName,
           label: fieldLabel,
-          initialValue: initialValue!,
+          initialValue: initialValue,
           validator: validator,
         );
 }
