@@ -21,8 +21,6 @@ class SignUpFormExample extends HoverPage {
                   Hover.showPlainSnackBar(context,
                       "Sign up form submitted. Email: $email Password: $password");
                 },
-                submitButtonColor: Colors.blue,
-                submitButtonTextColor: Colors.white,
                 requireLowercase: true,
                 requireUppercase: true,
                 requireSpecialCharacters: true,

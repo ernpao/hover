@@ -30,10 +30,10 @@ class HoverExample extends StatelessWidget {
         viewSplitterExample,
         profilePage,
       ],
-      themes: {
-        "light": ThemeData.light(),
-        "dark": ThemeData.dark(),
-      },
+      themes: [
+        HoverThemeData.dark,
+        HoverThemeData.light,
+      ],
       providers: [],
       appBarBuilder: _buildAppBar,
       drawerBuilder: _buildDrawer,

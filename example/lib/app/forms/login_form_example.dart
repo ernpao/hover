@@ -18,19 +18,7 @@ class LoginFormExample extends HoverPage {
                       "Sign in form submitted. Email: $email Password: $password");
                   Hover.router.navigateTo("/profile", context);
                 },
-                submitButtonColor: Colors.blue,
-                submitButtonTextColor: Colors.white,
               ),
-              // HoverSignInForm(
-              //   formName: "Sign in",
-              //   onSubmit: (email, password) {
-              //     print(
-              //         "Sign in form submitted. Email: $email Password: $password");
-              //     Hover.router.navigateTo("/profile", context);
-              //   },
-              //   submitButtonColor: Colors.blue,
-              //   submitButtonTextColor: Colors.white,
-              // ),
             ],
           ),
         ),

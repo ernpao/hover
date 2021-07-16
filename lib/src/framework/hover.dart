@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
-import 'core/dependencies/global_widgets/hover_global_widgets.dart';
-import 'core/dependencies/navigation/routing/hover_router.dart';
-import 'core/dependencies/theme/hover_theme.dart';
+import 'core/components/global_widgets/hover_global_widgets.dart';
+import 'core/components/navigation/routing/hover_router.dart';
+import 'core/components/theme/hover_theme_settings.dart';
+import 'core/components/theme/hover_theme_data.dart';
 import 'core/hover_page.dart';
 import 'helpers/hover_bottom_sheet_helper.dart';
 import 'helpers/hover_dimensions_helper.dart';
@@ -42,11 +43,21 @@ class Hover extends StatelessWidget {
       getScreenHeight(context) * scale;
 
   // Theme
-  static late HoverThemeData _themeData;
-  static Future<String?> getCurrentThemeName() =>
-      _themeData.getCurrentThemeName();
+  static late HoverThemeSettings _themeSettings;
+
+  /// Get the name of the theme saved on the device.
+  static Future<String?> getSavedThemeName() =>
+      _themeSettings.getSavedThemeName();
+
+  /// Change the current theme of the app by providing
+  /// the name of the desired theme. This also saves
+  /// the setting on the device, ensuring that it will
+  /// be loaded the next time the app is started.
   static void setThemeByName(String themeName) =>
-      _themeData.setThemeByName(themeName);
+      _themeSettings.setThemeByName(themeName);
+
+  /// Returns a list of the names of available themes.
+  static List<String> getThemeNames() => _themeSettings.themeNames;
 
   /// Save key-value pair to shared preferences.
   static Future<bool> saveSetting(String key, String value) =>
@@ -88,13 +99,22 @@ class Hover extends StatelessWidget {
   /// The current theme can be set by calling setThemeByName.
   /// The app loads the first theme in this Map on startup.
   ///
+  /// [appBarBuilder]: Builder for the app bar that will be displayed
+  /// on all app pages.
+  ///
+  /// [drawerBuilder]: Builder for the drawer that will be displayed
+  /// on all app pages.
+  ///
+  /// [fabBuilder]: Builder for the floating action button that will be displayed
+  /// on all app pages.
+  ///
   static Hover create({
     required List<HoverPage> pages,
-    required Map<String, ThemeData> themes,
+    required List<HoverThemeData> themes,
     List<SingleChildWidget> providers = const [],
     Widget Function(BuildContext)? appBarBuilder,
     Widget Function(BuildContext)? drawerBuilder,
-    Widget Function(BuildContext)? floatingActionButtonBuilder,
+    Widget Function(BuildContext)? fabBuilder,
   }) {
     return Hover._(
       pages: pages,
@@ -103,22 +123,22 @@ class Hover extends StatelessWidget {
       globalWidgets: HoverGlobalWidgets(
         appBarBuilder: appBarBuilder,
         drawerBuilder: drawerBuilder,
-        floatingActionButtonBuilder: floatingActionButtonBuilder,
+        fabBuilder: fabBuilder,
       ),
     );
   }
 
   Hover._({
     required List<HoverPage> pages,
-    required Map<String, ThemeData> themes,
+    required List<HoverThemeData> themes,
     List<SingleChildWidget> providers = const [],
     required HoverGlobalWidgets globalWidgets,
   }) {
     _router = HoverRouter(routes: pages);
     _providers.add(HoverRouterProvider(_router));
 
-    _themeData = HoverThemeData(themes: themes);
-    _providers.add(HoverThemeProvider(_themeData));
+    _themeSettings = HoverThemeSettings(themes: themes);
+    _providers.add(HoverThemeSettingsProvider(_themeSettings));
 
     _providers.add(HoverGlobalWidgetsProvider(globalWidgets));
 
@@ -130,14 +150,14 @@ class Hover extends StatelessWidget {
     return MultiProvider(
       providers: _providers,
       child: _HoverAppBody(
-        themeData: _themeData,
+        themeData: _themeSettings,
       ),
     );
   }
 }
 
 class _HoverAppBody extends StatefulWidget {
-  final HoverThemeData themeData;
+  final HoverThemeSettings themeData;
   _HoverAppBody({
     required this.themeData,
   });
@@ -156,11 +176,11 @@ class _HoverAppBodyState extends State<_HoverAppBody> {
 
   @override
   Widget build(BuildContext context) {
-    final _themeData = Provider.of<HoverThemeData>(context, listen: true);
+    final _themeData = Provider.of<HoverThemeSettings>(context, listen: true);
     final _routingManager = Provider.of<HoverRoutingManager>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: _themeData.currentTheme,
+      theme: _themeData.currentTheme.data,
       routes: _routingManager.buildRoutes(),
       initialRoute: _routingManager.initialRoute.routeName,
     );

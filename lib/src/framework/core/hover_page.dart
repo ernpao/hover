@@ -6,5 +6,14 @@ abstract class HoverPage extends HoverPageBase {
   HoverPage({
     String? title,
     Color? backgroundColor,
-  }) : super(title: title, backgroundColor: backgroundColor);
+    bool disableAppBar = false,
+    bool disableDrawer = false,
+    bool disableFAB = false,
+  }) : super(
+          title: title,
+          backgroundColor: backgroundColor,
+          disableAppBar: disableAppBar,
+          disableDrawer: disableDrawer,
+          disableFAB: disableFAB,
+        );
 }

@@ -71,6 +71,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
             suffix: _buildSuffix(),
             errorStyle: TextStyle(
               height: 1.75,
+              color: Theme.of(context).errorColor,
             ),
           ),
         ),

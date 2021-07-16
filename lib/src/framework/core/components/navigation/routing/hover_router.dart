@@ -77,7 +77,7 @@ class HoverRouter implements HoverRoutingManager {
   Map<String, Widget Function(BuildContext)> buildRoutes() {
     final Map<String, Widget Function(BuildContext)> _routes = Map();
     for (HoverRoute page in routes) {
-      _routes[page.routeName] = (context) => page.regenerate(context);
+      _routes[page.routeName] = (context) => page.generateRouteContent(context);
     }
     return _routes;
   }

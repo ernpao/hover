@@ -1,30 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'dependencies/global_widgets/hover_global_widgets.dart';
-import 'dependencies/navigation/routing/hover_route.dart';
+import 'components/global_widgets/hover_global_widgets.dart';
+import 'components/navigation/routing/hover_route.dart';
 
 abstract class HoverPageBase extends StatelessWidget implements HoverRoute {
+  HoverPageBase({
+    this.title,
+    this.backgroundColor,
+    this.disableAppBar = false,
+    this.disableDrawer = false,
+    this.disableFAB = false,
+  });
+
   /// Title of the page. Currently unused by Hover in any mechanisms.
   final String? title;
 
   /// Color to use for the background of the page.
   final Color? backgroundColor;
 
-  HoverPageBase({
-    this.title,
-    this.backgroundColor,
-  });
+  /// Determines whether the page should disable the global app bar builder.
+  final bool disableAppBar;
 
-  /// Similar to the build method for widgets, this
-  /// describes the part of the user interface represented
-  /// by this widget.
-  ///
-  /// Note that widget returned by this function will be
-  /// placed under an Expanded widget, which in turn is nested
-  /// under a Column with a crossAxisAlignment property set to
-  /// CrossAxisAlignment.stretch and mainAxisAlignment set to
-  /// MainAxisAlignment.start.
+  /// Determines whether the page should disable the global drawer builder.
+  final bool disableDrawer;
+
+  /// Determines whether the page should disable the global FAB builder.
+  final bool disableFAB;
+
+  /// Builder function for the content of the page. Additionally,
+  /// the widget created by ths function will be
+  /// placed under an [Expanded] widget, which in turn is nested
+  /// under a [Column] with a crossAxisAlignment property set to
+  /// [CrossAxisAlignment.stretch] and mainAxisAlignment set to
+  /// [MainAxisAlignment.start].
   Widget render(BuildContext context);
 
   @override
@@ -33,14 +42,14 @@ abstract class HoverPageBase extends StatelessWidget implements HoverRoute {
       child: Scaffold(
         backgroundColor: backgroundColor,
         body: Builder(
-          builder: (subcontext) {
+          builder: (context) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                buildAppBar(subcontext),
+                buildAppBar(context),
                 Expanded(
-                  child: render(subcontext),
+                  child: render(context),
                 ),
               ],
             );
@@ -57,28 +66,26 @@ abstract class HoverPageBase extends StatelessWidget implements HoverRoute {
   }
 
   Widget buildAppBar(BuildContext context) {
-    if (_getGlobalWidgets(context).appBarBuilder != null) {
+    if (_getGlobalWidgets(context).appBarBuilder != null && !disableAppBar) {
       return _getGlobalWidgets(context).appBarBuilder!(context);
     }
     return SizedBox.shrink(); // Can't be null since it is a child of a Column
   }
 
   Widget? buildDrawer(BuildContext context) {
-    if (_getGlobalWidgets(context).drawerBuilder != null) {
+    if (_getGlobalWidgets(context).drawerBuilder != null && !disableDrawer) {
       return _getGlobalWidgets(context).drawerBuilder!(context);
     }
     return null;
   }
 
   Widget? buildFloatingActionButton(BuildContext context) {
-    if (_getGlobalWidgets(context).floatingActionButtonBuilder != null) {
-      return _getGlobalWidgets(context).floatingActionButtonBuilder!(context);
+    if (_getGlobalWidgets(context).fabBuilder != null && !disableFAB) {
+      return _getGlobalWidgets(context).fabBuilder!(context);
     }
     return null;
   }
 
   @override
-  Widget regenerate(BuildContext context) {
-    return build(context);
-  }
+  Widget generateRouteContent(BuildContext context) => build(context);
 }

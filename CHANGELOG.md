@@ -1,3 +1,7 @@
+## [0.4.1] - 7/15/2021
+* Updated mechanism for handling themes.
+* Added HoverPage properties for disabling global widgets per page.
+
 ## [0.4.0] - 7/15/2021
 * Revamp of library structure.
 

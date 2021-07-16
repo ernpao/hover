@@ -7,14 +7,24 @@ class HoverGlobalWidgets {
   HoverGlobalWidgets({
     this.appBarBuilder,
     this.drawerBuilder,
-    this.floatingActionButtonBuilder,
+    this.fabBuilder,
   });
+
+  /// Builder for the app bar that will be displayed
+  /// on all app pages.
   final Widget Function(BuildContext)? appBarBuilder;
+
+  /// Builder for the drawer that will be displayed
+  /// on all app pages.
   final Widget Function(BuildContext)? drawerBuilder;
-  final Widget Function(BuildContext)? floatingActionButtonBuilder;
+
+  /// Builder for the floating action button that will be displayed
+  /// on all app pages.
+  final Widget Function(BuildContext)? fabBuilder;
 }
 
+/// Provider class used by
 class HoverGlobalWidgetsProvider extends Provider<HoverGlobalWidgets> {
-  HoverGlobalWidgetsProvider(HoverGlobalWidgets? globalBuilders)
-      : super(create: (_) => globalBuilders!);
+  HoverGlobalWidgetsProvider(HoverGlobalWidgets globalBuilders)
+      : super(create: (_) => globalBuilders);
 }
