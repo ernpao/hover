@@ -8,9 +8,9 @@ import 'app/forms/sign_up_form_example.dart';
 import 'app/view_splitter_example.dart';
 import 'app/widgets_gallery.dart';
 
-void main() => runApp(HoverExample());
+void main() => runApp(HoverDemo());
 
-class HoverExample extends StatelessWidget {
+class HoverDemo extends StatelessWidget {
   final MobileResponsivenessExample mobileResponsivenessExample =
       MobileResponsivenessExample();
   final ProfileExample profilePage = ProfileExample();
@@ -93,11 +93,9 @@ class HoverExample extends StatelessWidget {
   ///
   AppBar _buildAppBar(BuildContext context) {
     return AppBar(
-      title: Text("Hover Sample App"),
+      title: Text("Hover Demo App"),
       leading: TextButton(
-        onPressed: () {
-          Hover.toggleDrawer(context);
-        },
+        onPressed: () => Hover.toggleDrawer(context),
         child: Icon(Icons.menu, color: Colors.white),
       ),
     );

@@ -4,8 +4,8 @@ import 'package:provider/single_child_widget.dart';
 
 import 'core/components/global_widgets/hover_global_widgets.dart';
 import 'core/components/navigation/routing/hover_router.dart';
-import 'core/components/theme/hover_theme_settings.dart';
 import 'core/components/theme/hover_theme_data.dart';
+import 'core/components/theme/hover_theme_settings.dart';
 import 'core/hover_page.dart';
 import 'helpers/hover_bottom_sheet_helper.dart';
 import 'helpers/hover_dimensions_helper.dart';

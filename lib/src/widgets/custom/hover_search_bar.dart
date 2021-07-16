@@ -75,6 +75,10 @@ class _HoverSearchBarState extends State<HoverSearchBar> {
 
   @override
   Widget build(BuildContext context) {
+    Color defaultHintColor = Colors.black38;
+    final theme = Theme.of(context);
+    if (theme.brightness == Brightness.dark) defaultHintColor = Colors.white38;
+
     return Container(
       child: Card(
         color: widget.backgroundColor,
@@ -87,7 +91,7 @@ class _HoverSearchBarState extends State<HoverSearchBar> {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Row(
             children: [
-              Icon(Icons.search, color: widget.iconColor ?? Colors.black38),
+              Icon(Icons.search, color: widget.iconColor ?? defaultHintColor),
               SizedBox(width: 8),
               Expanded(
                 child: TextField(
@@ -102,7 +106,7 @@ class _HoverSearchBarState extends State<HoverSearchBar> {
                     border: InputBorder.none,
                     hintText: widget.hintText ?? "",
                     hintStyle: TextStyle(
-                      color: widget.hintTextColor ?? Colors.black38,
+                      color: widget.hintTextColor ?? defaultHintColor,
                       fontWeight: widget.hintTextFontWeight,
                       fontSize: widget.hintTextFontSize,
                       fontStyle: widget.hintTextFontStyle,

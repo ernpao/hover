@@ -60,7 +60,7 @@ class HoverBaseCard extends StatelessWidget {
     this.child = const SizedBox.shrink(),
     this.elevation,
     this.cornerRadius,
-    this.color: Colors.white,
+    this.color,
     this.margin,
     this.leftMargin,
     this.topMargin,
@@ -75,8 +75,12 @@ class HoverBaseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color defaultCardColor = Colors.white;
+    final theme = Theme.of(context);
+    if (theme.brightness == Brightness.dark) defaultCardColor = Colors.black;
+
     return Card(
-      color: color,
+      color: color ?? defaultCardColor,
       margin: margin != null
           ? EdgeInsets.all(margin!)
           : EdgeInsets.only(
