@@ -18,6 +18,18 @@ class LoginFormExample extends HoverPage {
                       "Sign in form submitted. Email: $email Password: $password");
                   Hover.router.navigateTo("/profile", context);
                 },
+                children: [
+                  HoverCallToActionButton(
+                    text: "Create A New Account",
+                    onPressed: () {
+                      Hover.router.navigateTo(
+                        "/sign-up-form-example",
+                        context,
+                        push: true,
+                      );
+                    },
+                  )
+                ],
               ),
             ],
           ),
@@ -27,5 +39,5 @@ class LoginFormExample extends HoverPage {
   }
 
   @override
-  String get routeName => "/Sign in-form-example";
+  String get routeName => "/login-in-form-example";
 }

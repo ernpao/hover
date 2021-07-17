@@ -34,6 +34,8 @@ abstract class CustomForm extends StatefulWidget {
   final List<CustomFormField> fields;
   final Function(Map<String, String>) onSubmit;
 
+  final List<Widget>? children;
+
   CustomForm({
     this.subtitle,
     this.subtitleFontSize,
@@ -53,6 +55,7 @@ abstract class CustomForm extends StatefulWidget {
     this.titleFontSize,
     this.titleColor,
     this.titleFontWeight,
+    this.children,
   });
 
   @override
@@ -170,7 +173,7 @@ class _CustomFormState extends State<CustomForm> {
             key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: children,
+              children: children..addAll(widget.children ?? []),
             ),
           ),
         ),

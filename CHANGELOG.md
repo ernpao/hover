@@ -1,6 +1,7 @@
 ## [0.4.1] - 7/15/2021
 * Updated mechanism for handling themes.
 * Added HoverPage properties for disabling global widgets per page.
+* Added the children property to forms to allow additional widgets such as buttons to be appended to them.
 
 ## [0.4.0] - 7/15/2021
 * Revamp of library structure.

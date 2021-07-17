@@ -24,6 +24,7 @@ class HoverLoginForm extends CustomForm {
     Color? subtitleColor,
     double? subtitleFontSize,
     FontWeight? subtitleFontWeight,
+    List<Widget>? children,
   }) : super(
           formName: formName,
           title: title ?? "Welcome Back!",
@@ -53,5 +54,6 @@ class HoverLoginForm extends CustomForm {
           subtitleColor: subtitleColor,
           subtitleFontSize: subtitleFontSize,
           subtitleFontWeight: subtitleFontWeight,
+          children: children,
         );
 }

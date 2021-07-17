@@ -24,6 +24,18 @@ class SignUpFormExample extends HoverPage {
                 requireLowercase: true,
                 requireUppercase: true,
                 requireSpecialCharacters: true,
+                children: [
+                  HoverCallToActionButton(
+                    text: "Log In With Existing Account",
+                    onPressed: () {
+                      Hover.router.navigateTo(
+                        "/login-in-form-example",
+                        context,
+                        push: true,
+                      );
+                    },
+                  )
+                ],
               ),
             ],
           ),

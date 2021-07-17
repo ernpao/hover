@@ -28,6 +28,7 @@ class HoverEmailSignUpForm extends CustomForm {
     bool? requireLowercase,
     bool? requireUppercase,
     bool? requireSpecialCharacters,
+    List<Widget>? children,
   }) {
     return HoverEmailSignUpForm._(
       formName: formName,
@@ -53,6 +54,7 @@ class HoverEmailSignUpForm extends CustomForm {
       subtitleColor: subtitleColor,
       subtitleFontSize: subtitleFontSize,
       subtitleFontWeight: subtitleFontWeight,
+      children: children,
     );
   }
 
@@ -75,6 +77,7 @@ class HoverEmailSignUpForm extends CustomForm {
     FontWeight? subtitleFontWeight,
     required HoverPasswordField passwordField,
     required Function(String? email, String? password) onSubmit,
+    List<Widget>? children,
   }) : super(
           formName: formName,
           title: title ?? "Sign Up",
@@ -102,5 +105,6 @@ class HoverEmailSignUpForm extends CustomForm {
             String? password = map[HoverPasswordField.fieldName];
             onSubmit(email, password);
           },
+          children: children,
         );
 }

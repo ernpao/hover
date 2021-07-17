@@ -24,6 +24,7 @@ class HoverEmailLoginForm extends CustomForm {
     Color? subtitleColor,
     double? subtitleFontSize,
     FontWeight? subtitleFontWeight,
+    List<Widget>? children,
   }) : super(
           formName: formName,
           title: title ?? "Welcome Back!",
@@ -50,5 +51,6 @@ class HoverEmailLoginForm extends CustomForm {
             String? password = map[HoverPasswordField.fieldName];
             onSubmit(email, password);
           },
+          children: children,
         );
 }

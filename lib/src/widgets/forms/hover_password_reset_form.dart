@@ -23,6 +23,7 @@ class HoverPasswordResetForm extends CustomForm {
     Color? subtitleColor,
     double? subtitleFontSize,
     FontWeight? subtitleFontWeight,
+    List<Widget>? children,
   }) : super(
           formName: formName,
           title: title ?? "Reset Your Password",
@@ -48,5 +49,6 @@ class HoverPasswordResetForm extends CustomForm {
             String? email = map[HoverEmailField.fieldName];
             onSubmit(email);
           },
+          children: children,
         );
 }
