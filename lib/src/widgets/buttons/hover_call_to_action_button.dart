@@ -17,6 +17,7 @@ class HoverCallToActionButton extends CustomRaisedButton {
     double? maxWidth,
     TextAlign? textAlign = TextAlign.center,
     required Function()? onPressed,
+    bool enabled = true,
   }) : super(
           child: CustomButtonText(
             text: text,
@@ -31,5 +32,6 @@ class HoverCallToActionButton extends CustomRaisedButton {
           verticalPadding: verticalPadding,
           margin: margin,
           maxWidth: maxWidth,
+          enabled: enabled,
         );
 }

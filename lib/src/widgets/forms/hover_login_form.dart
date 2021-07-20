@@ -25,6 +25,9 @@ class HoverLoginForm extends CustomForm {
     double? subtitleFontSize,
     FontWeight? subtitleFontWeight,
     List<Widget>? children,
+    bool enabled = true,
+    required TextEditingController usernameController,
+    required TextEditingController passwordController,
   }) : super(
           formName: formName,
           title: title ?? "Welcome Back!",
@@ -35,8 +38,9 @@ class HoverLoginForm extends CustomForm {
             HoverBasicField(
               fieldLabel: "Username",
               fieldName: "username",
+              controller: usernameController,
             ),
-            HoverPasswordField(),
+            HoverPasswordField(controller: passwordController),
           ],
           onSubmit: (Map<String, String> map) {
             String? username = map["username"];
@@ -55,5 +59,6 @@ class HoverLoginForm extends CustomForm {
           subtitleFontSize: subtitleFontSize,
           subtitleFontWeight: subtitleFontWeight,
           children: children,
+          enabled: enabled,
         );
 }

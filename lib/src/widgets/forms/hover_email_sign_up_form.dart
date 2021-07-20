@@ -29,6 +29,10 @@ class HoverEmailSignUpForm extends CustomForm {
     bool? requireUppercase,
     bool? requireSpecialCharacters,
     List<Widget>? children,
+    bool enabled = true,
+    required TextEditingController emailController,
+    required TextEditingController passwordController,
+    required TextEditingController passwordConfirmationController,
   }) {
     return HoverEmailSignUpForm._(
       formName: formName,
@@ -48,6 +52,7 @@ class HoverEmailSignUpForm extends CustomForm {
         requireLowercase: requireLowercase,
         requireUppercase: requireUppercase,
         requireSpecialCharacters: requireSpecialCharacters,
+        controller: passwordController,
       ),
       onSubmit: onSubmit,
       subtitle: subtitle,
@@ -55,6 +60,9 @@ class HoverEmailSignUpForm extends CustomForm {
       subtitleFontSize: subtitleFontSize,
       subtitleFontWeight: subtitleFontWeight,
       children: children,
+      enabled: enabled,
+      emailController: emailController,
+      passwordConfirmationController: passwordConfirmationController,
     );
   }
 
@@ -78,6 +86,9 @@ class HoverEmailSignUpForm extends CustomForm {
     required HoverPasswordField passwordField,
     required Function(String email, String password) onSubmit,
     List<Widget>? children,
+    bool enabled = true,
+    required TextEditingController emailController,
+    required TextEditingController passwordConfirmationController,
   }) : super(
           formName: formName,
           title: title ?? "Sign Up",
@@ -85,9 +96,12 @@ class HoverEmailSignUpForm extends CustomForm {
           titleFontWeight: titleFontWeight,
           titleColor: titleColor,
           fields: [
-            HoverEmailField(),
+            HoverEmailField(controller: emailController),
             passwordField,
-            HoverConfirmPasswordField(passwordField),
+            HoverConfirmPasswordField(
+              passwordField,
+              controller: passwordConfirmationController,
+            ),
           ],
           submitButtonTextColor: submitButtonTextColor,
           submitButtonColor: submitButtonColor,
@@ -106,5 +120,6 @@ class HoverEmailSignUpForm extends CustomForm {
             onSubmit(email ?? "", password ?? "");
           },
           children: children,
+          enabled: enabled,
         );
 }

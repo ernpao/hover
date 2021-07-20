@@ -97,7 +97,6 @@ class WidgetsGallery extends HoverPage {
               ],
             ),
           ),
-          HoverPasswordResetForm(onSubmit: (password) {}),
         ],
       ),
     );

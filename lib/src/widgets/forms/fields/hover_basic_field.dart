@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
+
 import '../base/custom_form_field.dart';
 
 class HoverBasicField extends CustomFormField {
-  final String? initialValue;
   final String fieldName;
   final String fieldLabel;
+  final TextEditingController controller;
 
   /// A function that returns an error message string
   /// to display if the input [valueToValidate] not pass a validation
@@ -11,14 +13,14 @@ class HoverBasicField extends CustomFormField {
   final String? Function(String?)? validator;
 
   HoverBasicField({
-    this.initialValue,
+    required this.controller,
     required this.fieldName,
     required this.fieldLabel,
     this.validator,
   }) : super(
           name: fieldName,
           label: fieldLabel,
-          initialValue: initialValue,
           validator: validator,
+          controller: controller,
         );
 }

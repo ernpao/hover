@@ -11,13 +11,12 @@ import 'app/widgets_gallery.dart';
 void main() => runApp(HoverDemo());
 
 class HoverDemo extends StatelessWidget {
-  final MobileResponsivenessExample mobileResponsivenessExample =
-      MobileResponsivenessExample();
-  final ProfileExample profilePage = ProfileExample();
-  final LoginFormExample signInFormExample = LoginFormExample();
-  final SignUpFormExample signUpFormExample = SignUpFormExample();
-  final WidgetsGallery widgetsGallery = WidgetsGallery();
-  final ViewSplitterExample viewSplitterExample = ViewSplitterExample();
+  final mobileResponsivenessExample = MobileResponsivenessExample();
+  final profilePage = ProfileExample();
+  final signInFormExample = LoginFormExample();
+  final signUpFormExample = SignUpFormExample();
+  final widgetsGallery = WidgetsGallery();
+  final viewSplitterExample = ViewSplitterExample();
 
   @override
   Widget build(BuildContext context) {

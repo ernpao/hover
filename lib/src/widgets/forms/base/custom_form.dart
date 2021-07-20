@@ -2,9 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
 import '../../buttons/hover_call_to_action_button.dart';
 import 'custom_form_field.dart';
+import 'custom_form_view_state.dart';
 
 abstract class CustomForm extends StatefulWidget {
   /// An identifier for the form. Used for debugging only.
@@ -35,6 +37,7 @@ abstract class CustomForm extends StatefulWidget {
   final Function(Map<String, String>) onSubmit;
 
   final List<Widget>? children;
+  final bool enabled;
 
   CustomForm({
     this.subtitle,
@@ -56,6 +59,7 @@ abstract class CustomForm extends StatefulWidget {
     this.titleColor,
     this.titleFontWeight,
     this.children,
+    this.enabled = true,
   });
 
   @override
@@ -72,7 +76,7 @@ class _CustomFormState extends State<CustomForm> {
     Map<String, String> data = Map<String, String>();
 
     for (CustomFormField field in widget.fields) {
-      data[field.getName()] = field.value;
+      data[field.name] = field.value;
     }
 
     return data;
@@ -124,6 +128,7 @@ class _CustomFormState extends State<CustomForm> {
       verticalPadding: widget.submitButtonVerticalPadding,
       cornerRadius: widget.submitButtonCornerRadius,
       onPressed: _submitForm,
+      enabled: widget.enabled,
     );
   }
 
@@ -151,7 +156,7 @@ class _CustomFormState extends State<CustomForm> {
     Widget submitButton = _buildSubmitButton();
     children.add(submitButton);
     FocusScope.of(context).requestFocus(_textNode);
-    final Widget form = RawKeyboardListener(
+    Widget form = RawKeyboardListener(
       focusNode: _textNode,
       onKey: (event) {
         if (event.runtimeType.toString() == 'RawKeyDownEvent') {
@@ -179,6 +184,11 @@ class _CustomFormState extends State<CustomForm> {
         ),
       ),
     );
-    return kIsWeb ? SizedBox(width: 450, child: form) : form;
+    form = kIsWeb ? SizedBox(width: 450, child: form) : form;
+
+    return Provider(
+      create: (_) => CustomFormViewState(enabled: widget.enabled),
+      child: form,
+    );
   }
 }

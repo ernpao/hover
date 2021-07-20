@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../../../hover.dart';
+import 'custom_form_view_state.dart';
+
 abstract class CustomFormField extends StatefulWidget {
   final String name;
   final String label;
-  final String? initialValue;
+  final TextEditingController controller;
 
   /// A function that returns an error message string
   /// to display if the input [valueToValidate] not pass a validation
@@ -12,33 +15,21 @@ abstract class CustomFormField extends StatefulWidget {
   final TextInputType? keyboardType;
   final Widget? icon;
   final Widget? suffix;
-  final Map<String, String> _fieldData = Map();
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey();
-  final bool enabled;
   final bool obscureText;
 
   CustomFormField({
     required this.name,
     required this.label,
+    required this.controller,
     this.icon,
-    this.initialValue,
-    this.enabled = true,
     this.keyboardType,
     this.obscureText = false,
     this.suffix,
     this.validator,
-  }) {
-    _fieldData[name] = initialValue ?? "";
-  }
+  });
 
-  GlobalKey<FormFieldState> getFieldKey() {
-    return _fieldKey;
-  }
-
-  String get value => _fieldData[name] ?? "";
-
-  String getName() {
-    return name;
+  String get value {
+    return controller.text;
   }
 
   @override
@@ -58,17 +49,16 @@ class _CustomFormFieldState extends State<CustomFormField> {
 
   @override
   Widget build(BuildContext context) {
+    final formState = Provider.of<CustomFormViewState>(context);
     return Container(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
         child: TextFormField(
-          key: widget._fieldKey,
+          controller: widget.controller,
           validator: widget.validator ?? (_) => null,
           obscureText: _obscureText,
           keyboardType: widget.keyboardType,
-          initialValue: widget.initialValue,
-          onChanged: (value) => widget._fieldData[widget.name] = value,
-          enabled: widget.enabled,
+          enabled: formState.enabled,
           decoration: InputDecoration(
             labelText: widget.label,
             icon: widget.icon ?? SizedBox.shrink(),

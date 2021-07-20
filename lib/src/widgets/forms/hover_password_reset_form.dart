@@ -24,6 +24,8 @@ class HoverPasswordResetForm extends CustomForm {
     double? subtitleFontSize,
     FontWeight? subtitleFontWeight,
     List<Widget>? children,
+    bool enabled = true,
+    required TextEditingController emailController,
   }) : super(
           formName: formName,
           title: title ?? "Reset Your Password",
@@ -31,7 +33,7 @@ class HoverPasswordResetForm extends CustomForm {
           titleFontWeight: titleFontWeight,
           titleColor: titleColor,
           fields: [
-            HoverEmailField(),
+            HoverEmailField(controller: emailController),
           ],
           submitButtonTextColor: submitButtonTextColor,
           submitButtonColor: submitButtonColor,
@@ -50,5 +52,6 @@ class HoverPasswordResetForm extends CustomForm {
             onSubmit(email ?? "");
           },
           children: children,
+          enabled: enabled,
         );
 }

@@ -25,6 +25,9 @@ class HoverEmailLoginForm extends CustomForm {
     double? subtitleFontSize,
     FontWeight? subtitleFontWeight,
     List<Widget>? children,
+    bool enabled = true,
+    required TextEditingController emailController,
+    required TextEditingController passwordController,
   }) : super(
           formName: formName,
           title: title ?? "Welcome Back!",
@@ -32,8 +35,8 @@ class HoverEmailLoginForm extends CustomForm {
           titleFontWeight: titleFontWeight,
           titleColor: titleColor,
           fields: [
-            HoverEmailField(),
-            HoverPasswordField(),
+            HoverEmailField(controller: emailController),
+            HoverPasswordField(controller: passwordController),
           ],
           submitButtonTextColor: submitButtonTextColor,
           submitButtonColor: submitButtonColor,
@@ -46,11 +49,12 @@ class HoverEmailLoginForm extends CustomForm {
           subtitleColor: subtitleColor,
           subtitleFontSize: subtitleFontSize,
           subtitleFontWeight: subtitleFontWeight,
-          onSubmit: (Map<String, String?> map) {
+          onSubmit: (Map<String, String> map) {
             String? email = map[HoverEmailField.fieldName];
             String? password = map[HoverPasswordField.fieldName];
             onSubmit(email ?? "", password ?? "");
           },
           children: children,
+          enabled: enabled,
         );
 }

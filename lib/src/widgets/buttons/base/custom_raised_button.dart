@@ -11,6 +11,7 @@ abstract class CustomRaisedButton extends StatelessWidget {
     this.verticalPadding,
     this.margin,
     this.maxWidth,
+    this.enabled = true,
   });
 
   final Widget child;
@@ -21,6 +22,7 @@ abstract class CustomRaisedButton extends StatelessWidget {
   final double? horizontalPadding;
   final double? margin;
   final double? maxWidth;
+  final bool enabled;
 
   final double _defaultPadding = 12.0;
 
@@ -56,7 +58,7 @@ abstract class CustomRaisedButton extends StatelessWidget {
               ),
             ),
           ),
-          onPressed: onPressed?.call,
+          onPressed: enabled ? onPressed?.call : null,
         ),
       ),
     );

@@ -7,15 +7,16 @@ class _PasswordField extends CustomFormField {
   _PasswordField({
     required String name,
     required String labelText,
-    String? initialValue,
     required String? Function(String?) validator,
+    required TextEditingController controller,
   }) : super(
-            name: name,
-            label: labelText,
-            initialValue: initialValue,
-            keyboardType: TextInputType.visiblePassword,
-            obscureText: true,
-            validator: validator);
+          controller: controller,
+          name: name,
+          label: labelText,
+          keyboardType: TextInputType.visiblePassword,
+          obscureText: true,
+          validator: validator,
+        );
 }
 
 class HoverPasswordField extends _PasswordField {
@@ -23,15 +24,15 @@ class HoverPasswordField extends _PasswordField {
   static const String fieldLabel = "Password";
 
   HoverPasswordField({
-    String? initialValue,
     int? passwordMinLength,
     bool? requireLowercase,
     bool? requireUppercase,
     bool? requireSpecialCharacters,
+    required TextEditingController controller,
   }) : super(
+          controller: controller,
           name: fieldName,
           labelText: fieldLabel,
-          initialValue: initialValue,
           validator: HoverFluentValidator()
               .validateAsPassword(
                 passwordMinLength ?? 8,
@@ -49,11 +50,13 @@ class HoverConfirmPasswordField extends _PasswordField {
   static const String fieldLabel = "Confirm Password";
 
   final HoverPasswordField passwordFieldToConfirm;
-  HoverConfirmPasswordField(this.passwordFieldToConfirm)
-      : super(
+  HoverConfirmPasswordField(
+    this.passwordFieldToConfirm, {
+    required TextEditingController controller,
+  }) : super(
+            controller: controller,
             name: fieldName,
             labelText: fieldLabel,
-            initialValue: passwordFieldToConfirm.initialValue,
             validator: (input) {
               print("Password Input: ${passwordFieldToConfirm.value}");
               print("Confirmation Input: $input");
