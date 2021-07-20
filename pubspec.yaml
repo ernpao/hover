@@ -1,5 +1,5 @@
 name: hover
-description: A helper and widget library for navigation, theme switching, responsive design, and more that aims to reduce boilerplate code for Flutter app development
+description: A helper and widget library for implementing navigation, theme management, and responsive layouts for Flutter apps.
 version: 0.4.1
 homepage: https://github.com/ernpao/hover
 
