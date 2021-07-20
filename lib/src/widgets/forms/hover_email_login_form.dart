@@ -7,7 +7,7 @@ import 'fields/hover_password_field.dart';
 
 class HoverEmailLoginForm extends CustomForm {
   HoverEmailLoginForm({
-    required Function(String? email, String? password) onSubmit,
+    required Function(String email, String password) onSubmit,
     String? formName,
     String? title,
     double? titleFontSize,
@@ -49,7 +49,7 @@ class HoverEmailLoginForm extends CustomForm {
           onSubmit: (Map<String, String?> map) {
             String? email = map[HoverEmailField.fieldName];
             String? password = map[HoverPasswordField.fieldName];
-            onSubmit(email, password);
+            onSubmit(email ?? "", password ?? "");
           },
           children: children,
         );

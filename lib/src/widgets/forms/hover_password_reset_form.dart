@@ -6,7 +6,7 @@ import 'fields/hover_email_field.dart';
 
 class HoverPasswordResetForm extends CustomForm {
   HoverPasswordResetForm({
-    required Function(String? email) onSubmit,
+    required Function(String email) onSubmit,
     String? formName,
     String? title,
     double? titleFontSize,
@@ -47,7 +47,7 @@ class HoverPasswordResetForm extends CustomForm {
           subtitleFontWeight: subtitleFontWeight,
           onSubmit: (Map<String, String?> map) {
             String? email = map[HoverEmailField.fieldName];
-            onSubmit(email);
+            onSubmit(email ?? "");
           },
           children: children,
         );

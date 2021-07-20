@@ -7,7 +7,7 @@ import 'fields/hover_password_field.dart';
 
 class HoverLoginForm extends CustomForm {
   HoverLoginForm({
-    required Function(String? username, String? password) onSubmit,
+    required Function(String username, String password) onSubmit,
     String? formName,
     String? title,
     double? titleFontSize,
@@ -41,7 +41,7 @@ class HoverLoginForm extends CustomForm {
           onSubmit: (Map<String, String> map) {
             String? username = map["username"];
             String? password = map[HoverPasswordField.fieldName];
-            onSubmit(username, password);
+            onSubmit(username ?? "", password ?? "");
           },
           submitButtonTextColor: submitButtonTextColor,
           submitButtonColor: submitButtonColor,

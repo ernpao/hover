@@ -76,7 +76,7 @@ class HoverEmailSignUpForm extends CustomForm {
     double? subtitleFontSize,
     FontWeight? subtitleFontWeight,
     required HoverPasswordField passwordField,
-    required Function(String? email, String? password) onSubmit,
+    required Function(String email, String password) onSubmit,
     List<Widget>? children,
   }) : super(
           formName: formName,
@@ -103,7 +103,7 @@ class HoverEmailSignUpForm extends CustomForm {
           onSubmit: (Map<String, String> map) {
             String? email = map[HoverEmailField.fieldName];
             String? password = map[HoverPasswordField.fieldName];
-            onSubmit(email, password);
+            onSubmit(email ?? "", password ?? "");
           },
           children: children,
         );
