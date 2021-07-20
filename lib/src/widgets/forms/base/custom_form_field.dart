@@ -10,21 +10,23 @@ abstract class CustomFormField extends StatefulWidget {
   /// test and returns null otherwise.
   final String? Function(String?)? validator;
   final TextInputType? keyboardType;
-  final bool? obscureText;
   final Widget? icon;
   final Widget? suffix;
   final Map<String, String> _fieldData = Map();
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey();
+  final bool enabled;
+  final bool obscureText;
 
   CustomFormField({
     required this.name,
     required this.label,
-    this.initialValue,
-    this.validator,
-    this.keyboardType,
-    this.obscureText: false,
     this.icon,
+    this.initialValue,
+    this.enabled = true,
+    this.keyboardType,
+    this.obscureText = false,
     this.suffix,
+    this.validator,
   }) {
     _fieldData[name] = initialValue ?? "";
   }
@@ -33,7 +35,7 @@ abstract class CustomFormField extends StatefulWidget {
     return _fieldKey;
   }
 
-  String get value => _fieldData[name]!;
+  String get value => _fieldData[name] ?? "";
 
   String getName() {
     return name;
@@ -47,9 +49,10 @@ abstract class CustomFormField extends StatefulWidget {
 
 class _CustomFormFieldState extends State<CustomFormField> {
   late bool _obscureText;
+
   @override
   void initState() {
-    _obscureText = widget.obscureText!;
+    _obscureText = widget.obscureText;
     super.initState();
   }
 
@@ -65,9 +68,10 @@ class _CustomFormFieldState extends State<CustomFormField> {
           keyboardType: widget.keyboardType,
           initialValue: widget.initialValue,
           onChanged: (value) => widget._fieldData[widget.name] = value,
+          enabled: widget.enabled,
           decoration: InputDecoration(
             labelText: widget.label,
-            icon: (widget.icon != null) ? widget.icon : SizedBox.shrink(),
+            icon: widget.icon ?? SizedBox.shrink(),
             suffix: _buildSuffix(),
             errorStyle: TextStyle(
               height: 1.75,
@@ -80,7 +84,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
   }
 
   Widget? _buildSuffix() {
-    if (widget.obscureText!) {
+    if (widget.obscureText) {
       IconData iconData = Icons.visibility_off;
       if (_obscureText) {
         iconData = Icons.visibility;
