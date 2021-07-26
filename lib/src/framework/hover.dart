@@ -59,7 +59,7 @@ class Hover extends StatelessWidget {
   /// Returns a list of the names of available themes.
   static List<String> getThemeNames() => _themeSettings.themeNames;
 
-  /// Save key-value pair to shared preferences.
+  /// Save key/value pair to shared preferences.
   static Future<bool> saveSetting(String key, String value) =>
       HoverSharedPreferencesHelper.saveSetting(key, value);
 
@@ -95,7 +95,7 @@ class Hover extends StatelessWidget {
   /// MaterialApp nested inside a MultiProvider.
   ///
   ///
-  /// [themes]: A key-value store of themes used by the app.
+  /// [themes]: A key/value store of themes used by the app.
   /// The current theme can be set by calling setThemeByName.
   /// The app loads the first theme in this Map on startup.
   ///
