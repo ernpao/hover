@@ -14,7 +14,7 @@ import 'helpers/hover_shared_preferences_helper.dart';
 import 'helpers/hover_snackbar_helper.dart';
 
 class Hover extends StatelessWidget {
-  static final List<SingleChildWidget> _providers = [];
+  static final List<InheritedProvider> _providers = [];
 
   // Routing
   static late HoverRoutingManager _router;
@@ -95,23 +95,23 @@ class Hover extends StatelessWidget {
   /// MaterialApp nested inside a MultiProvider.
   ///
   ///
-  /// [themes]: A key/value store of themes used by the app.
+  /// `themes`: A key/value store of themes used by the app.
   /// The current theme can be set by calling setThemeByName.
   /// The app loads the first theme in this Map on startup.
   ///
-  /// [appBarBuilder]: Builder for the app bar that will be displayed
+  /// `appBarBuilder`: Builder for the app bar that will be displayed
   /// on all app pages.
   ///
-  /// [drawerBuilder]: Builder for the drawer that will be displayed
+  /// `drawerBuilder`: Builder for the drawer that will be displayed
   /// on all app pages.
   ///
-  /// [fabBuilder]: Builder for the floating action button that will be displayed
+  /// `fabBuilder`: Builder for the floating action button that will be displayed
   /// on all app pages.
   ///
   factory Hover.create({
     required List<HoverPage> pages,
     required List<HoverThemeData> themes,
-    List<SingleChildWidget> providers = const [],
+    List<InheritedProvider> providers = const [],
     Widget Function(BuildContext)? appBarBuilder,
     Widget Function(BuildContext)? drawerBuilder,
     Widget Function(BuildContext)? fabBuilder,
@@ -131,17 +131,14 @@ class Hover extends StatelessWidget {
   Hover._({
     required List<HoverPage> pages,
     required List<HoverThemeData> themes,
-    List<SingleChildWidget> providers = const [],
+    List<InheritedProvider> providers = const [],
     required HoverGlobalWidgets globalWidgets,
   }) {
     _router = HoverRouter(routes: pages);
-    _providers.add(HoverRouterProvider(_router));
-
     _themeSettings = HoverThemeSettings(themes: themes);
+    _providers.add(HoverRouterProvider(_router));
     _providers.add(HoverThemeSettingsProvider(_themeSettings));
-
     _providers.add(HoverGlobalWidgetsProvider(globalWidgets));
-
     _providers.addAll(providers);
   }
 
