@@ -108,7 +108,7 @@ class Hover extends StatelessWidget {
   /// [fabBuilder]: Builder for the floating action button that will be displayed
   /// on all app pages.
   ///
-  static Hover create({
+  factory Hover.create({
     required List<HoverPage> pages,
     required List<HoverThemeData> themes,
     List<SingleChildWidget> providers = const [],
