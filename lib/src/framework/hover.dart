@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:provider/single_child_widget.dart';
 
 import 'core/components/global_widgets/hover_global_widgets.dart';
 import 'core/components/navigation/routing/hover_router.dart';
