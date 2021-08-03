@@ -1,47 +1,23 @@
 import 'package:flutter/material.dart';
+import 'hover_circle_button.dart';
 
-class HoverCircleIconButton extends StatelessWidget {
+class HoverCircleIconButton extends HoverCircleButton {
   HoverCircleIconButton({
-    required this.iconData,
-    this.color,
-    this.onTap,
-    this.size,
-    this.iconSize,
-    this.iconColor,
-    this.elevation,
-  });
-
-  final IconData iconData;
-  final Function()? onTap;
-  final double? size;
-  final double? iconSize;
-  final Color? color;
-  final Color? iconColor;
-  final double? elevation;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: SizedBox(
-        height: size,
-        width: size,
-        child: Card(
-          elevation: elevation,
+    required IconData iconData,
+    Function()? onTap,
+    double? size,
+    double? iconSize,
+    Color? color,
+    Color? iconColor,
+    double? elevation,
+  }) : super(
+          size: size,
           color: color,
-          shape: CircleBorder(),
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Icon(
-                iconData,
-                size: iconSize,
-                color: iconColor,
-              ),
-            ),
+          elevation: elevation,
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(iconData, size: iconSize, color: iconColor),
           ),
-        ),
-      ),
-    );
-  }
+        );
 }
