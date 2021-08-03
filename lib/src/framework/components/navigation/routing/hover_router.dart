@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
 
 import 'hover_route.dart';
 
@@ -31,9 +30,7 @@ class HoverRouter implements HoverRoutingManager {
   });
 
   @override
-  bool canPop(BuildContext context) {
-    return Navigator.canPop(context);
-  }
+  bool canPop(BuildContext context) => Navigator.canPop(context);
 
   @override
   void navigateTo(
@@ -81,9 +78,4 @@ class HoverRouter implements HoverRoutingManager {
     }
     return _routes;
   }
-}
-
-class HoverRouterProvider extends Provider<HoverRoutingManager> {
-  HoverRouterProvider(HoverRoutingManager appNavigationManager)
-      : super(create: (_) => appNavigationManager);
 }

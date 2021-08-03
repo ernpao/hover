@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'components/global_widgets/hover_global_widgets.dart';
 import 'components/navigation/routing/hover_route.dart';
+import 'helpers/hover_responsive_helper.dart';
 
 abstract class HoverPageBase extends StatelessWidget implements HoverRoute {
   HoverPageBase({
@@ -28,12 +29,18 @@ abstract class HoverPageBase extends StatelessWidget implements HoverRoute {
   /// Determines whether the page should disable the global FAB builder.
   final bool disableFAB;
 
+  bool _drawerEnableOpenDragGesture(BuildContext context) {
+    final helper = HoverResponsiveHelper(context);
+    return helper.onPhone;
+  }
+
   /// Builder function for the content of the page. Additionally,
   /// the widget created by ths function will be
   /// placed under an [Expanded] widget, which in turn is nested
   /// under a [Column] with a crossAxisAlignment property set to
   /// [CrossAxisAlignment.stretch] and mainAxisAlignment set to
   /// [MainAxisAlignment.start].
+  @protected
   Widget render(BuildContext context);
 
   @override
@@ -41,6 +48,7 @@ abstract class HoverPageBase extends StatelessWidget implements HoverRoute {
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundColor,
+        drawerEnableOpenDragGesture: _drawerEnableOpenDragGesture(context),
         body: Builder(
           builder: (context) {
             return Column(
@@ -65,6 +73,7 @@ abstract class HoverPageBase extends StatelessWidget implements HoverRoute {
     return Provider.of<HoverGlobalWidgets>(context, listen: false);
   }
 
+  @protected
   Widget buildAppBar(BuildContext context) {
     if (_getGlobalWidgets(context).appBarBuilder != null && !disableAppBar) {
       return _getGlobalWidgets(context).appBarBuilder!(context);
@@ -72,6 +81,7 @@ abstract class HoverPageBase extends StatelessWidget implements HoverRoute {
     return SizedBox.shrink(); // Can't be null since it is a child of a Column
   }
 
+  @protected
   Widget? buildDrawer(BuildContext context) {
     if (_getGlobalWidgets(context).drawerBuilder != null && !disableDrawer) {
       return _getGlobalWidgets(context).drawerBuilder!(context);
@@ -79,6 +89,7 @@ abstract class HoverPageBase extends StatelessWidget implements HoverRoute {
     return null;
   }
 
+  @protected
   Widget? buildFloatingActionButton(BuildContext context) {
     if (_getGlobalWidgets(context).fabBuilder != null && !disableFAB) {
       return _getGlobalWidgets(context).fabBuilder!(context);

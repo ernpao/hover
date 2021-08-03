@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HoverSnackBarHelper {
+  HoverSnackBarHelper._();
+
   static const Duration defaultSnackBarDuration = const Duration(seconds: 2);
 
   static void showSnackBar(BuildContext context, SnackBar snackBar) {

@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'hover_theme_data.dart';
@@ -54,10 +53,4 @@ class HoverThemeSettings extends ChangeNotifier {
       }
     });
   }
-}
-
-class HoverThemeSettingsProvider
-    extends ChangeNotifierProvider<HoverThemeSettings> {
-  HoverThemeSettingsProvider(HoverThemeSettings themeSettings)
-      : super(create: (_) => themeSettings);
 }

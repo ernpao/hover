@@ -1,6 +1,8 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HoverSharedPreferencesHelper {
+  HoverSharedPreferencesHelper._();
+
   static late SharedPreferences _instance;
 
   static Future<SharedPreferences> getInstance() async {

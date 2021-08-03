@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'core/components/global_widgets/hover_global_widgets.dart';
-import 'core/components/navigation/routing/hover_router.dart';
-import 'core/components/theme/hover_theme_data.dart';
-import 'core/components/theme/hover_theme_settings.dart';
-import 'core/hover_page.dart';
+import 'components/global_widgets/hover_global_widgets.dart';
+import 'components/navigation/routing/hover_router.dart';
+import 'components/theme/hover_theme_data.dart';
+import 'components/theme/hover_theme_settings.dart';
+import 'hover_page.dart';
 import 'helpers/hover_bottom_sheet_helper.dart';
 import 'helpers/hover_dimensions_helper.dart';
 import 'helpers/hover_drawer_helper.dart';
@@ -135,9 +135,11 @@ class Hover extends StatelessWidget {
   }) {
     _router = HoverRouter(routes: pages);
     _themeSettings = HoverThemeSettings(themes: themes);
-    _providers.add(HoverRouterProvider(_router));
-    _providers.add(HoverThemeSettingsProvider(_themeSettings));
-    _providers.add(HoverGlobalWidgetsProvider(globalWidgets));
+    _providers.add(Provider<HoverRoutingManager>.value(value: _router));
+    _providers.add(Provider<HoverGlobalWidgets>.value(value: globalWidgets));
+    _providers.add(
+      ChangeNotifierProvider<HoverThemeSettings>.value(value: _themeSettings),
+    );
     _providers.addAll(providers);
   }
 
@@ -145,40 +147,12 @@ class Hover extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: _providers,
-      child: _HoverAppBody(
-        themeData: _themeSettings,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: _themeSettings.currentTheme.data,
+        routes: _router.buildRoutes(),
+        initialRoute: _router.initialRoute.routeName,
       ),
-    );
-  }
-}
-
-class _HoverAppBody extends StatefulWidget {
-  final HoverThemeSettings themeData;
-  _HoverAppBody({
-    required this.themeData,
-  });
-  @override
-  _HoverAppBodyState createState() {
-    return _HoverAppBodyState();
-  }
-}
-
-class _HoverAppBodyState extends State<_HoverAppBody> {
-  @override
-  void initState() {
-    super.initState();
-    widget.themeData.loadSavedTheme();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final _themeData = Provider.of<HoverThemeSettings>(context, listen: true);
-    final _routingManager = Provider.of<HoverRoutingManager>(context);
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: _themeData.currentTheme.data,
-      routes: _routingManager.buildRoutes(),
-      initialRoute: _routingManager.initialRoute.routeName,
     );
   }
 }

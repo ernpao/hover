@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class HoverSearchBar extends StatefulWidget {
   /// Function to call when the search bar input changes.
-  final Function(String)? onChanged;
+  final Function(String query)? onChanged;
 
   /// Function to call upon submission of the user's search query (i.e. enter key is pressed).
-  final Function(String)? onSubmitted;
+  final Function(String query)? onSubmitted;
 
   /// Hint text to display on the search bar.
   final String? hintText;

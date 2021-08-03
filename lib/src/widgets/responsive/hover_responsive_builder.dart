@@ -1,24 +1,21 @@
 import 'package:flutter/material.dart';
-
-enum HoverResponsiveState {
-  desktop,
-  tablet,
-  phone,
-}
+import '../../framework/helpers/hover_responsive_helper.dart';
+import '../../framework/helpers/hover_responsive_state.dart';
 
 class HoverResponsiveBuilder extends StatelessWidget {
   /// The screen width at which the view for tablets is rendered.
-  final int breakpointForTablets;
+  final double breakpointForTablets;
 
   /// The screen width at which the view for mobile phones is rendered.
-  final int breakpointForPhones;
+  final double breakpointForPhones;
 
   /// The widgets to render inside this grid.
   final List<Widget> children;
 
   HoverResponsiveBuilder({
-    this.breakpointForPhones: 575,
-    this.breakpointForTablets: 768,
+    this.breakpointForPhones = HoverResponsiveHelper.defaultBreakpointForPhones,
+    this.breakpointForTablets =
+        HoverResponsiveHelper.defaultBreakpointForTablets,
     this.children = const [],
     required this.builder,
   }) : assert(breakpointForTablets > breakpointForPhones);
@@ -28,19 +25,10 @@ class HoverResponsiveBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-    final screenWidth = screenSize.width;
-
-    if (screenWidth > breakpointForTablets) {
-      // Render desktop view
-      return builder(context, HoverResponsiveState.desktop, children);
-    } else if (screenWidth > breakpointForPhones &&
-        screenWidth <= breakpointForTablets) {
-      // Render tablet view
-      return builder(context, HoverResponsiveState.tablet, children);
-    } else {
-      // Render phone view
-      return builder(context, HoverResponsiveState.phone, children);
-    }
+    return builder(
+      context,
+      HoverResponsiveHelper(context).responsiveState,
+      children,
+    );
   }
 }
