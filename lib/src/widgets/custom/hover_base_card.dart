@@ -56,6 +56,12 @@ class HoverBaseCard extends StatelessWidget {
   /// or [bottomPadding].
   final double? padding;
 
+  /// The total width of the card (including the margins).
+  final double? width;
+
+  /// The total height of the card (including the margins).
+  final double? height;
+
   HoverBaseCard({
     this.child = const SizedBox.shrink(),
     this.elevation,
@@ -71,7 +77,13 @@ class HoverBaseCard extends StatelessWidget {
     this.topPadding,
     this.bottomPadding,
     this.rightPadding,
+    this.height,
+    this.width,
   });
+
+  static const _defaultMargin = 12.0;
+  static const _defaultPadding = 16.0;
+  static const _defaultCornerRadius = 24.0;
 
   @override
   Widget build(BuildContext context) {
@@ -79,30 +91,36 @@ class HoverBaseCard extends StatelessWidget {
     final theme = Theme.of(context);
     if (theme.brightness == Brightness.dark) defaultCardColor = Colors.black;
 
-    return Card(
-      color: color ?? defaultCardColor,
-      margin: margin != null
-          ? EdgeInsets.all(margin!)
-          : EdgeInsets.only(
-              top: topMargin ?? 12.0,
-              left: leftMargin ?? 12.0,
-              right: rightMargin ?? 12.0,
-              bottom: bottomMargin ?? 12.0,
-            ),
-      elevation: elevation,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(cornerRadius ?? 24.0),
-      ),
-      child: Padding(
-        padding: padding != null
-            ? EdgeInsets.all(padding!)
+    return SizedBox(
+      width: width,
+      height: height,
+      child: Card(
+        color: color ?? defaultCardColor,
+        margin: margin != null
+            ? EdgeInsets.all(margin!)
             : EdgeInsets.only(
-                left: leftPadding ?? 16.0,
-                top: topPadding ?? 16.0,
-                right: rightPadding ?? 16.0,
-                bottom: bottomPadding ?? 16.0,
+                top: topMargin ?? _defaultMargin,
+                left: leftMargin ?? _defaultMargin,
+                right: rightMargin ?? _defaultMargin,
+                bottom: bottomMargin ?? _defaultMargin,
               ),
-        child: child,
+        elevation: elevation,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(
+            cornerRadius ?? _defaultCornerRadius,
+          ),
+        ),
+        child: Padding(
+          padding: padding != null
+              ? EdgeInsets.all(padding!)
+              : EdgeInsets.only(
+                  left: leftPadding ?? _defaultPadding,
+                  top: topPadding ?? _defaultPadding,
+                  right: rightPadding ?? _defaultPadding,
+                  bottom: bottomPadding ?? _defaultPadding,
+                ),
+          child: child,
+        ),
       ),
     );
   }

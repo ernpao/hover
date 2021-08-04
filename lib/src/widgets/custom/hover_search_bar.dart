@@ -1,6 +1,25 @@
 import 'package:flutter/material.dart';
 
 class HoverSearchBar extends StatefulWidget {
+  HoverSearchBar({
+    this.onChanged,
+    this.hintText,
+    this.iconColor,
+    this.elevation,
+    this.backgroundColor,
+    this.hintTextColor,
+    this.hintTextFontSize,
+    this.hintTextFontStyle,
+    this.hintTextFontWeight,
+    this.onSubmitted,
+    this.initialText,
+    this.clearOnSubmit = false,
+    this.width,
+  });
+
+  /// The maximum width of this widget (including the margins).
+  final double? width;
+
   /// Function to call when the search bar input changes.
   final Function(String query)? onChanged;
 
@@ -35,21 +54,6 @@ class HoverSearchBar extends StatefulWidget {
   final String? initialText;
 
   final bool clearOnSubmit;
-
-  HoverSearchBar({
-    this.onChanged,
-    this.hintText,
-    this.iconColor,
-    this.elevation,
-    this.backgroundColor,
-    this.hintTextColor,
-    this.hintTextFontSize,
-    this.hintTextFontStyle,
-    this.hintTextFontWeight,
-    this.onSubmitted,
-    this.initialText,
-    this.clearOnSubmit = false,
-  });
   @override
   State<StatefulWidget> createState() {
     return _HoverSearchBarState();
@@ -73,52 +77,66 @@ class _HoverSearchBarState extends State<HoverSearchBar> {
     super.initState();
   }
 
+  static const _cardPadding = 16.0;
+  static const _cardMargin = 12.0;
+  static const _cornerRadius = _cardPadding * 2;
+  static const _spacer = SizedBox(width: 8.0);
+
+  Color _getHintColor(BuildContext context) {
+    final theme = Theme.of(context);
+    return (theme.brightness == Brightness.dark)
+        ? Colors.white38
+        : Colors.black38;
+  }
+
   @override
   Widget build(BuildContext context) {
-    Color defaultHintColor = Colors.black38;
-    final theme = Theme.of(context);
-    if (theme.brightness == Brightness.dark) defaultHintColor = Colors.white38;
+    final _defaultContentColor = _getHintColor(context);
 
-    return Container(
+    return SizedBox(
+      width: widget.width,
       child: Card(
+        margin: EdgeInsets.all(_cardMargin),
         color: widget.backgroundColor,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(32.0),
+          borderRadius: BorderRadius.circular(_cornerRadius),
         ),
-        margin: EdgeInsets.all(12.0),
         elevation: widget.elevation,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: EdgeInsets.symmetric(horizontal: _cardPadding),
           child: Row(
             children: [
-              Icon(Icons.search, color: widget.iconColor ?? defaultHintColor),
-              SizedBox(width: 8),
+              Icon(
+                Icons.search,
+                color: widget.iconColor ?? _defaultContentColor,
+              ),
+              _spacer,
               Expanded(
                 child: TextField(
                   onSubmitted: (query) {
                     widget.onSubmitted?.call(_userQuery);
-                    if (widget.clearOnSubmit) {
-                      _controller.clear();
-                    }
+                    if (widget.clearOnSubmit) _controller.clear();
                   },
                   controller: _controller,
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: widget.hintText ?? "",
                     hintStyle: TextStyle(
-                      color: widget.hintTextColor ?? defaultHintColor,
+                      color: widget.hintTextColor ?? _defaultContentColor,
                       fontWeight: widget.hintTextFontWeight,
                       fontSize: widget.hintTextFontSize,
                       fontStyle: widget.hintTextFontStyle,
                     ),
-                    contentPadding: EdgeInsets.all(0),
                   ),
                 ),
               ),
-              SizedBox(width: 8),
+              _spacer,
               _hasText
                   ? IconButton(
-                      icon: Icon(Icons.close, color: widget.iconColor),
+                      icon: Icon(
+                        Icons.close,
+                        color: widget.iconColor ?? _defaultContentColor,
+                      ),
                       onPressed: _controller.clear,
                     )
                   : SizedBox.shrink(),
