@@ -32,14 +32,60 @@ class Hover extends StatelessWidget {
       HoverDrawerHelper.toggleDrawer(context);
 
   // Dimensions
-  static double getScreenWidth(BuildContext context) =>
-      HoverDimensionsHelper.getScreenWidth(context);
-  static double getScreenHeight(BuildContext context) =>
-      HoverDimensionsHelper.getScreenHeight(context);
-  static double getScreenWidthWithScale(double scale, BuildContext context) =>
-      getScreenWidth(context) * scale;
-  static double getScreenHeightWithScale(double scale, BuildContext context) =>
-      getScreenHeight(context) * scale;
+
+  /// Get the screen width of the device. The value can be clamped with the
+  /// optional parameters `lowerClamp` and `upperClamp`;
+  static double getScreenWidth(
+    BuildContext context, {
+    double? lowerClamp,
+    double? upperClamp,
+  }) {
+    return HoverDimensionsHelper.getScreenWidth(context).clamp(
+      lowerClamp ?? 0.0,
+      upperClamp ?? double.maxFinite,
+    );
+  }
+
+  /// Get the screen height of the device. The value can be clamped with the
+  /// optional parameters `lowerClamp` and `upperClamp`;
+  static double getScreenHeight(
+    BuildContext context, {
+    double? lowerClamp,
+    double? upperClamp,
+  }) {
+    return HoverDimensionsHelper.getScreenHeight(context).clamp(
+      lowerClamp ?? 0.0,
+      upperClamp ?? double.maxFinite,
+    );
+  }
+
+  static double getScreenWidthWithScale(
+    double scale,
+    BuildContext context, {
+    double? lowerClamp,
+    double? upperClamp,
+  }) {
+    return getScreenWidth(
+          context,
+          lowerClamp: lowerClamp,
+          upperClamp: upperClamp,
+        ) *
+        scale;
+  }
+
+  static double getScreenHeightWithScale(
+    double scale,
+    BuildContext context, {
+    double? lowerClamp,
+    double? upperClamp,
+  }) {
+    return getScreenHeight(
+          context,
+          lowerClamp: lowerClamp,
+          upperClamp: upperClamp,
+        ) *
+        scale;
+  }
 
   // Theme
   static late HoverThemeSettings _themeSettings;

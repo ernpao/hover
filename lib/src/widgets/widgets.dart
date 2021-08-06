@@ -14,9 +14,7 @@ export 'custom/hover_search_bar.dart';
 export 'custom/hover_slider.dart';
 export 'custom/hover_snack_bar.dart';
 export 'custom/hover_square_image.dart';
-export 'forms/fields/hover_basic_field.dart';
-export 'forms/fields/hover_email_field.dart';
-export 'forms/fields/hover_password_field.dart';
+export 'custom/hover_text_input.dart';
 //Form Widgets
 export 'forms/hover_email_login_form.dart';
 export 'forms/hover_email_sign_up_form.dart';
