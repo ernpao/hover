@@ -12,6 +12,7 @@ class HoverText extends StatelessWidget {
   final FontWeight? fontWeight;
   final FontStyle? fontStyle;
   final bool? softWrap;
+  final double? lineHeight;
   HoverText(
     this.text, {
     this.textAlign,
@@ -24,6 +25,7 @@ class HoverText extends StatelessWidget {
     this.fontWeight,
     this.fontStyle,
     this.softWrap,
+    this.lineHeight,
   });
   @override
   Widget build(BuildContext context) {
@@ -43,6 +45,7 @@ class HoverText extends StatelessWidget {
           fontSize: fontSize,
           fontStyle: fontStyle,
           color: color,
+          height: lineHeight,
         ),
       ),
     );
