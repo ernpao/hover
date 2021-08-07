@@ -2,6 +2,7 @@ library hover_widgets;
 
 // Basic buttons
 export 'buttons/hover_call_to_action_button.dart';
+export 'buttons/hover_circle_button.dart';
 export 'buttons/hover_circle_icon_button.dart';
 //Social Media buttons
 export 'buttons/social/hover_facebook_sign_in_button.dart';
