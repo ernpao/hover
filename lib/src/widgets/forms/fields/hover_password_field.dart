@@ -20,8 +20,8 @@ class _PasswordField extends CustomFormField {
 }
 
 class HoverPasswordField extends _PasswordField {
-  static const String fieldName = "password";
-  static const String fieldLabel = "Password";
+  static const fieldName = "password";
+  static const fieldLabel = "Password";
 
   HoverPasswordField({
     int? passwordMinLength,
@@ -46,8 +46,8 @@ class HoverPasswordField extends _PasswordField {
 }
 
 class HoverConfirmPasswordField extends _PasswordField {
-  static const String fieldName = "password_confirmation";
-  static const String fieldLabel = "Confirm Password";
+  static const fieldName = "password_confirmation";
+  static const fieldLabel = "Confirm Password";
 
   final HoverPasswordField passwordFieldToConfirm;
   HoverConfirmPasswordField(

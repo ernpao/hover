@@ -17,6 +17,6 @@ class HoverEmailField extends CustomFormField {
               .build(),
         );
 
-  static const String fieldName = "email";
-  static const String fieldLabel = "Email";
+  static const fieldName = "email";
+  static const fieldLabel = "Email";
 }
