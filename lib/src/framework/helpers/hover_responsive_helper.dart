@@ -53,4 +53,40 @@ class HoverResponsiveHelper {
       return HoverResponsiveState.phone;
     }
   }
+
+  /// Returns a value that is equal to the screen height clamped
+  /// between `lowerLimit` and `upperLimit`.
+  ///
+  /// The screen height is multiplied by `scale` if it is provided before
+  /// it is clamped. This is useful for scenarios where you want to
+  /// calculate a percentage (scale) of the screen height but limit it
+  /// between `lowerLimit` and `upperLimit`.
+  double clampedScreenHeight({
+    double? lowerLimit,
+    double? upperLimit,
+    double? scale,
+  }) {
+    return (screenHeight * (scale ?? 1.0)).clamp(
+      lowerLimit ?? 0,
+      upperLimit ?? screenHeight,
+    );
+  }
+
+  /// Returns a value that is equal to the screen width clamped
+  /// between `lowerLimit` and `upperLimit`.
+  ///
+  /// The screen width is multiplied by `scale` if it is provided before
+  /// it is clamped. This is useful for scenarios where you want to
+  /// calculate a percentage (scale) of the screen width but limit it
+  /// between `lowerLimit` and `upperLimit`.
+  double clampedScreenWidth({
+    double? lowerLimit,
+    double? upperLimit,
+    double? scale,
+  }) {
+    return (screenWidth * (scale ?? 1.0)).clamp(
+      lowerLimit ?? 0,
+      upperLimit ?? screenWidth,
+    );
+  }
 }
