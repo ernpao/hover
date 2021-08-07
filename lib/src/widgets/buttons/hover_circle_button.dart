@@ -23,6 +23,7 @@ class HoverCircleButton extends StatelessWidget {
         height: size,
         width: size,
         child: Card(
+          clipBehavior: Clip.antiAlias,
           elevation: elevation,
           color: color,
           shape: CircleBorder(),
