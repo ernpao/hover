@@ -62,6 +62,8 @@ class HoverBaseCard extends StatelessWidget {
   /// The total height of the card (including the margins).
   final double? height;
 
+  final Clip? clipBehavior;
+
   HoverBaseCard({
     this.child = const SizedBox.shrink(),
     this.elevation,
@@ -79,6 +81,7 @@ class HoverBaseCard extends StatelessWidget {
     this.rightPadding,
     this.height,
     this.width,
+    this.clipBehavior,
   });
 
   static const _defaultMargin = 12.0;
@@ -95,6 +98,7 @@ class HoverBaseCard extends StatelessWidget {
       width: width,
       height: height,
       child: Card(
+        clipBehavior: clipBehavior,
         color: color ?? defaultCardColor,
         margin: margin != null
             ? EdgeInsets.all(margin!)
