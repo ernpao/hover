@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class HoverTextInput extends StatefulWidget {
   HoverTextInput({
-    required this.controller,
+    this.controller,
     this.hintText,
     this.iconColor,
     this.elevation,
@@ -47,7 +47,7 @@ class HoverTextInput extends StatefulWidget {
   /// Font weight of the hint text.
   final FontWeight? hintTextFontWeight;
 
-  final TextEditingController controller;
+  final TextEditingController? controller;
 
   final bool? clearOnSubmit;
 
@@ -64,7 +64,7 @@ class _HoverTextInputState extends State<HoverTextInput> {
   String get _userQuery => _controller.value.text;
   @override
   void initState() {
-    _controller = widget.controller;
+    _controller = widget.controller ?? TextEditingController();
     _controller.addListener(() {
       // Calling setState is required to toggle visibility of clear text icon
       setState(() => {});
