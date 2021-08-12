@@ -17,6 +17,7 @@ abstract class CustomForm extends StatefulWidget {
   final FontWeight? titleFontWeight;
   final double? titleFontSize;
   final Color? titleColor;
+  final TextStyle? titleStyle;
 
   /// The form's subtitle text located below the title.
   final String? subtitle;
@@ -58,6 +59,7 @@ abstract class CustomForm extends StatefulWidget {
     this.titleFontSize,
     this.titleColor,
     this.titleFontWeight,
+    this.titleStyle,
     this.children,
     this.enabled = true,
   });
@@ -89,11 +91,12 @@ class _CustomFormState extends State<CustomForm> {
     return Text(
       title,
       textAlign: TextAlign.center,
-      style: TextStyle(
-        fontSize: widget.titleFontSize ?? 28.0,
-        fontWeight: widget.titleFontWeight ?? FontWeight.w600,
-        color: widget.titleColor,
-      ),
+      style: widget.titleStyle ??
+          TextStyle(
+            fontSize: widget.titleFontSize ?? 28.0,
+            fontWeight: widget.titleFontWeight ?? FontWeight.w600,
+            color: widget.titleColor,
+          ),
     );
   }
 

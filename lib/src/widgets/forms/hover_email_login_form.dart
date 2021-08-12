@@ -13,6 +13,7 @@ class HoverEmailLoginForm extends CustomForm {
     double? titleFontSize,
     Color? titleColor,
     FontWeight? titleFontWeight,
+    TextStyle? titleStyle,
     String? submitButtonText,
     double? submitButtonTextSize,
     Color? submitButtonColor,
@@ -34,6 +35,7 @@ class HoverEmailLoginForm extends CustomForm {
           titleFontSize: titleFontSize,
           titleFontWeight: titleFontWeight,
           titleColor: titleColor,
+          titleStyle: titleStyle,
           fields: [
             HoverEmailField(controller: emailController),
             HoverPasswordField(controller: passwordController),

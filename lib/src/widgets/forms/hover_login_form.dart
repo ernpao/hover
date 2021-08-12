@@ -12,6 +12,7 @@ class HoverLoginForm extends CustomForm {
     String? title,
     double? titleFontSize,
     Color? titleColor,
+    TextStyle? titleStyle,
     FontWeight? titleFontWeight,
     String? submitButtonText,
     double? submitButtonTextSize,
@@ -34,6 +35,7 @@ class HoverLoginForm extends CustomForm {
           titleFontSize: titleFontSize,
           titleFontWeight: titleFontWeight,
           titleColor: titleColor,
+          titleStyle: titleStyle,
           fields: [
             HoverBasicField(
               fieldLabel: "Username",

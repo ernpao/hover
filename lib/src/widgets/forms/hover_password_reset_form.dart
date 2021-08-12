@@ -11,6 +11,7 @@ class HoverPasswordResetForm extends CustomForm {
     String? title,
     double? titleFontSize,
     Color? titleColor,
+    TextStyle? titleStyle,
     FontWeight? titleFontWeight,
     String? submitButtonText,
     double? submitButtonTextSize,
@@ -32,6 +33,7 @@ class HoverPasswordResetForm extends CustomForm {
           titleFontSize: titleFontSize,
           titleFontWeight: titleFontWeight,
           titleColor: titleColor,
+          titleStyle: titleStyle,
           fields: [
             HoverEmailField(controller: emailController),
           ],
