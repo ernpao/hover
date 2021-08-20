@@ -8,7 +8,9 @@ class HoverResponsiveHelper {
     this.breakpointForPhones,
     this.breakpointForTablets,
   }) {
-    screenSize = MediaQuery.of(context).size;
+    assert((breakpointForTablets ?? defaultTabletBreakpoint) >
+        (breakpointForPhones ?? defaultPhoneBreakpoint));
+    screenSize = _mediaQuery.size;
     screenWidth = screenSize.width;
     screenHeight = screenSize.height;
   }
@@ -18,30 +20,37 @@ class HoverResponsiveHelper {
   late final double screenWidth;
   late final double screenHeight;
 
-  /// The screen width at which the view for tablets is rendered.
+  late final _mediaQuery = MediaQuery.of(context);
+
+  /// The maximum screen width at which the view for tablets is rendered.
+  /// `onTablet` will return false if the screen width is higher than this value.
   final double? breakpointForTablets;
 
-  static const double defaultBreakpointForTablets = 768;
+  static const double defaultTabletBreakpoint = 768;
 
-  /// The screen width at which the view for mobile phones is rendered.
+  /// The maximum screen width at which the view for mobile phones is rendered.
+  /// `onPhone` will return false if the screen width is higher than this value.
   final double? breakpointForPhones;
 
-  static const double defaultBreakpointForPhones = 575;
+  static const double defaultPhoneBreakpoint = 575;
 
-  bool get onDesktop =>
-      screenWidth > (breakpointForTablets ?? defaultBreakpointForTablets);
-
-  bool get onTablet {
-    final abovePhoneWidth =
-        screenWidth > (breakpointForPhones ?? defaultBreakpointForPhones);
-
-    final belowDesktopWidth =
-        screenWidth <= (breakpointForTablets ?? defaultBreakpointForTablets);
-
-    return abovePhoneWidth && belowDesktopWidth;
+  bool get onDesktop {
+    return screenWidth > (breakpointForTablets ?? defaultTabletBreakpoint);
   }
 
-  bool get onPhone => !onDesktop && !onTablet;
+  bool get onTablet {
+    final isLargerThanPhone =
+        screenWidth > (breakpointForPhones ?? defaultPhoneBreakpoint);
+
+    final isSmallerThanDesktop =
+        screenWidth <= (breakpointForTablets ?? defaultTabletBreakpoint);
+
+    return isLargerThanPhone && isSmallerThanDesktop;
+  }
+
+  bool get onPhone {
+    return !onDesktop && !onTablet;
+  }
 
   HoverResponsiveState get responsiveState {
     if (onDesktop)
@@ -52,6 +61,14 @@ class HoverResponsiveHelper {
       assert(onPhone);
       return HoverResponsiveState.phone;
     }
+  }
+
+  bool get inPortraitMode {
+    return _mediaQuery.orientation == Orientation.portrait;
+  }
+
+  bool get inLandscapeMode {
+    return _mediaQuery.orientation == Orientation.landscape;
   }
 
   /// Returns a value that is equal to the screen height clamped
