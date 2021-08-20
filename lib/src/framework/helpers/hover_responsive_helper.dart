@@ -52,6 +52,8 @@ class HoverResponsiveHelper {
     return !onDesktop && !onTablet;
   }
 
+  bool get onMobile => !onDesktop;
+
   HoverResponsiveState get responsiveState {
     if (onDesktop)
       return HoverResponsiveState.desktop;
