@@ -15,6 +15,7 @@ class HoverTextInput extends StatefulWidget {
     this.clearOnSubmit,
     this.width,
     this.enabled,
+    this.focusNode,
   });
 
   /// The maximum width of this widget (including the margins).
@@ -52,6 +53,9 @@ class HoverTextInput extends StatefulWidget {
   final bool? clearOnSubmit;
 
   final bool? enabled;
+
+  final FocusNode? focusNode;
+
   @override
   State<StatefulWidget> createState() {
     return _HoverTextInputState();
@@ -109,6 +113,7 @@ class _HoverTextInputState extends State<HoverTextInput> {
                     widget.onSubmitted?.call(_userQuery);
                     if (widget.clearOnSubmit ?? false) _controller.clear();
                   },
+                  focusNode: widget.focusNode,
                   enabled: widget.enabled,
                   controller: _controller,
                   decoration: InputDecoration(
