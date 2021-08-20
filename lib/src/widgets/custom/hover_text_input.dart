@@ -22,7 +22,7 @@ class HoverTextInput extends StatefulWidget {
   final double? width;
 
   /// Function to call upon submission of the user's input (i.e. enter key is pressed).
-  final Function(String query)? onSubmitted;
+  final Future<void> Function(String query)? onSubmitted;
 
   /// Hint text to display.
   final String? hintText;
@@ -109,8 +109,8 @@ class _HoverTextInputState extends State<HoverTextInput> {
               _spacer,
               Expanded(
                 child: TextField(
-                  onSubmitted: (query) {
-                    widget.onSubmitted?.call(_userQuery);
+                  onSubmitted: (query) async {
+                    await widget.onSubmitted?.call(_userQuery);
                     if (widget.clearOnSubmit ?? false) _controller.clear();
                   },
                   focusNode: widget.focusNode,
