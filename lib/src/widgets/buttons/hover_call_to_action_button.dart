@@ -7,6 +7,7 @@ class HoverCallToActionButton extends CustomRaisedButton {
   HoverCallToActionButton({
     required String text,
     Color? color,
+    Color? overlayColor,
     Color? textColor,
     double? letterSpacing,
     FontWeight? fontWeight = FontWeight.bold,
@@ -26,6 +27,7 @@ class HoverCallToActionButton extends CustomRaisedButton {
             letterSpacing: letterSpacing,
           ),
           color: color,
+          overlayColor: overlayColor,
           onPressed: onPressed,
           cornerRadius: cornerRadius,
           horizontalPadding: horizontalPadding,

@@ -5,7 +5,8 @@ abstract class CustomRaisedButton extends StatelessWidget {
   CustomRaisedButton({
     required this.child,
     required this.onPressed,
-    required this.color,
+    this.color,
+    this.overlayColor,
     this.cornerRadius,
     this.horizontalPadding,
     this.verticalPadding,
@@ -16,6 +17,7 @@ abstract class CustomRaisedButton extends StatelessWidget {
 
   final Widget child;
   final Color? color;
+  final Color? overlayColor;
   final double? cornerRadius;
   final Function()? onPressed;
   final double? verticalPadding;
@@ -47,6 +49,9 @@ abstract class CustomRaisedButton extends StatelessWidget {
                 horizontal: _horizontalPadding,
                 vertical: _verticalPadding,
               ),
+            ),
+            overlayColor: MaterialStateProperty.resolveWith(
+              (states) => overlayColor,
             ),
             backgroundColor: MaterialStateProperty.resolveWith(
               (states) => color,
