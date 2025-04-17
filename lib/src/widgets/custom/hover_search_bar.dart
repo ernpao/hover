@@ -62,16 +62,22 @@ class HoverSearchBar extends StatefulWidget {
 
 class _HoverSearchBarState extends State<HoverSearchBar> {
   late TextEditingController _controller;
+  late String _prevValue;
+  String get _currentValue => _controller.value.text;
   bool get _hasText => _controller.text.isNotEmpty;
-  String get _userQuery => _controller.value.text;
+
   @override
   void initState() {
     _controller = TextEditingController();
+    _prevValue = widget.initialText ?? "";
     _controller.text = widget.initialText ?? "";
     _controller.addListener(() {
-      widget.onChanged?.call(_userQuery);
+      if (_currentValue != _prevValue) {
+        print("onChanged triggered!");
+        widget.onChanged?.call(_currentValue);
+      }
       // Calling setState is required to toggle visibility of clear text icon
-      setState(() => {});
+      setState(() => _prevValue = _currentValue);
     });
 
     super.initState();
@@ -87,6 +93,11 @@ class _HoverSearchBarState extends State<HoverSearchBar> {
     return (theme.brightness == Brightness.dark)
         ? Colors.white38
         : Colors.black38;
+  }
+
+  void _submit(String query) {
+    widget.onSubmitted?.call(_currentValue);
+    if (widget.clearOnSubmit) _controller.clear();
   }
 
   @override
@@ -113,10 +124,7 @@ class _HoverSearchBarState extends State<HoverSearchBar> {
               _spacer,
               Expanded(
                 child: TextField(
-                  onSubmitted: (query) {
-                    widget.onSubmitted?.call(_userQuery);
-                    if (widget.clearOnSubmit) _controller.clear();
-                  },
+                  onSubmitted: _submit,
                   controller: _controller,
                   decoration: InputDecoration(
                     border: InputBorder.none,
