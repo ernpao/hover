@@ -159,11 +159,11 @@ class _CustomFormState extends State<CustomForm> {
     Widget submitButton = _buildSubmitButton();
     children.add(submitButton);
     FocusScope.of(context).requestFocus(_textNode);
-    Widget form = RawKeyboardListener(
+    Widget form = KeyboardListener(
       focusNode: _textNode,
-      onKey: (event) {
+      onKeyEvent: (event) {
         if (event.runtimeType.toString() == 'RawKeyDownEvent') {
-          final key = event.data.logicalKey;
+          final key = event.logicalKey;
           if (key == LogicalKeyboardKey.enter) {
             _submitForm();
           }
