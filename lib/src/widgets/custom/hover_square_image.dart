@@ -12,7 +12,7 @@ class HoverSquareImage extends StatelessWidget {
   HoverSquareImage({
     required this.imageUrl,
     required this.size,
-    this.fit: BoxFit.cover,
+    this.fit = BoxFit.cover,
   });
   @override
   Widget build(BuildContext context) {

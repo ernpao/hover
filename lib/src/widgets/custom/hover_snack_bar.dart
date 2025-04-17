@@ -19,7 +19,7 @@ class HoverSnackBar extends SnackBar {
 
   HoverSnackBar({
     required this.content,
-    this.duration: defaultDuration,
+    this.duration = defaultDuration,
     this.width,
   }) : super(
           duration: duration,

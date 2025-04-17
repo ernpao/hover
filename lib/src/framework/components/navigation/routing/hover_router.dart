@@ -7,7 +7,7 @@ abstract class HoverNavigation {
   void navigateTo(
     String route,
     BuildContext context, {
-    bool push: false,
+    bool push = false,
   });
   void pop(BuildContext context);
 }
@@ -36,7 +36,7 @@ class HoverRouter implements HoverRoutingManager {
   void navigateTo(
     String route,
     BuildContext context, {
-    bool push: false,
+    bool push = false,
   }) async {
     return _navigate(context, route, usePush: push);
   }
@@ -44,7 +44,7 @@ class HoverRouter implements HoverRoutingManager {
   void _navigate(
     BuildContext context,
     String routeName, {
-    bool usePush: false,
+    bool usePush = false,
   }) async {
     for (int i = 0; i < routes.length; i++) {
       final route = routes[i];

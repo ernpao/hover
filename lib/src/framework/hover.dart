@@ -121,7 +121,7 @@ class Hover extends StatelessWidget {
   static void showPlainSnackBar(
     BuildContext context,
     String message, {
-    Duration duration: HoverSnackBarHelper.defaultSnackBarDuration,
+    Duration duration = HoverSnackBarHelper.defaultSnackBarDuration,
   }) {
     HoverSnackBarHelper.showPlainSnackBar(context, message, duration: duration);
   }

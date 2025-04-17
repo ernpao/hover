@@ -10,7 +10,7 @@ class HoverSnackBarHelper {
   }
 
   static void showPlainSnackBar(BuildContext context, String message,
-      {Duration duration: defaultSnackBarDuration}) {
+      {Duration duration = defaultSnackBarDuration}) {
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(message), duration: duration));
   }

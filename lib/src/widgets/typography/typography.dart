@@ -61,7 +61,7 @@ class HoverTitle extends HoverText {
     final double? topPadding,
     final Color? color,
     final FontWeight? fontWeight,
-    final FontStyle? fontStyle: FontStyle.normal,
+    final FontStyle? fontStyle = FontStyle.normal,
   }) : super(
           text,
           textAlign: textAlign ?? TextAlign.center,
@@ -82,8 +82,8 @@ class HoverHeading extends HoverText {
     final double? bottomPadding,
     final double? topPadding,
     final Color? color,
-    final FontWeight? fontWeight: FontWeight.bold,
-    final FontStyle? fontStyle: FontStyle.normal,
+    final FontWeight? fontWeight = FontWeight.bold,
+    final FontStyle? fontStyle = FontStyle.normal,
   }) : super(
           text,
           textAlign: textAlign ?? TextAlign.center,

@@ -39,7 +39,7 @@ class HoverRectangularImageCard extends StatelessWidget {
     required this.imageUrl,
     required this.width,
     required this.height,
-    this.cornerRadius: 0,
+    this.cornerRadius = 0,
   });
 
   @override

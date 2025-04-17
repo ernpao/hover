@@ -46,9 +46,9 @@ class HoverViewSplitter extends StatelessWidget {
     required this.mainViewChild,
     required this.subViewChild,
     this.subViewPosition,
-    this.showSubView: false,
-    this.mainViewFlex: 1,
-    this.subViewFlex: 1,
+    this.showSubView = false,
+    this.mainViewFlex = 1,
+    this.subViewFlex = 1,
     this.duration,
     this.curve,
   });
