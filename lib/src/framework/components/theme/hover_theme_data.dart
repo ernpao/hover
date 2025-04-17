@@ -12,10 +12,10 @@ class HoverThemeData {
   static final dark = HoverThemeData(
     name: "hover_dark",
     data: ThemeData.dark().copyWith(
-      // errorColor: Colors.orange,
-      // backgroundColor: Colors.black,
-      scaffoldBackgroundColor: Colors.black,
-    ),
+        // errorColor: Colors.orange,
+        // backgroundColor: Colors.black,
+        // scaffoldBackgroundColor: Colors.black,
+        ),
   );
 
   static final light =
