@@ -44,19 +44,19 @@ abstract class CustomRaisedButton extends StatelessWidget {
         child: ElevatedButton(
           child: Center(child: child),
           style: ButtonStyle(
-            padding: MaterialStateProperty.resolveWith(
+            padding: WidgetStateProperty.resolveWith(
               (states) => EdgeInsets.symmetric(
                 horizontal: _horizontalPadding,
                 vertical: _verticalPadding,
               ),
             ),
-            overlayColor: MaterialStateProperty.resolveWith(
+            overlayColor: WidgetStateProperty.resolveWith(
               (states) => overlayColor,
             ),
-            backgroundColor: MaterialStateProperty.resolveWith(
+            backgroundColor: WidgetStateProperty.resolveWith(
               (states) => color,
             ),
-            shape: MaterialStateProperty.resolveWith(
+            shape: WidgetStateProperty.resolveWith(
               (states) => RoundedRectangleBorder(
                 borderRadius:
                     BorderRadius.all(Radius.circular(cornerRadius ?? 8.0)),
