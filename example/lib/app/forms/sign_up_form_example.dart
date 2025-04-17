@@ -34,7 +34,7 @@ class SignUpFormExample extends HoverPage {
                 requireSpecialCharacters: true,
                 children: [
                   HoverCallToActionButton(
-                    enabled: false,
+                    enabled: true,
                     text: "Log In With Existing Account",
                     onPressed: () {
                       Hover.router.navigateTo(

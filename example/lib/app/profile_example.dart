@@ -16,6 +16,24 @@ class ProfileExample extends HoverPage {
           onChanged: (query) {
             print('Query: $query');
           },
+          onSubmitted: (query) {
+            print('Submitted: $query');
+            Hover.showSnackBar(
+              context,
+              HoverSnackBar(
+                width: 250,
+                content: HoverBaseCard(
+                  color: Colors.blue,
+                  child: HoverText(
+                    query,
+                    color: Colors.white,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+            );
+          },
+          clearOnSubmit: true,
         ),
         HoverCallToActionButton(
           cornerRadius: 24,
