@@ -1,6 +1,6 @@
 name: hover
 description: A helper and widget library for implementing navigation, theme management, and responsive layouts for Flutter apps.
-version: 0.4.1
+version: 0.4.2
 homepage: https://github.com/ernpao/hover
 
 environment:
@@ -9,8 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter    
-  provider: ^6.0.2
-  shared_preferences: ^2.0.11
+  provider: ^6.1.4
+  shared_preferences: ^2.5.3
 
 dev_dependencies:
   flutter_test:

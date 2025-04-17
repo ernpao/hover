@@ -1,3 +1,7 @@
+## [0.4.2] - 4/17/2025
+* Updated dependencies (provider and shared_preferences).
+* Removed usage of deprecated ThemeData properties (errorColor and backgroundColor).
+
 ## [0.4.1] - 7/15/2021
 * Updated mechanism for handling themes.
 * Added HoverPage properties for disabling global widgets per page.
